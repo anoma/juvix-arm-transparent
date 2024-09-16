@@ -1,0 +1,16 @@
+module Anoma.State.Machine;
+
+import Stdlib.Prelude open using {Bool};
+import Data.Set as Set open using {Set};
+
+import Anoma.Delta open;
+import Anoma.State.CommitmentTree as CommitmentTree open;
+import Anoma.Transaction.Index as Transaction open;
+
+trait
+type Machine :=
+  mkMachine {
+    create : Transaction.Constructor;
+    compose : Transaction -> Transaction -> Transaction;
+    verify : Transaction.Transaction -> Bool
+  };

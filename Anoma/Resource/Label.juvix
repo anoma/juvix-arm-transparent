@@ -1,0 +1,13 @@
+module Anoma.Resource.Label;
+
+import Anoma.Resource.Types open using {Ref; mkRef; LabelRef} public;
+
+axiom Label : Type;
+
+axiom labelRef : Label -> LabelRef;
+
+instance
+Label-Ref : Ref Label LabelRef :=
+  mkRef@{
+    ref (label : Label) : LabelRef := labelRef label
+  };

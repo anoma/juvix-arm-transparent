@@ -1,0 +1,9 @@
+module Anoma.Transaction.Preference;
+
+import Anoma.Transaction.Types as Transaction open;
+
+axiom UnitInterval : Type;
+
+Preference : Type := Transaction -> UnitInterval;
+
+axiom composition : Preference -> Preference -> Preference;

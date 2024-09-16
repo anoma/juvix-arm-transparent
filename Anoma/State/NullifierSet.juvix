@@ -1,0 +1,11 @@
+module Anoma.State.NullifierSet;
+
+import Stdlib.Prelude open using {Bool};
+import Anoma.Resource.Index as Resource;
+
+trait
+type NullifierSet :=
+  mkAccumulator {
+    add : Resource.Nullifier -> NullifierSet;
+    exists : Resource.Nullifier -> Bool
+  };

@@ -1,0 +1,32 @@
+module Anoma.State.CommitmentTree;
+
+import Stdlib.Prelude open using {Maybe; Bool; Eq; Ord; Ordering; mkOrd};
+import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Anoma.Resource.Index as Resource;
+
+axiom Root : Type;
+
+axiom Path : Type;
+
+positive
+trait
+type CommitmentTree :=
+  mkCommitmentTree {
+    add : CommitmentTree -> Resource.Commitment -> Path;
+    path : CommitmentTree -> Resource.Commitment -> Maybe Path;
+    verify : Resource.Commitment -> Path -> Root -> Bool;
+    root : CommitmentTree -> Root
+  };
+
+module RootInternal;
+  axiom compare : Root -> Root -> Ordering;
+
+  instance
+  Root-Ord : Ord Root :=
+    mkOrd@{
+      cmp := compare
+    };
+
+  instance
+  Root-Eq : Eq Root := fromOrdToEq;
+end;

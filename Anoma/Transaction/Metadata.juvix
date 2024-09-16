@@ -1,0 +1,39 @@
+module Anoma.Transaction.Metadata;
+
+import Stdlib.Prelude open using {&&};
+import Anoma.Transaction.Types as Transaction open;
+import Anoma.Transaction.Preference as Preference open;
+import Anoma.Transaction.InformationFlow open;
+
+type Metadata :=
+  mkMetadata {
+    preference : Preference;
+    informationFlowControlPredicate : InformationFlowControlPredicate
+  };
+
+type TransactionWithMetadata :=
+  mkTransactionWithMetadata {
+    transaction : Transaction;
+    metadata : Metadata
+  };
+
+compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
+  let
+    meta1 := TransactionWithMetadata.metadata txwm1;
+    meta2 := TransactionWithMetadata.metadata txwm2;
+    pref1 := Metadata.preference meta1;
+    pref2 := Metadata.preference meta2;
+    ifcp1 := Metadata.informationFlowControlPredicate meta1;
+    ifcp2 := Metadata.informationFlowControlPredicate meta2;
+  in mkTransactionWithMetadata@{
+    transaction :=
+      Transaction.compose@{
+        tx1 := TransactionWithMetadata.transaction txwm1;
+        tx2 := TransactionWithMetadata.transaction txwm2
+      };
+    metadata :=
+      mkMetadata@{
+        preference := Preference.composition pref1 pref2;
+        informationFlowControlPredicate := \ {tx id := ifcp1 tx id && ifcp2 tx id}
+      }
+  };

@@ -1,0 +1,13 @@
+module Anoma.Resource.Value;
+
+import Anoma.Resource.Types open using {Ref; mkRef; ValueRef} public;
+
+axiom Value : Type;
+
+axiom valueRef : Value -> ValueRef;
+
+instance
+Value-Ref : Ref Value ValueRef :=
+  mkRef@{
+    ref (value : Value) : ValueRef := valueRef value
+  };

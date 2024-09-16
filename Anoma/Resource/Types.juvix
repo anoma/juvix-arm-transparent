@@ -1,0 +1,33 @@
+module Anoma.Resource.Types;
+
+import Stdlib.Prelude open using {Bool} public;
+import Data.Set as Set open using {Set} public;
+
+axiom LogicRef : Type;
+
+axiom LabelRef : Type;
+
+axiom ValueRef : Type;
+
+axiom Quantity : Type;
+
+axiom NullifierKeyCommitment : Type;
+
+axiom Nonce : Type;
+
+axiom RandSeed : Type;
+
+type Resource :=
+  mkResource {
+    logicRef : LogicRef;
+    labelRef : LabelRef;
+    valueRef : ValueRef;
+    quantity : Quantity;
+    ephemerality : Bool;
+    nullifierKeyCommitment : NullifierKeyCommitment;
+    nonce : Nonce;
+    randSeed : RandSeed
+  };
+
+trait
+type Ref DataType RefType := mkRef {ref : DataType -> RefType};

@@ -1,0 +1,11 @@
+module Package;
+
+import PackageDescription.V2 open;
+
+package : Package :=
+  defaultPackage@?{
+    name := "juvix-arm-specs";
+    version := mkVersion 2 0 0;
+    dependencies :=
+      [github "anoma" "juvix-stdlib" "v0.7.0"; github "anoma" "juvix-containers" "v0.15.0"]
+  };

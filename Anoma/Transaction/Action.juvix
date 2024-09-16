@@ -1,0 +1,84 @@
+module Anoma.Transaction.Action;
+
+import Stdlib.Prelude open using {Pair; Eq; Ord; Ordering; mkOrd};
+import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Data.Set as Set open using {Set; union};
+
+import Anoma.Resource.Index as Resource;
+import Anoma.Proving.Types as Proving open;
+
+module AppDataInternal;
+  axiom AppDataKey : Type;
+
+  axiom AppDataValue : Type;
+
+  axiom compareAppDataKey : AppDataKey -> AppDataKey -> Ordering;
+
+  axiom compareAppDataValue : AppDataValue -> AppDataValue -> Ordering;
+
+  instance
+  AppDataKey-Ord : Ord AppDataKey :=
+    mkOrd@{
+      cmp := compareAppDataKey
+    };
+
+  instance
+  AppDataKey-Eq : Eq AppDataKey := fromOrdToEq;
+
+  instance
+  AppDataValue-Ord : Ord AppDataValue :=
+    mkOrd@{
+      cmp := compareAppDataValue
+    };
+
+  instance
+  AppDataValue-Eq : Eq AppDataValue := fromOrdToEq;
+
+  AppDataMapEntry : Type := Pair AppDataKey AppDataValue;
+
+  AppDataMap : Type := Set AppDataMapEntry;
+end;
+
+open AppDataInternal using {AppDataMap as AppData} public;
+
+type Action :=
+  mkAction {
+    commitments : Set Resource.Commitment;
+    nullifiers : Set Resource.Nullifier;
+    proofs : Set Proving.ProofRecord;
+    appData : AppData
+  };
+
+compose (a1 a2 : Action) : Action :=
+  mkAction@{
+    commitments :=
+      union@{
+        s1 := Action.commitments a1;
+        s2 := Action.commitments a2
+      };
+    nullifiers :=
+      union@{
+        s1 := Action.nullifiers a1;
+        s2 := Action.nullifiers a2
+      };
+    -- TODO Proofs must be recomputed
+    proofs := Set.empty;
+    appData :=
+      union@{
+        s1 := Action.appData a1;
+        s2 := Action.appData a2
+      }
+  };
+
+module ActionInternal;
+  axiom compare : Action -> Action -> Ordering;
+
+  instance
+  Action-Ord : Ord Action :=
+    mkOrd@{
+      cmp := compare
+    };
+
+  instance
+  Action-Eq : Eq Action := fromOrdToEq;
+end;

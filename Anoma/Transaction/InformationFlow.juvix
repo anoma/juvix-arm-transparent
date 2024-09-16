@@ -1,0 +1,32 @@
+module Anoma.Transaction.InformationFlow;
+
+import Stdlib.Prelude open;
+import Data.Set as Set open using {Set; toList; member?};
+
+import Anoma.Identity open;
+import Anoma.Transaction.Types as Transaction open;
+
+InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;
+
+axiom Hash : Type;
+
+type BaseData :=
+  | AllowAny
+  | AllowOnly (Set ExternalIdentity)
+  | RequireShielded (Set Hash)
+  -- TODO Use ;Set; instead of ;List;
+  | And (List BaseData)
+  | Or (List BaseData);
+
+terminating
+basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
+  case baseData of
+    | None := \ {_ _ := true}
+    | AllowOnly identites := \ {_ self := member? self identites}
+    {-
+        TODO How to deal with hashes?
+        | RequireShielded hashes := \ {tx _ := not (any (h in hashes) member? h ??)}
+        -}
+    | RequireShielded hashes := \ {_ _ := false}
+    | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
+    | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};

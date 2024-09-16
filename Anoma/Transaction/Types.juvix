@@ -1,0 +1,44 @@
+module Anoma.Transaction.Types;
+
+import Data.Set as Set open using {Set; union};
+import Anoma.Transaction.Action open using {Action; compose};
+import Anoma.State.CommitmentTree as CommitmentTree open;
+import Anoma.Delta as Delta open;
+import Anoma.MathProperty open;
+
+axiom BalanceProof : Type;
+
+axiom aggregate : (p1 p2 : BalanceProof) -> BalanceProof;
+
+positive
+type Transaction :=
+  mkTransaction {
+    roots : Set CommitmentTree.Root;
+    actions : Set Action;
+    delta : Delta;
+    balanceProof : BalanceProof
+
+  };
+
+Constructor : Type := Set CommitmentTree.Root -> Set Action -> Delta -> BalanceProof -> Transaction;
+
+compose (tx1 tx2 : Transaction) : Transaction :=
+  mkTransaction@{
+    roots :=
+      union@{
+        s1 := Transaction.roots tx1;
+        s2 := Transaction.roots tx2
+      };
+    actions :=
+      union@{
+        s1 := Transaction.actions tx1;
+        s2 := Transaction.actions tx2
+      };
+    delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
+    -- TODO
+    balanceProof :=
+      aggregate@{
+        p1 := Transaction.balanceProof tx1;
+        p2 := Transaction.balanceProof tx2
+      }
+  };

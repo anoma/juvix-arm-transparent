@@ -1,0 +1,12 @@
+module Anoma.Proving.System;
+
+import Stdlib.Prelude open using {Bool};
+import Anoma.Proving.Types open;
+import Anoma.Resource.Index as Resource open using {Instance; Witness};
+
+trait
+type ProvingSystem :=
+  mkProvingSystem {
+    prove : ProvingKey -> Resource.Instance -> Resource.Witness -> Proof;
+    verify : ProofRecord -> Bool
+  };

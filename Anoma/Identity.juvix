@@ -1,0 +1,21 @@
+module Anoma.Identity;
+
+import Stdlib.Prelude open using {Eq; Ord; Ordering; mkOrd};
+import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+
+axiom ExternalIdentity : Type;
+
+axiom self : ExternalIdentity;
+
+module ExternalIdentityInternal;
+  axiom compare : ExternalIdentity -> ExternalIdentity -> Ordering;
+
+  instance
+  ExternalIdentity-Ord : Ord ExternalIdentity :=
+    mkOrd@{
+      cmp := compare
+    };
+
+  instance
+  ExternalIdentity-Eq : Eq ExternalIdentity := fromOrdToEq;
+end;

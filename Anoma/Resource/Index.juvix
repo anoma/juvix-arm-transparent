@@ -1,0 +1,6 @@
+module Anoma.Resource.Index;
+
+import Anoma.Resource.Computable.Commitment open using {Commitment; commitment} public;
+import Anoma.Resource.Computable.Nullifier open using {Nullifier; NullifierKey; nullifier} public;
+import Anoma.Resource.Logic open public;
+import Anoma.Resource.Computable.Delta open public;

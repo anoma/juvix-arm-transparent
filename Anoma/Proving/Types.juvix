@@ -1,0 +1,12 @@
+module Anoma.Proving.Types;
+
+import Stdlib.Prelude open using {Pair};
+import Anoma.Resource.Index as Resource open using {Witness};
+
+axiom Proof : Type;
+
+axiom VerifyingKey : Type;
+
+axiom ProvingKey : Type;
+
+ProofRecord : Type := Pair VerifyingKey (Pair Proof Resource.Witness);

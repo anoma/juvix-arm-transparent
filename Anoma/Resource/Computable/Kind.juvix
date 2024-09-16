@@ -1,0 +1,17 @@
+module Anoma.Resource.Computable.Kind;
+
+import Anoma.Resource.Types open;
+import Anoma.Resource.Logic open;
+import Anoma.Resource.Label open;
+
+axiom Kind : Type;
+
+module KindInternal;
+  axiom kind : (logicRef : LogicRef) -> (labelRef : LabelRef) -> Kind;
+end;
+
+kind (resource : Resource) : Kind :=
+  KindInternal.kind@{
+    logicRef := Resource.logicRef resource;
+    labelRef := Resource.labelRef resource
+  };
