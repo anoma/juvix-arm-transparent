@@ -2,7 +2,7 @@ module Anoma.Resource.Computable.Nullifier;
 
 import Stdlib.Prelude open using {Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Resource.Types open;
+import Anoma.Resource.Types open using {Resource};
 
 axiom Nullifier : Type;
 

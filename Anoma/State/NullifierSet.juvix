@@ -1,7 +1,7 @@
 module Anoma.State.NullifierSet;
 
 import Stdlib.Prelude open using {Bool};
-import Anoma.Resource.Index as Resource;
+import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
 
 trait
 type NullifierSet :=

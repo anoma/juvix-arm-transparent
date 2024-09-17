@@ -1,6 +1,6 @@
 module Anoma.Transaction.InformationFlow;
 
-import Stdlib.Prelude open;
+import Stdlib.Prelude open using {Bool; List; true; false; all; any};
 import Data.Set as Set open using {Set; toList; member?};
 
 import Anoma.Identity open;
@@ -24,9 +24,9 @@ basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
     | None := \ {_ _ := true}
     | AllowOnly identites := \ {_ self := member? self identites}
     {-
-        TODO How to deal with hashes?
-        | RequireShielded hashes := \ {tx _ := not (any (h in hashes) member? h ??)}
-        -}
+            TODO How to deal with hashes?
+            | RequireShielded hashes := \ {tx _ := not (any (h in hashes) member? h ??)}
+            -}
     | RequireShielded hashes := \ {_ _ := false}
     | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
     | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};

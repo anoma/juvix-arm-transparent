@@ -1,6 +1,5 @@
 module Anoma.Delta;
 
-import Stdlib.Prelude open;
 import Anoma.MathProperty as MathProperty open;
 
 axiom Delta : Type;

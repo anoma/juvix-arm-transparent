@@ -2,10 +2,10 @@ module Anoma.Transaction.Delta;
 
 import Stdlib.Prelude open using {Bool; List; for; ||};
 import Data.Set as Set open using {Set; union; member?};
-import Anoma.Delta as Delta open;
+import Anoma.Delta as Delta open using {Delta; zero};
 import Anoma.Transaction.Types open;
 import Anoma.Transaction.Action open;
-import Anoma.Resource.Index as Resource open;
+import Anoma.Resource.Index as Resource open using {Resource};
 import Anoma.MathProperty as MathProperty open;
 
 module TransactionDeltaInternal;
@@ -39,7 +39,7 @@ delta
   (nullifierKey : Resource.NullifierKey)
   (transaction : Transaction)
   : Delta :=
-  for (acc := Delta.zero) (r in resources)
+  for (acc := zero) (r in resources)
     {if
       | TransactionDeltaInternal.isInCommitmentSet@{
           resource := r;
@@ -49,5 +49,5 @@ delta
           resource := r;
           nullifierKey;
           transaction
-        } := MathProperty.AdditivelyHomomorphic.add acc (Resource.delta r)
+        } := AdditivelyHomomorphic.add acc (Resource.delta r)
       | else := acc};

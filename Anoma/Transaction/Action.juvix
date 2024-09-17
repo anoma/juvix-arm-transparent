@@ -4,8 +4,8 @@ import Stdlib.Prelude open using {Pair; Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set; union};
 
-import Anoma.Resource.Index as Resource;
-import Anoma.Proving.Types as Proving open;
+import Anoma.Resource.Index as Resource open using {Resource};
+import Anoma.Proving.Types as Proving open using {ProofRecord};
 
 module AppDataInternal;
   axiom AppDataKey : Type;

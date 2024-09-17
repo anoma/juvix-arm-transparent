@@ -2,7 +2,7 @@ module Anoma.State.CommitmentTree;
 
 import Stdlib.Prelude open using {Maybe; Bool; Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Resource.Index as Resource;
+import Anoma.Resource.Computable.Commitment as Resource open using {Commitment};
 
 axiom Root : Type;
 

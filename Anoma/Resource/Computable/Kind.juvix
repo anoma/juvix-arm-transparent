@@ -1,8 +1,8 @@
 module Anoma.Resource.Computable.Kind;
 
 import Anoma.Resource.Types open;
-import Anoma.Resource.Logic open;
-import Anoma.Resource.Label open;
+import Anoma.Resource.Logic open using {LogicRef};
+import Anoma.Resource.Label open using {LabelRef};
 
 axiom Kind : Type;
 

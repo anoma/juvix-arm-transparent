@@ -1,7 +1,7 @@
 module Anoma.Proving.System;
 
 import Stdlib.Prelude open using {Bool};
-import Anoma.Proving.Types open;
+import Anoma.Proving.Types open using {ProvingKey; Proof; ProofRecord};
 import Anoma.Resource.Index as Resource open using {Instance; Witness};
 
 trait

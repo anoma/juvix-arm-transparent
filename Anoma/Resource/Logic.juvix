@@ -2,10 +2,9 @@ module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open using {Bool};
 import Data.Set as Set open using {Set};
-
 import Anoma.Resource.Types open using {Resource; Ref; mkRef; LogicRef} public;
-import Anoma.Resource.Computable.Commitment open;
-import Anoma.Resource.Computable.Nullifier open;
+import Anoma.Resource.Computable.Commitment open using {Commitment};
+import Anoma.Resource.Computable.Nullifier open using {Nullifier};
 
 Logic : Type := Tag -> Instance -> Witness -> Bool;
 

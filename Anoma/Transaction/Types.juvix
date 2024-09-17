@@ -2,8 +2,8 @@ module Anoma.Transaction.Types;
 
 import Data.Set as Set open using {Set; union};
 import Anoma.Transaction.Action open using {Action; compose};
-import Anoma.State.CommitmentTree as CommitmentTree open;
-import Anoma.Delta as Delta open;
+import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
+import Anoma.Delta as Delta open using {Delta};
 import Anoma.MathProperty open;
 
 axiom BalanceProof : Type;
@@ -42,3 +42,8 @@ compose (tx1 tx2 : Transaction) : Transaction :=
         p2 := Transaction.balanceProof tx2
       }
   };
+
+type TxOrFunc :=
+  | Func Transaction
+  -- Fully produced only after execution time
+  | Tx Transaction;
