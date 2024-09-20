@@ -30,3 +30,7 @@ module RootInternal;
   instance
   Root-Eq : Eq Root := fromOrdToEq;
 end;
+
+-- TODO
+-- How to deal with timestamps in the commitment tree?
+-- https://specs.anoma.net/v2/system_architecture/state/resource_machine/rm_def/storage.html

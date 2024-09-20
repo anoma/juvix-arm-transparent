@@ -6,8 +6,11 @@ import Anoma.Resource.Types open using {Resource; Ref; mkRef; LogicRef} public;
 import Anoma.Resource.Computable.Commitment open using {Commitment};
 import Anoma.Resource.Computable.Nullifier open using {Nullifier};
 
+--- The resource logic function signature.
 Logic : Type := Tag -> Instance -> Witness -> Bool;
 
+--- Computes the ;LogicRef; from the ;Logic; function.
+--- NOTE: For the private testnet, this is allowed to be the identity function.
 axiom logicRef : Logic -> LogicRef;
 
 instance

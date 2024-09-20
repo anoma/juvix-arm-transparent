@@ -3,11 +3,11 @@ module Anoma.MathProperty;
 import Stdlib.Prelude open using {Bool; Eq; ==};
 
 trait
-type AdditivelyHomomorphic T := mkAdditivelyHomomorphic {add : T -> T -> T};
+type AdditivelyHomomorphic T := mkAdditivelyHomomorphic {add : (v1 : T) -> (v2 : T) -> T};
 
 Property-AdditivelyHomomorphic
-  {T} {{Eq T}} {{AdditivelyHomomorphic T}} (f : T -> T) (x y : T) : Bool :=
-  f (AdditivelyHomomorphic.add x y) == AdditivelyHomomorphic.add (f x) (f y);
+  {T} {{Eq T}} {{AdditivelyHomomorphic T}} (f : T -> T) (v1 v2 : T) : Bool :=
+  f (AdditivelyHomomorphic.add v1 v2) == AdditivelyHomomorphic.add (f v1) (f v2);
 
 trait
-type KindDistinct T := mkKindDistinct {add : T -> T -> T};
+type KindDistinct T := mkKindDistinct {add : (v1 : T) -> (v2 : T) -> T};

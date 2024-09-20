@@ -6,6 +6,7 @@ import Anoma.Resource.Types open using {Resource};
 
 axiom Commitment : Type;
 
+--- Computes the ;Commitment; of a ;Resource;.
 axiom commitment : (resource : Resource) -> Commitment;
 
 module CommitmentInternal;

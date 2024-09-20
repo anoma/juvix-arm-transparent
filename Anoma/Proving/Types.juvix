@@ -10,3 +10,8 @@ axiom VerifyingKey : Type;
 axiom ProvingKey : Type;
 
 ProofRecord : Type := Pair VerifyingKey (Pair Proof Resource.Witness);
+
+module DeltaProof;
+  --- Aggregates two delta ;ProofRecord;s.
+  axiom aggregate : (p1 p2 : ProofRecord) -> ProofRecord;
+end;

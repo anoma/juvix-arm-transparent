@@ -5,10 +5,7 @@ import Anoma.Transaction.Action open using {Action; compose};
 import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
 import Anoma.Delta as Delta open using {Delta};
 import Anoma.MathProperty open;
-
-axiom BalanceProof : Type;
-
-axiom aggregate : (p1 p2 : BalanceProof) -> BalanceProof;
+import Anoma.Proving.Types open;
 
 positive
 type Transaction :=
@@ -16,11 +13,10 @@ type Transaction :=
     roots : Set CommitmentTree.Root;
     actions : Set Action;
     delta : Delta;
-    balanceProof : BalanceProof
-
+    deltaProof : ProofRecord
   };
 
-Constructor : Type := Set CommitmentTree.Root -> Set Action -> Delta -> BalanceProof -> Transaction;
+Constructor : Type := Set CommitmentTree.Root -> Set Action -> Delta -> ProofRecord -> Transaction;
 
 compose (tx1 tx2 : Transaction) : Transaction :=
   mkTransaction@{
@@ -35,15 +31,14 @@ compose (tx1 tx2 : Transaction) : Transaction :=
         s2 := Transaction.actions tx2
       };
     delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
-    -- TODO
-    balanceProof :=
-      aggregate@{
-        p1 := Transaction.balanceProof tx1;
-        p2 := Transaction.balanceProof tx2
+    -- TODO Use named syntax once fixed
+    -- AdditivelyHomomorphic.add@{
+    --   v1 := Transaction.delta tx1;
+    --   v2 := Transaction.delta tx2
+    -- };
+    deltaProof :=
+      DeltaProof.aggregate@{
+        p1 := Transaction.deltaProof tx1;
+        p2 := Transaction.deltaProof tx2
       }
   };
-
-type TxOrFunc :=
-  | Func Transaction
-  -- Fully produced only after execution time
-  | Tx Transaction;

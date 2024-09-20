@@ -5,7 +5,7 @@ import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set; union};
 
 import Anoma.Resource.Index as Resource open using {Resource};
-import Anoma.Proving.Types as Proving open using {ProofRecord};
+import Anoma.Proving.Types open using {ProofRecord};
 
 module AppDataInternal;
   axiom AppDataKey : Type;
@@ -45,7 +45,7 @@ type Action :=
   mkAction {
     commitments : Set Resource.Commitment;
     nullifiers : Set Resource.Nullifier;
-    proofs : Set Proving.ProofRecord;
+    proofs : Set ProofRecord;
     appData : AppData
   };
 
@@ -61,7 +61,7 @@ compose (a1 a2 : Action) : Action :=
         s1 := Action.nullifiers a1;
         s2 := Action.nullifiers a2
       };
-    -- TODO Proofs must be recomputed
+    -- TODO Proofs must be recomputed. Should this happen as part of `compose`?
     proofs := Set.empty;
     appData :=
       union@{
