@@ -2,17 +2,23 @@ module Anoma.Resource.Computable.Nullifier;
 
 import Stdlib.Prelude open using {Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Resource};
 
 axiom Nullifier : Type;
 
 axiom NullifierKey : Type;
 
+--- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
+--- TODO: Should this function verify that the `Resource.nullifierKeyCommitment` can be derived from the `nullifierKey`?
 axiom nullifier : (resource : Resource) -> (nullifierKey : NullifierKey) -> Nullifier;
 
 module NullfierInternal;
-  axiom compare : Nullifier -> Nullifier -> Ordering;
+  --- Compares two ;Nullifier; and returns their ;Ordering;.
+  axiom compare : (lhs rhs : Nullifier) -> Ordering;
 
+  --- Implements the ;Ord; trait for ;Nullifier;.
+  --- NOTE: This is required for using them in ;Set;.
   instance
   Nullifier-Ord : Ord Nullifier :=
     mkOrd@{

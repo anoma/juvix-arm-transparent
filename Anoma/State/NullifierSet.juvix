@@ -3,6 +3,7 @@ module Anoma.State.NullifierSet;
 import Stdlib.Prelude open using {Bool};
 import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
 
+--- The interface of the resource machine nullifier set.
 trait
 type NullifierSet :=
   mkAccumulator {

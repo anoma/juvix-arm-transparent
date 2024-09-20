@@ -2,6 +2,7 @@ module Anoma.Resource.Computable.Commitment;
 
 import Stdlib.Prelude open using {Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Resource};
 
 axiom Commitment : Type;
@@ -10,8 +11,11 @@ axiom Commitment : Type;
 axiom commitment : (resource : Resource) -> Commitment;
 
 module CommitmentInternal;
-  axiom compare : Commitment -> Commitment -> Ordering;
+  --- Compares two ;Commitment; and returns their ;Ordering;.
+  axiom compare : (lhs rhs : Commitment) -> Ordering;
 
+  --- Implements the ;Ord; trait for ;Commitment;.
+  --- NOTE: This is required for using them in ;Set;.
   instance
   Commitment-Ord : Ord Commitment :=
     mkOrd@{

@@ -4,9 +4,17 @@ import Stdlib.Prelude open using {Bool};
 import Anoma.Proving.Types open using {ProvingKey; Proof; ProofRecord};
 import Anoma.Resource.Index as Resource open using {Instance; Witness};
 
+--- The interface of the resource machine proving system.
 trait
 type ProvingSystem :=
   mkProvingSystem {
-    prove : ProvingKey -> Resource.Instance -> Resource.Witness -> Proof;
-    verify : ProofRecord -> Bool
+    --- Creates a ;Proof; given a ;ProvingKey;, public inputs (;Resource.Instance;), and
+    --- private inputs (;Resource.Witness;).
+    prove : (provingKey : ProvingKey)
+      -> (publicInputs : Resource.Instance)
+      -> (privateInputs : Resource.Witness)
+      -> Proof;
+
+    --- Verfies a ;ProofRecord;.
+    verify : (proofRecord : ProofRecord) -> Bool
   };

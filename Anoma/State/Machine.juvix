@@ -3,10 +3,21 @@ module Anoma.State.Machine;
 import Stdlib.Prelude open using {Bool};
 import Anoma.Transaction.Index as Transaction open using {Transaction};
 
+--- The interface of the resource machine.
 trait
 type Machine :=
   mkMachine {
+    --- Creates a ;Transaction; with the the ;Transaction.Constructor;.
+    --- TODO Clarify why this is needed.
     create : Transaction.Constructor;
-    compose : Transaction -> Transaction -> Transaction;
-    verify : Transaction -> Bool
+
+    --- Composes two ;Transaction;s with the transa
+    compose : (tx1 tx2 : Transaction) -> Transaction;
+
+    --- Verifies a ;Transaction; by checking that the
+    --- - resource logic proofs
+    --- - compliance proofs
+    --- - delta proof (a.k.a., balance proof)
+    --- is valid.
+    verify : (tx : Transaction) -> Bool
   };

@@ -16,7 +16,12 @@ type Transaction :=
     deltaProof : ProofRecord
   };
 
-Constructor : Type := Set CommitmentTree.Root -> Set Action -> Delta -> ProofRecord -> Transaction;
+Constructor : Type :=
+  (roots : Set CommitmentTree.Root)
+    -> (actions : Set Action)
+    -> (delta : Delta)
+    -> (deltaProof : ProofRecord)
+    -> Transaction;
 
 compose (tx1 tx2 : Transaction) : Transaction :=
   mkTransaction@{

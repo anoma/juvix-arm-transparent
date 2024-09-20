@@ -7,9 +7,13 @@ import Anoma.Resource.Label open using {LabelRef};
 axiom Kind : Type;
 
 module KindInternal;
+  --- The kind function as defined in the RM specs.
+  --- NOTE: This definition does not specify that the ;LogicRef; and ;LabelRef; arguments
+  --- must come from the same ;Resource; although this must be the case.
   axiom kind : (logicRef : LogicRef) -> (labelRef : LabelRef) -> Kind;
 end;
 
+--- Computes the ;Kind; value of a given ;Resource;.
 kind (resource : Resource) : Kind :=
   KindInternal.kind@{
     logicRef := Resource.logicRef resource;
