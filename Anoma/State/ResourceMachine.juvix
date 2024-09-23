@@ -1,12 +1,12 @@
-module Anoma.State.Machine;
+module Anoma.State.ResourceMachine;
 
 import Stdlib.Prelude open using {Bool};
 import Anoma.Transaction.Index as Transaction open using {Transaction};
 
 --- The interface of the resource machine.
 trait
-type Machine :=
-  mkMachine {
+type ResourceMachine :=
+  mkResourceMachine {
     --- Creates a ;Transaction; with the the ;Transaction.Constructor;.
     --- TODO Clarify why `create` is needed.
     create : Transaction.Constructor;
