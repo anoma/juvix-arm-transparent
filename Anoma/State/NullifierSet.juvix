@@ -8,7 +8,7 @@ trait
 type NullifierSet :=
   mkNullifierSet {
     --- Adds a ;Resource.Nullifier; to the ;NullifierSet;.
-    add : Resource.Nullifier -> NullifierSet;
+    write : Resource.Nullifier -> NullifierSet;
 
     --- Checks if a ;Resource.Nullifier; exists in the ;NullifierSet;.
     exists : Resource.Nullifier -> Bool
