@@ -8,7 +8,7 @@ trait
 type Machine :=
   mkMachine {
     --- Creates a ;Transaction; with the the ;Transaction.Constructor;.
-    --- TODO Clarify why this is needed.
+    --- TODO Clarify why `create` is needed.
     create : Transaction.Constructor;
 
     --- Composes two ;Transaction;s with the transa

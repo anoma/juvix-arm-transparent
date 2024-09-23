@@ -3,7 +3,7 @@ module Anoma.Identity;
 import Stdlib.Prelude open using {Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 
--- TODO is this correct? Do we need the full identity machine to be defined here?
+-- TODO is this correct? Do we need an ExternalIdentity type? Do we need the full identity machine to be defined here?
 axiom ExternalIdentity : Type;
 
 axiom self : ExternalIdentity;

@@ -7,7 +7,7 @@ import Anoma.Transaction.InformationFlow open using {InformationFlowControlPredi
 
 --- The metadata that can be associated with a ;Transaction;.
 --- The metadata that can used by actors to identify preferrable ;Transaction;s and specify information flow controll properties.
---- NOTE: This is NOT required for the private testnet.
+--- NOTE: For the private testnet, this is not required yet.
 type Metadata :=
   mkMetadata {
     preference : Preference;
@@ -15,7 +15,7 @@ type Metadata :=
   };
 
 --- A composite structure containing a ;Transaction; with ;Metadata;
---- NOTE: This is NOT required for the private testnet.
+--- NOTE: For the private testnet, this is not required yet.
 type TransactionWithMetadata :=
   mkTransactionWithMetadata {
     transaction : Transaction;
@@ -23,13 +23,11 @@ type TransactionWithMetadata :=
   };
 
 --- Composes two ;TransactionWithMetadata; objects.
---- NOTE: This is NOT required for the private testnet.
+--- NOTE: For the private testnet, this is not required yet.
 compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   let
     meta1 := TransactionWithMetadata.metadata txwm1;
     meta2 := TransactionWithMetadata.metadata txwm2;
-    ifcp1 := Metadata.informationFlowControlPredicate meta1;
-    ifcp2 := Metadata.informationFlowControlPredicate meta2;
   in mkTransactionWithMetadata@{
     transaction :=
       Transaction.compose@{
@@ -43,6 +41,9 @@ compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
             f1 := Metadata.preference meta1;
             f2 := Metadata.preference meta2
           };
-        informationFlowControlPredicate := \ {tx id := ifcp1 tx id && ifcp2 tx id}
+        informationFlowControlPredicate :=
+          \ {tx id :=
+            Metadata.informationFlowControlPredicate meta1 tx id
+              && Metadata.informationFlowControlPredicate meta2 tx id}
       }
   };

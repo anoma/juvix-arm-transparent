@@ -6,18 +6,24 @@ import Data.Set as Set open using {Set; toList; member?};
 import Anoma.Identity open;
 import Anoma.Transaction.Types as Transaction open;
 
--- TODO do we need an ExternalIdentity type?
+--- The information flow predicate function type definition.
 InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;
 
+--- A fixed-size data type encoding a hash.
+--- TODO: Is this type definition needed? Should this be Anoma.Resource.Logic.Tag?
 axiom Hash : Type;
 
+--- TODO This type is here to prevent the Juvix compiler from getting stuck in a loop in the type definition below.
+BaseDataSet : Type := Set BaseData;
+
+--- The base
 type BaseData :=
   | AllowAny
   | AllowOnly (Set ExternalIdentity)
   | RequireShielded (Set Hash)
   -- TODO Use ;Set; instead of ;List;
-  | And (List BaseData)
-  | Or (List BaseData);
+  | And (BaseDataSet)
+  | Or (BaseDataSet);
 
 terminating
 basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
@@ -27,5 +33,5 @@ basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
     -- TODO How to handle the hashes?
     -- | RequireShielded hashes := \ {tx _ := not (any (h in hashes) member? h ??)}
     | RequireShielded hashes := \ {_ _ := false}
-    | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
-    | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};
+    | And predicates := \ {tx id := all (p in Set.toList predicates) basePredicate p tx id}
+    | Or predicates := \ {tx id := any (p in Set.toList predicates) basePredicate p tx id};
