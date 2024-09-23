@@ -3,10 +3,12 @@ module Anoma.Resource.Computable.Nullifier;
 import Stdlib.Prelude open using {Eq; Ord; Ordering; mkOrd};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.Resource.Types open using {Resource};
+import Anoma.Resource.Types as Resource open using {Resource};
 
+--- The fixed-size type describing the nullfier of a resource.
 axiom Nullifier : Type;
 
+--- The fixed-size type describing a secret required to compute the ;Nullifier; of a ;Resource;.
 axiom NullifierKey : Type;
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
