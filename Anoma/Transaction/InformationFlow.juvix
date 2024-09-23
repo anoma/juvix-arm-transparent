@@ -1,39 +1,38 @@
 module Anoma.Transaction.InformationFlow;
 
-import Stdlib.Prelude open using {Bool; List; true; false; all; any};
+import Stdlib.Prelude open using {Bool; List; true; false; all; any; not};
 import Data.Set as Set open using {Set; toList; member?};
-
-import Anoma.Identity open;
-import Anoma.Transaction.Types as Transaction open;
+import Anoma.Identity open using {ExternalIdentity};
+import Anoma.Transaction.Types as Transaction open using {Transaction};
 
 --- The information flow predicate function type definition.
 InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;
 
---- A fixed-size data type encoding a hash.
---- TODO: Is this type definition needed? Should this be Anoma.Resource.Logic.Tag?
-axiom Hash : Type;
+--- A placeholder for an unspecified hash type.
+--- NOTE: this will be concretized in an upcoming RM specs version.
+axiom HashPlaceholder : Type;
 
---- TODO This type is here to prevent the Juvix compiler from getting stuck in a loop in the type definition below.
-BaseDataSet : Type := Set BaseData;
+--- A placeholder for a function checking if a ;Transaction; does not include ;HashPlaceholder; ;Set;.
+--- NOTE: this will be concretized in an upcoming RM specs version.
+axiom requireShieldedCheckPlaceholder : (tx : Transaction)
+  -> (hashes : Set HashPlaceholder)
+  -> Bool;
 
 --- The input data of the basePredicate function.
 type BaseData :=
   | AllowAny
   | AllowOnly (Set ExternalIdentity)
-  | RequireShielded (Set Hash)
-  -- TODO Use ;Set; instead of ;List;
-  | And (BaseDataSet)
-  | Or (BaseDataSet);
-
+  | RequireShielded (Set HashPlaceholder)
+  -- TODO Use ;Set; instead of ;List; once https://github.com/anoma/juvix/issues/3048 is resolved.
+  | And (List BaseData)
+  | Or (List BaseData);
 
 --- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
 terminating
 basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
   case baseData of
-    | None := \ {_ _ := true}
+    | AllowAny := \ {_ _ := true}
     | AllowOnly identites := \ {_ self := member? self identites}
-    -- TODO How to handle the hashes?
-    -- | RequireShielded hashes := \ {tx _ := not (any (h in hashes) member? h ??)}
-    | RequireShielded hashes := \ {_ _ := false}
-    | And predicates := \ {tx id := all (p in Set.toList predicates) basePredicate p tx id}
-    | Or predicates := \ {tx id := any (p in Set.toList predicates) basePredicate p tx id};
+    | RequireShielded hashes := \ {tx _ := requireShieldedCheckPlaceholder tx hashes}
+    | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
+    | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};
