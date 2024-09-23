@@ -16,7 +16,7 @@ axiom Hash : Type;
 --- TODO This type is here to prevent the Juvix compiler from getting stuck in a loop in the type definition below.
 BaseDataSet : Type := Set BaseData;
 
---- The base
+--- The input data of the basePredicate function.
 type BaseData :=
   | AllowAny
   | AllowOnly (Set ExternalIdentity)
@@ -25,6 +25,8 @@ type BaseData :=
   | And (BaseDataSet)
   | Or (BaseDataSet);
 
+
+--- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
 terminating
 basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
   case baseData of

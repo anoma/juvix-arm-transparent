@@ -2,12 +2,19 @@ module Anoma.MathProperty;
 
 import Stdlib.Prelude open using {Bool; Eq; ==};
 
+--- A trait describing additive homomorphicity.
 trait
-type AdditivelyHomomorphic T := mkAdditivelyHomomorphic {add : (v1 : T) -> (v2 : T) -> T};
+type AdditivelyHomomorphic T :=
+  mkAdditivelyHomomorphic {--- Adds two types implementing the ;AdditivelyHomomorphic; trait.
+  add : (v1 v2 : T) -> T};
 
+--- Implements the ;Eq; trait for ;AdditivelyHomomorphic; types.
 Property-AdditivelyHomomorphic
   {T} {{Eq T}} {{AdditivelyHomomorphic T}} (f : T -> T) (v1 v2 : T) : Bool :=
   f (AdditivelyHomomorphic.add v1 v2) == AdditivelyHomomorphic.add (f v1) (f v2);
 
+--- A trait describing kind distinctness.
 trait
-type KindDistinct T := mkKindDistinct {add : (v1 : T) -> (v2 : T) -> T};
+type KindDistinct T :=
+  mkKindDistinct {--- Adds two types implementing the ;KindDistinct; trait.
+  add : (v1 v2 : T) -> T};
