@@ -3,37 +3,11 @@ module Anoma.Transaction.Delta;
 import Stdlib.Prelude open using {Bool; List; for; ||};
 import Data.Set as Set open using {Set; union; member?};
 import Anoma.Delta as Delta open using {Delta; zero};
-import Anoma.Transaction.Types open;
-import Anoma.Transaction.Action open;
+import Anoma.Transaction.Types open using {Transaction; commitmentSet; nullfierSet};
 import Anoma.Resource.Index as Resource open using {Resource};
 import Anoma.MathProperty as MathProperty open;
 
-module TransactionDeltaInternal;
-  isInCommitmentSet (resource : Resource) (transaction : Transaction) : Bool :=
-    let
-      actions : List Action := Set.toList (Transaction.actions transaction);
-      cm : Resource.Commitment := Resource.commitment resource;
-      cms : Set Resource.Commitment :=
-        for (acc := Set.empty) (a in actions) {union acc (Action.commitments a)};
-    in member? cm cms;
-
-  isInNullifierSet
-    (resource : Resource)
-    (nullifierKey : Resource.NullifierKey)
-    (transaction : Transaction)
-    : Bool :=
-    let
-      actions : Set Action := Transaction.actions transaction;
-      nf : Resource.Nullifier :=
-        Resource.nullifier@{
-          resource;
-          nullifierKey
-        };
-      nfs : Set Resource.Nullifier :=
-        for (acc := Set.empty) (a in actions) {union acc (Action.nullifiers a)};
-    in member? nf nfs;
-end;
-
+--- Computes the ;Delta; of a ;Resource; ;Set; being part of a ;Transaction;.
 delta
   (resources : Set Resource)
   (nullifierKey : Resource.NullifierKey)
@@ -41,13 +15,7 @@ delta
   : Delta :=
   for (acc := zero) (r in resources)
     {if
-      | TransactionDeltaInternal.isInCommitmentSet@{
-          resource := r;
-          transaction
-        }
-        || TransactionDeltaInternal.isInNullifierSet@{
-          resource := r;
-          nullifierKey;
-          transaction
-        } := AdditivelyHomomorphic.add acc (Resource.delta r)
+      | member? (Resource.commitment r) (commitmentSet transaction)
+        || member? (Resource.nullifier r nullifierKey) (nullfierSet transaction) :=
+        AdditivelyHomomorphic.add acc (Resource.delta r)
       | else := acc};

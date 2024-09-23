@@ -6,7 +6,10 @@ import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
 --- The interface of the resource machine nullifier set.
 trait
 type NullifierSet :=
-  mkAccumulator {
+  mkNullifierSet {
+    --- Adds a ;Resource.Nullifier; to the ;NullifierSet;.
     add : Resource.Nullifier -> NullifierSet;
+
+    --- Checks if a ;Resource.Nullifier; exists in the ;NullifierSet;.
     exists : Resource.Nullifier -> Bool
   };

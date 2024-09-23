@@ -14,14 +14,21 @@ axiom LabelRef : Type;
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
 axiom ValueRef : Type;
 
+--- A fixed-size data type encoding the quantity of a resource.
 axiom Quantity : Type;
 
+--- A fixed-size data type encoding the public commitment to the private nullifier key.
 axiom NullifierKeyCommitment : Type;
 
+--- A fixed-size data type encoding a number to be used once,
+--- NOTE: A value having an at most negligible chance of repeating is sufficient.
 axiom Nonce : Type;
 
+--- A fixed-size data type encoding a randomness seed.
+--- NOTE: This seed provides pseudo randomness and cannot be expected to provide true randomness.
 axiom RandSeed : Type;
 
+--- A record describing a resource, the atomic unit of state in the Anoma state model.
 type Resource :=
   mkResource {
     logicRef : LogicRef;

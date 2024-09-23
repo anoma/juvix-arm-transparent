@@ -3,12 +3,19 @@ module Anoma.Proving.Types;
 import Stdlib.Prelude open using {Pair};
 import Anoma.Resource.Index as Resource open using {Witness};
 
+--- A fixed-size data type encoding a proof.
 axiom Proof : Type;
 
+--- A fixed-size data type encoding a verifying key containing the data,
+--- along with a ;Resource.Witness;, to verify a proof.
 axiom VerifyingKey : Type;
 
+--- A fixed-size data type encoding a proving key containing the data,
+--- along with a ;Resource.Instance; and ;Resource.Witness;, to produce a proof.
 axiom ProvingKey : Type;
 
+--- A record describing a proof record, a map entry constituted by a ;VerifyingKey; as the lookup-key
+--- and a ;Proof; and associated ;Resource.Witness; as the value.
 ProofRecord : Type := Pair VerifyingKey (Pair Proof Resource.Witness);
 
 module DeltaProof;

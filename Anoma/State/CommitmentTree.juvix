@@ -5,8 +5,10 @@ import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Computable.Commitment as Resource open using {Commitment};
 
+--- A state root of the resource machine commitment tree.
 axiom Root : Type;
 
+--- A path in the resource machine commitment tree.
 axiom Path : Type;
 
 --- The interface of the resource machine commitment tree.
@@ -39,6 +41,7 @@ module RootInternal;
       cmp := compare
     };
 
+  --- Implements the ;Eq; trait for ;Root;.
   instance
   Root-Eq : Eq Root := fromOrdToEq;
 end;

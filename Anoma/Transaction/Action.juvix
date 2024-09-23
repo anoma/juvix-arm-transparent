@@ -8,39 +8,52 @@ import Anoma.Resource.Index as Resource open using {Resource};
 import Anoma.Proving.Types open using {ProofRecord};
 
 module AppDataInternal;
+  --- A fixed-size data type encoding the lookup key of application data being part of an action.
   axiom AppDataKey : Type;
 
+  --- A fixed-size data type encoding the lookup value of application data being part of an action.
   axiom AppDataValue : Type;
 
+  --- Compares two ;AppDataKey;s.
   axiom compareAppDataKey : AppDataKey -> AppDataKey -> Ordering;
 
+  --- Compares two ;AppDataValue;s.
   axiom compareAppDataValue : AppDataValue -> AppDataValue -> Ordering;
 
+  --- Implements the ;Ord; trait for ;AppDataKey;.
   instance
   AppDataKey-Ord : Ord AppDataKey :=
     mkOrd@{
       cmp := compareAppDataKey
     };
 
+  --- Implements the ;Eq; trait for ;AppDataKey;.
   instance
   AppDataKey-Eq : Eq AppDataKey := fromOrdToEq;
 
+  --- Implements the ;Ord; trait for ;AppDataValue;.
   instance
   AppDataValue-Ord : Ord AppDataValue :=
     mkOrd@{
       cmp := compareAppDataValue
     };
 
+  --- Implements the ;Eq; trait for ;AppDataValue;.
   instance
   AppDataValue-Eq : Eq AppDataValue := fromOrdToEq;
 
-  AppDataMapEntry : Type := Pair AppDataKey AppDataValue;
+  --- A type describing an app data map entry.
+  AppDataEntry : Type := Pair AppDataKey AppDataValue;
 
-  AppDataMap : Type := Set AppDataMapEntry;
+  --- A type describing an app data map.
+  AppData : Type := Set AppDataEntry;
 end;
 
-open AppDataInternal using {AppDataMap as AppData} public;
+open AppDataInternal using {AppData} public;
 
+--- The record describing an action and defining the proof context.
+--- A proof created in the context of an action is assumed to have guaranteed
+--- access only to the resources associated with the action.
 type Action :=
   mkAction {
     commitments : Set Resource.Commitment;
@@ -49,6 +62,7 @@ type Action :=
     appData : AppData
   };
 
+--- Composes two ;Action; objects.
 compose (a1 a2 : Action) : Action :=
   mkAction@{
     commitments :=
@@ -61,24 +75,27 @@ compose (a1 a2 : Action) : Action :=
         s1 := Action.nullifiers a1;
         s2 := Action.nullifiers a2
       };
-    -- TODO Proofs must be recomputed. Should this happen as part of `compose`?
-    proofs := Set.empty;
     appData :=
       union@{
         s1 := Action.appData a1;
         s2 := Action.appData a2
-      }
+      };
+    -- TODO Proofs must be recomputed. Should this happen as part of `compose`?
+    proofs := Set.empty
   };
 
 module ActionInternal;
-  axiom compare : Action -> Action -> Ordering;
+  --- Compares two ;Action; objects.
+  axiom compare : (a1 a2 : Action) -> Ordering;
 
+  --- Implements the ;Ord; trait for ;Action;.
   instance
   Action-Ord : Ord Action :=
     mkOrd@{
       cmp := compare
     };
 
+  --- Implements the ;Eq; trait for ;Action;.
   instance
   Action-Eq : Eq Action := fromOrdToEq;
 end;

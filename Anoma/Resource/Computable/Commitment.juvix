@@ -22,6 +22,7 @@ module CommitmentInternal;
       cmp := compare
     };
 
+  --- Implements the ;Eq; trait for ;Commitment;.
   instance
   Commitment-Eq : Eq Commitment := fromOrdToEq;
 end;

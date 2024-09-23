@@ -25,6 +25,7 @@ module NullfierInternal;
       cmp := compare
     };
 
+  --- Implements the ;Eq; trait for ;Nullifier;.
   instance
   Nullifier-Eq : Eq Nullifier := fromOrdToEq;
 end;

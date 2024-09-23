@@ -1,12 +1,16 @@
 module Anoma.Transaction.Types;
 
 import Data.Set as Set open using {Set; union};
-import Anoma.Transaction.Action open using {Action; compose};
+import Stdlib.Prelude open using {for};
+import Anoma.Resource.Computable.Commitment as Resource open using {Commitment};
+import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
 import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
+import Anoma.Transaction.Action as Action open;
 import Anoma.Delta as Delta open using {Delta};
 import Anoma.MathProperty open;
 import Anoma.Proving.Types open;
 
+--- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive
 type Transaction :=
   mkTransaction {
@@ -16,6 +20,7 @@ type Transaction :=
     deltaProof : ProofRecord
   };
 
+--- The ;Transaction; object constructor signature.
 Constructor : Type :=
   (roots : Set CommitmentTree.Root)
     -> (actions : Set Action)
@@ -23,6 +28,7 @@ Constructor : Type :=
     -> (deltaProof : ProofRecord)
     -> Transaction;
 
+--- Compses two ;Transaction; objects.
 compose (tx1 tx2 : Transaction) : Transaction :=
   mkTransaction@{
     roots :=
@@ -47,3 +53,9 @@ compose (tx1 tx2 : Transaction) : Transaction :=
         p2 := Transaction.deltaProof tx2
       }
   };
+
+commitmentSet (transaction : Transaction) : Set Resource.Commitment :=
+  for (acc := Set.empty) (a in Transaction.actions transaction) {union acc (Action.commitments a)};
+
+nullfierSet (transaction : Transaction) : Set Resource.Nullifier :=
+  for (acc := Set.empty) (a in Transaction.actions transaction) {union acc (Action.nullifiers a)};
