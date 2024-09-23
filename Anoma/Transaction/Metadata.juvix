@@ -2,27 +2,32 @@ module Anoma.Transaction.Metadata;
 
 import Stdlib.Prelude open using {&&};
 import Anoma.Transaction.Types as Transaction open using {Transaction};
-import Anoma.Transaction.Preference as Preference open using {Preference; composition};
+import Anoma.Transaction.Preference as Preference open using {Preference; compose};
 import Anoma.Transaction.InformationFlow open using {InformationFlowControlPredicate};
 
+--- The metadata that can be associated with a ;Transaction;.
+--- The metadata that can used by actors to identify preferrable ;Transaction;s and specify information flow controll properties.
+--- NOTE: This is NOT required for the private testnet.
 type Metadata :=
   mkMetadata {
     preference : Preference;
     informationFlowControlPredicate : InformationFlowControlPredicate
   };
 
+--- A composite structure containing a ;Transaction; with ;Metadata;
+--- NOTE: This is NOT required for the private testnet.
 type TransactionWithMetadata :=
   mkTransactionWithMetadata {
     transaction : Transaction;
     metadata : Metadata
   };
 
+--- Composes two ;TransactionWithMetadata; objects.
+--- NOTE: This is NOT required for the private testnet.
 compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   let
     meta1 := TransactionWithMetadata.metadata txwm1;
     meta2 := TransactionWithMetadata.metadata txwm2;
-    pref1 := Metadata.preference meta1;
-    pref2 := Metadata.preference meta2;
     ifcp1 := Metadata.informationFlowControlPredicate meta1;
     ifcp2 := Metadata.informationFlowControlPredicate meta2;
   in mkTransactionWithMetadata@{
@@ -33,7 +38,11 @@ compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
       };
     metadata :=
       mkMetadata@{
-        preference := composition pref1 pref2;
+        preference :=
+          Preference.compose@{
+            f1 := Metadata.preference meta1;
+            f2 := Metadata.preference meta2
+          };
         informationFlowControlPredicate := \ {tx id := ifcp1 tx id && ifcp2 tx id}
       }
   };

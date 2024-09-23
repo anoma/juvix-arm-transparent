@@ -2,8 +2,12 @@ module Anoma.Transaction.Preference;
 
 import Anoma.Transaction.Types as Transaction open using {Transaction};
 
+
+--- A fixed-size type describing the unit interval `[0,1]`.
 axiom UnitInterval : Type;
 
-Preference : Type := Transaction -> UnitInterval;
+--- The preference function signature.
+Preference : Type := (tx : Transaction) -> UnitInterval;
 
-axiom composition : Preference -> Preference -> Preference;
+--- The preference function composition function.
+axiom compose : (f1 f2 : Preference) -> Preference;
