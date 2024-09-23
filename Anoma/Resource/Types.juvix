@@ -6,11 +6,11 @@ import Stdlib.Prelude open using {Bool} public;
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
 axiom LogicRef : Type;
 
---- A fixed-size data type encoding the reference to the resource label record.
+--- A fixed-size data type encoding the reference to the resource label field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LabelRef; to be dynamically-sized.
 axiom LabelRef : Type;
 
---- A fixed-size data type encoding the reference to the resource value record.
+--- A fixed-size data type encoding the reference to the resource value field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
 axiom ValueRef : Type;
 
