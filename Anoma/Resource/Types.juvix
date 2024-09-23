@@ -35,7 +35,7 @@ type Resource :=
     labelRef : LabelRef;
     valueRef : ValueRef;
     quantity : Quantity;
-    ephemerality : Bool;
+    ephemeral : Bool;
     nullifierKeyCommitment : NullifierKeyCommitment;
     nonce : Nonce;
     randSeed : RandSeed
