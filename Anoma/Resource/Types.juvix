@@ -21,7 +21,7 @@ axiom Quantity : Type;
 axiom NullifierKeyCommitment : Type;
 
 --- A fixed-size data type encoding a number to be used once ensuring that the resource commitment is unique.
---- NOTE: A pseudo-random number having an at most negligible chance of repeating is sufficient.
+--- NOTE: This should be a number having an at most negligible chance of repeating is sufficient, e.g., a pseudo-random number.
 axiom Nonce : Type;
 
 --- A fixed-size data type encoding a randomness seed.
