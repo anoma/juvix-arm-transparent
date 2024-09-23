@@ -2,6 +2,7 @@ module Anoma.Resource.Value;
 
 import Anoma.Resource.Types open using {Ref; mkRef; ValueRef} public;
 
+--- The resource value type.
 axiom Value : Type;
 
 --- Computes the ;ValueRef; from the ;Value; record.

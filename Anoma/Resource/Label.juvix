@@ -2,6 +2,7 @@ module Anoma.Resource.Label;
 
 import Anoma.Resource.Types open using {Ref; mkRef; LabelRef} public;
 
+--- The resource label type.
 axiom Label : Type;
 
 --- Computes the ;LabelRef; from the ;Label; record.
