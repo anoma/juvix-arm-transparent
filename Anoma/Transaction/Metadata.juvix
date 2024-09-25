@@ -1,12 +1,12 @@
 module Anoma.Transaction.Metadata;
 
-import Stdlib.Prelude open using {&&};
+import Stdlib.Prelude open;
 import Anoma.Transaction.Types as Transaction open using {Transaction};
 import Anoma.Transaction.Preference as Preference open using {Preference; compose};
 import Anoma.Transaction.InformationFlow open using {InformationFlowControlPredicate};
 
 --- The metadata that can be associated with a ;Transaction;.
---- The metadata that can used by actors to identify preferrable ;Transaction;s and specify information flow controll properties.
+--- The metadata that can used by actors to identify preferrable ;Transaction;s and specify information flow control properties.
 --- NOTE: For the private testnet, this is not required yet.
 type Metadata :=
   mkMetadata {
@@ -17,7 +17,7 @@ type Metadata :=
 --- A composite structure containing a ;Transaction; with ;Metadata;
 --- NOTE: For the private testnet, this is not required yet.
 type TransactionWithMetadata :=
-  mkTransactionWithMetadata {
+  createWithMetadata {
     transaction : Transaction;
     metadata : Metadata
   };
@@ -28,7 +28,7 @@ compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   let
     meta1 := TransactionWithMetadata.metadata txwm1;
     meta2 := TransactionWithMetadata.metadata txwm2;
-  in mkTransactionWithMetadata@{
+  in createWithMetadata@{
     transaction :=
       Transaction.compose@{
         tx1 := TransactionWithMetadata.transaction txwm1;
@@ -47,3 +47,7 @@ compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
               && Metadata.informationFlowControlPredicate meta2 tx id}
       }
   };
+
+--- Verifies a ;TransactionWithMetadata;.
+verify (txwm : TransactionWithMetadata) : Bool :=
+  Transaction.verify (TransactionWithMetadata.transaction txwm);
