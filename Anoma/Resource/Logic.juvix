@@ -3,7 +3,7 @@ module Anoma.Resource.Logic;
 import Stdlib.Prelude open;
 import Anoma.System open using {anomaEncode};
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {LogicRef} public;
+import Anoma.Resource.Types open using {LogicRef; mkLogicRef} public;
 import Anoma.ProvingSystem.ResourceLogicProof as ResourceLogicProvingSystem;
 
 --- The resource logic function signature.
@@ -15,7 +15,7 @@ Logic : Type :=
 
 --- Computes the ;LogicRef; from the ;Logic; function.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-logicRef (logic : Logic) : LogicRef := id (anomaEncode logic);
+logicRef (logic : Logic) : LogicRef := logic |> anomaEncode |> mkLogicRef;
 
 --- Implements the ;Ref; trait for ;Logic;.
 instance

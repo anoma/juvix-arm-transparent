@@ -2,13 +2,14 @@ module Anoma.Resource.Value;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {ValueRef} public;
+import Anoma.Resource.Types open using {ValueRef; mkValueRef} public;
 
-syntax alias Value := Nat;
+--- The resource value type.
+type Value := mkValue {unValue : Nat};
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-valueRef (value : Value) : ValueRef := id value;
+valueRef (value : Value) : ValueRef := value |> Value.unValue |> mkValueRef;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance

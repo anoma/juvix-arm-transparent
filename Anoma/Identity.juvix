@@ -2,6 +2,6 @@ module Anoma.Identity;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Types open using {PublicKey; PrivateKey} public;
+import Anoma.Types open using {PublicKey};
 
 syntax alias ExternalIdentity := PublicKey;

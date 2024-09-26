@@ -3,20 +3,33 @@ module Anoma.Resource.Computable.Nullifier;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
+import Anoma.System open using {anomaEncode};
+import Anoma.Types open using {PrivateKey};
+import Anoma.Rep as Rep open;
+import Anoma.System open;
 import Anoma.Resource.Types as Resource open using {Resource};
 
---- The fixed-size type describing the nullfier of a resource.
-axiom Nullifier : Type;
-
 --- The fixed-size type describing a secret required to compute the ;Nullifier; of a ;Resource;.
-axiom NullifierKey : Type;
+type Nullifier := mkNullifier {unNullifier : Nat};
+
+--- The fixed-size type describing the nullfier of a resource.
+type NullifierKey := mkNullifierKey {unNullifierKey : Nat};
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
-axiom nullifier : (resource : Resource) -> (nullifierKey : NullifierKey) -> Nullifier;
+--- https://github.com/anoma/anoma/blob/d6a61451ae8fd0f046c083f5ca4a4f38e7ecffb1/lib/anoma/resource.ex#L66
+nullifier (r : Resource) (privateKey : PrivateKey) : Nullifier :=
+  let
+    n : Pair String Resource := nullifierHeader, r;
+  in anomaEncode (anomaEncode n, Rep.toAtom (anomaSignDetached n privateKey)) |> mkNullifier;
+
+--- The header to use in a nullifier cell
+--- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L36
+nullifierHeader : String := "annullo";
 
 module NullfierInternal;
   --- Compares two ;Nullifier; and returns their ;Ordering;.
-  axiom compare : (lhs rhs : Nullifier) -> Ordering;
+  compare (lhs rhs : Nullifier) : Ordering :=
+    Ord.cmp (Nullifier.unNullifier lhs) (Nullifier.unNullifier rhs);
 
   --- Implements the ;Ord; trait for ;Nullifier;.
   instance

@@ -3,16 +3,23 @@ module Anoma.Resource.Computable.Commitment;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
+import Anoma.System open using {anomaEncode};
 import Anoma.Resource.Types open using {Resource};
 
-axiom Commitment : Type;
+--- A fixed-size data type encoding the resource delta.
+type Commitment := mkCommitment {unCommitment : Nat};
 
 --- Computes the ;Commitment; of a ;Resource;.
-axiom commitment : (resource : Resource) -> Commitment;
+--- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L55
+commitment (r : Resource) : Commitment := anomaEncode (commitmentHeader, r) |> mkCommitment;
+
+-- The header to use in a commitment cell
+commitmentHeader : String := "committo";
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.
-  axiom compare : (lhs rhs : Commitment) -> Ordering;
+  compare (lhs rhs : Commitment) : Ordering :=
+    Ord.cmp (Commitment.unCommitment lhs) (Commitment.unCommitment rhs);
 
   --- Implements the ;Ord; trait for ;Commitment;.
   instance
