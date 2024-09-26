@@ -1,15 +1,28 @@
 module Anoma.Delta;
 
+import Stdlib.Prelude open;
 import Anoma.Math as Math open;
-import Anoma.Transaction open using {Delta as StdlibDelta};
+import Anoma.Resource.Types open using {Kind; mkKind};
 
-syntax alias Delta := StdlibDelta;
+Delta : Type := List DeltaComponent;
+
+type DeltaComponent :=
+  mkDeltaComponent {
+    denom : Kind;
+    sign : Bool;
+    -- TODO Should this be removed?
+    amount : Nat
+  };
 
 --- Adds two ;Delta; values.
+--- TODO This should be a builtin
 axiom addDelta : (d1 d2 : Delta) -> Delta;
 
+--- TODO This should be a builtin
+axiom subDelta : (d1 d2 : Delta) -> Delta;
+
 --- The ;Delta; value zero.
-axiom zero : Delta;
+zero : Delta := [];
 
 --- Implements the ;Math.AdditivelyHomomorphic; trait for ;Delta;.
 instance
