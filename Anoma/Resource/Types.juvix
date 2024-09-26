@@ -40,10 +40,3 @@ type Resource :=
     nonce : Nonce;
     randSeed : RandSeed
   };
-
---- A trait for transforming values of a `DataType` into values of its
---- corresponding `RefType`. Values of `RefType` must have fixed size. For the
---- private testnet, the requirement can be relaxed by allowing ;RefType; to be
---- dynamically-sized.
-trait
-type Ref DataType RefType := mkRef {ref : DataType -> RefType};

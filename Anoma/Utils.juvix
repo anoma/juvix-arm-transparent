@@ -5,3 +5,10 @@ import Stdlib.Prelude open;
 --- A type describing the absence of a types.
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not used.
 Unused : Type := Unit;
+
+--- A trait for transforming values of a `DataType` into values of its
+--- corresponding `RefType`. Values of `RefType` must have fixed size. For the
+--- private testnet, the requirement can be relaxed by allowing ;RefType; to be
+--- dynamically-sized.
+trait
+type Ref DataType RefType := mkRef {ref : DataType -> RefType};

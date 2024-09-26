@@ -1,6 +1,7 @@
 module Anoma.Resource.Label;
 
-import Anoma.Resource.Types open using {Ref; mkRef; LabelRef} public;
+import Anoma.Utils open using {Ref; mkRef};
+import Anoma.Resource.Types open using {LabelRef} public;
 
 --- The resource label type.
 axiom Label : Type;
@@ -11,7 +12,4 @@ axiom labelRef : Label -> LabelRef;
 
 --- Implements the ;Ref; trait for ;Label;.
 instance
-Label-Ref : Ref Label LabelRef :=
-  mkRef@{
-    ref (label : Label) : LabelRef := labelRef label
-  };
+Label-Ref : Ref Label LabelRef := mkRef labelRef;

@@ -1,6 +1,7 @@
 module Anoma.Resource.Value;
 
-import Anoma.Resource.Types open using {Ref; mkRef; ValueRef} public;
+import Anoma.Utils open using {Ref; mkRef};
+import Anoma.Resource.Types open using {ValueRef} public;
 
 --- The resource value type.
 axiom Value : Type;
@@ -11,7 +12,4 @@ axiom valueRef : Value -> ValueRef;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance
-Value-Ref : Ref Value ValueRef :=
-  mkRef@{
-    ref (value : Value) : ValueRef := valueRef value
-  };
+Value-Ref : Ref Value ValueRef := mkRef valueRef;

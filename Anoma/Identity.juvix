@@ -2,7 +2,6 @@ module Anoma.Identity;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
 
 --- A fixed-size data type describing an external identity.
 axiom ExternalIdentity : Type;
