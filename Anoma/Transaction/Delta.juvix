@@ -3,7 +3,7 @@ module Anoma.Transaction.Delta;
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; union; member?};
 import Anoma.Delta as Delta open using {Delta};
-import Anoma.Transaction.Types open using {Transaction; commitmentSet; nullifierSet};
+import Anoma.Transaction.Object open using {Transaction; commitmentSet; nullifierSet};
 import Anoma.Transaction.Action open using {DisjointSetError; NonDisjointCommitmentsError; NonDisjointNullifiersError};
 import Anoma.Resource.Index as Resource open using {Resource};
 import Anoma.Math as Math open;

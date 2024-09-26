@@ -3,9 +3,8 @@ module Anoma.Resource.Computable.Commitment;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.Resource.Types open using {Resource};
-
-axiom Commitment : Type;
+import Anoma.Resource.Types open using {Commitment};
+import Anoma.Resource.Object open using {Resource};
 
 --- Computes the ;Commitment; of a ;Resource;.
 axiom commitment : (resource : Resource) -> Commitment;

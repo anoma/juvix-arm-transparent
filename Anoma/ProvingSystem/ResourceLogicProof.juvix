@@ -3,9 +3,8 @@ module Anoma.ProvingSystem.ResourceLogicProof;
 
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set};
-import Anoma.Resource.Types open using {Resource};
-import Anoma.Resource.Computable.Commitment open using {Commitment};
-import Anoma.Resource.Computable.Nullifier open using {Nullifier};
+import Anoma.Resource.Object open using {Resource};
+import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.ProvingSystem.Types as Parametrized;
 
 axiom Proof : Type;

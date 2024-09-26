@@ -1,6 +1,6 @@
 module Anoma.Transaction.Preference;
 
-import Anoma.Transaction.Types as Transaction open using {Transaction};
+import Anoma.Transaction.Object open using {Transaction};
 
 --- A fixed-size type describing the unit interval `[0,1]`.
 axiom UnitInterval : Type;

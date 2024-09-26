@@ -3,7 +3,7 @@
 module Anoma.State.NullifierSet;
 
 import Stdlib.Prelude open;
-import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
+import Anoma.Resource.Types as Resource open using {Nullifier};
 
 --- The interface of the nullifier set.
 trait
