@@ -8,7 +8,7 @@ axiom Value : Type;
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-axiom valueRef : Value -> ValueRef;
+axiom valueRef : (value : Value) -> ValueRef;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance
