@@ -1,14 +1,14 @@
 module Anoma.Resource.Value;
 
+import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {ValueRef} public;
 
---- The resource value type.
-axiom Value : Type;
+syntax alias Value := Nat;
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-axiom valueRef : (value : Value) -> ValueRef;
+valueRef (value : Value) : ValueRef := id value;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance

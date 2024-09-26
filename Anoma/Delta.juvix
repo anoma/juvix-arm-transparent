@@ -1,9 +1,9 @@
 module Anoma.Delta;
 
 import Anoma.Math as Math open;
+import Anoma.Transaction open using {Delta as StdlibDelta};
 
---- A fixed-size data type encoding the resource delta.
-axiom Delta : Type;
+syntax alias Delta := StdlibDelta;
 
 --- Adds two ;Delta; values.
 axiom addDelta : (d1 d2 : Delta) -> Delta;

@@ -2,31 +2,19 @@ module Anoma.Resource.Types;
 
 import Stdlib.Prelude open;
 
---- A fixed-size data type encoding the reference to the resource logic function.
---- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
-axiom LogicRef : Type;
+syntax alias LogicRef := Nat;
 
---- A fixed-size data type encoding the reference to the resource label field.
---- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LabelRef; to be dynamically-sized.
-axiom LabelRef : Type;
+syntax alias LabelRef := Nat;
 
---- A fixed-size data type encoding the reference to the resource value field.
---- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
-axiom ValueRef : Type;
+syntax alias ValueRef := Nat;
 
---- A fixed-size data type encoding the quantity of a resource.
-axiom Quantity : Type;
+syntax alias Quantity := Nat;
 
---- A fixed-size data type encoding the public commitment to the private nullifier key.
-axiom NullifierKeyCommitment : Type;
+syntax alias NullifierKeyCommitment := Nat;
 
---- A fixed-size data type encoding a number to be used once ensuring that the resource commitment is unique.
---- NOTE: This should be a number having an at most negligible chance of repeating is sufficient, e.g., a pseudo-random number.
-axiom Nonce : Type;
+syntax alias Nonce := Nat;
 
---- A fixed-size data type encoding a randomness seed.
---- NOTE: This seed provides pseudo randomness and cannot be expected to provide true randomness.
-axiom RandSeed : Type;
+syntax alias RandSeed := Nat;
 
 --- A record describing a resource, the atomic unit of state in the Anoma state model.
 type Resource :=
