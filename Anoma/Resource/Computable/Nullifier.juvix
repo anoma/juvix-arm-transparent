@@ -10,17 +10,20 @@ import Anoma.System open;
 import Anoma.Resource.Types as Resource open using {Resource};
 
 --- The fixed-size type describing a secret required to compute the ;Nullifier; of a ;Resource;.
+--- TODO
 type Nullifier := mkNullifier {unNullifier : Nat};
 
 --- The fixed-size type describing the nullfier of a resource.
-type NullifierKey := mkNullifierKey {unNullifierKey : Nat};
+--- TODO
+type NullifierKey := mkNullifierKey {unNullifierKey : PrivateKey};
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
 --- https://github.com/anoma/anoma/blob/d6a61451ae8fd0f046c083f5ca4a4f38e7ecffb1/lib/anoma/resource.ex#L66
-nullifier (r : Resource) (privateKey : PrivateKey) : Nullifier :=
+nullifier (r : Resource) (nk : NullifierKey) : Nullifier :=
   let
     n : Pair String Resource := nullifierHeader, r;
-  in anomaEncode (anomaEncode n, Rep.toAtom (anomaSignDetached n privateKey)) |> mkNullifier;
+  in anomaEncode (anomaEncode n, Rep.toAtom (anomaSignDetached n (NullifierKey.unNullifierKey nk)))
+    |> mkNullifier;
 
 --- The header to use in a nullifier cell
 --- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L36
