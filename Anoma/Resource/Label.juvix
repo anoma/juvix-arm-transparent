@@ -1,7 +1,7 @@
 module Anoma.Resource.Label;
 
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {Label; LabelRef} public;
+import Anoma.Resource.Types open using {Label; LabelRef};
 
 --- Computes the ;LabelRef; from the ;Label; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.

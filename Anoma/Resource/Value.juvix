@@ -1,7 +1,7 @@
 module Anoma.Resource.Value;
 
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {Value; ValueRef} public;
+import Anoma.Resource.Types open using {Value; ValueRef};
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.

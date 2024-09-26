@@ -2,7 +2,7 @@ module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {LogicRef} public;
+import Anoma.Resource.Types open using {LogicRef};
 import Anoma.ProvingSystem.ResourceLogicProof as ResourceLogicProvingSystem;
 
 --- The resource logic function signature.
