@@ -1,10 +1,7 @@
 module Anoma.Resource.Computable.Kind;
 
-import Anoma.Resource.Types open;
-import Anoma.Resource.Logic open using {LogicRef};
-import Anoma.Resource.Label open using {LabelRef};
-
-axiom Kind : Type;
+import Anoma.Resource.Object open using {Resource; module Resource};
+import Anoma.Resource.Types open using {LogicRef; LabelRef; Kind};
 
 module KindInternal;
   --- The kind function as defined in the RM specs.

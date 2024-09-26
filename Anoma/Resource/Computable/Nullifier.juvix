@@ -7,15 +7,8 @@ import Anoma.System open using {anomaEncode};
 import Anoma.Types open using {PrivateKey};
 import Anoma.Rep as Rep open;
 import Anoma.System open;
-import Anoma.Resource.Types as Resource open using {Resource};
-
---- The fixed-size type describing a secret required to compute the ;Nullifier; of a ;Resource;.
---- TODO
-type Nullifier := mkNullifier {unNullifier : Nat};
-
---- The fixed-size type describing the nullfier of a resource.
---- TODO
-type NullifierKey := mkNullifierKey {unNullifierKey : PrivateKey};
+import Anoma.Resource.Types open using {Nullifier; module Nullifier; mkNullifier; NullifierKey; module NullifierKey};
+import Anoma.Resource.Object open using {Resource};
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
 --- https://github.com/anoma/anoma/blob/d6a61451ae8fd0f046c083f5ca4a4f38e7ecffb1/lib/anoma/resource.ex#L66

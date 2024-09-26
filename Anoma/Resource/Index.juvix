@@ -1,10 +1,11 @@
 module Anoma.Resource.Index;
 
-import Anoma.Resource.Types open using {Resource} public;
+import Anoma.Resource.Types open public;
+import Anoma.Resource.Object open using {Resource} public;
 import Anoma.Resource.Logic open using {Logic} public;
 import Anoma.Resource.Label open using {Label} public;
 import Anoma.Resource.Value open using {Value} public;
-import Anoma.Resource.Computable.Commitment open using {Commitment; commitment} public;
+import Anoma.Resource.Computable.Commitment open using {commitment} public;
 import Anoma.Resource.Computable.Delta open using {delta} public;
 import Anoma.Resource.Computable.Kind open using {kind} public;
-import Anoma.Resource.Computable.Nullifier open using {Nullifier; NullifierKey; nullifier} public;
+import Anoma.Resource.Computable.Nullifier open using {nullifier} public;

@@ -1,7 +1,8 @@
 module Anoma.Resource.Computable.Delta;
 
 import Anoma.Delta open using {Delta};
-import Anoma.Resource.Types as Resource open using {Resource; Quantity};
+import Anoma.Resource.Object open using {Resource; module Resource};
+import Anoma.Resource.Types open using {Kind; Quantity};
 import Anoma.Resource.Computable.Kind as Computable open;
 
 module ResourceDeltaInternal;
@@ -16,5 +17,5 @@ end;
 delta (resource : Resource) : Delta :=
   ResourceDeltaInternal.delta@{
     kind := Computable.kind resource;
-    quantity := Resource.Resource.quantity resource
+    quantity := Resource.quantity resource
   };

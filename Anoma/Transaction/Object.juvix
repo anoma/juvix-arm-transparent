@@ -1,9 +1,8 @@
-module Anoma.Transaction.Types;
+module Anoma.Transaction.Object;
 
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; toList; union};
-import Anoma.Resource.Computable.Commitment as Resource open using {Commitment};
-import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
+import Anoma.Resource.Types as Resource open using {Commitment; Nullifier};
 import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
 import Anoma.Transaction.Action as Action open using {Action; module Action};
 import Anoma.Delta as Delta open using {Delta};

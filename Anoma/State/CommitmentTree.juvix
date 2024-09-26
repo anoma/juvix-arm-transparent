@@ -5,7 +5,7 @@ module Anoma.State.CommitmentTree;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.Resource.Computable.Commitment as Resource open using {Commitment};
+import Anoma.Resource.Types as Resource open using {Commitment};
 
 --- A state root of the commitment tree.
 axiom Root : Type;

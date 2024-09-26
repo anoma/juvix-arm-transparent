@@ -2,9 +2,7 @@ module Anoma.State.ResourceMachine;
 
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set};
-import Anoma.Transaction.Types as Transaction open using {Transaction; create; compose; verify};
-import Anoma.Resource.Computable.Commitment as Resource open using {Commitment};
-import Anoma.Resource.Computable.Nullifier as Resource open using {Nullifier};
+import Anoma.Transaction.Object as Transaction open using {Transaction; create; compose; verify};
 import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
 import Anoma.Transaction.Action as Action open;
 import Anoma.Delta as Delta open using {Delta};

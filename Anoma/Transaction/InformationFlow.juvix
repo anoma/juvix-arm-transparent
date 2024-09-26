@@ -3,7 +3,7 @@ module Anoma.Transaction.InformationFlow;
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; toList; member?};
 import Anoma.Identity open using {ExternalIdentity};
-import Anoma.Transaction.Types as Transaction open using {Transaction};
+import Anoma.Transaction.Object open using {Transaction};
 
 --- The information flow predicate function type definition.
 InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;

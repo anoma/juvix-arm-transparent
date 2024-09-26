@@ -4,11 +4,8 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.System open using {anomaEncode};
-import Anoma.Resource.Types open using {Resource};
-
---- A fixed-size data type encoding the resource delta.
---- TODO
-type Commitment := mkCommitment {unCommitment : Nat};
+import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitment};
+import Anoma.Resource.Object open using {Resource};
 
 --- Computes the ;Commitment; of a ;Resource;.
 --- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L55

@@ -2,10 +2,7 @@ module Anoma.Resource.Label;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {LabelRef; mkLabelRef} public;
-
---- The resource label type.
-type Label := mkLabel {unLabel : Nat};
+import Anoma.Resource.Types open using {Label; module Label; LabelRef; mkLabelRef};
 
 --- Computes the ;LabelRef; from the ;Label; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.

@@ -1,6 +1,7 @@
 module Anoma.Resource.Types;
 
-import Stdlib.Prelude open;
+import Stdlib.Prelude open using {Nat};
+import Anoma.Types open using {PrivateKey};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
@@ -28,15 +29,20 @@ type Nonce := mkNonce {unNonce : Nat};
 --- NOTE: This seed provides pseudo randomness and cannot be expected to provide true randomness.
 type RandSeed := mkRandSeed {unRandSeed : Nat};
 
---- A record describing a resource, the atomic unit of state in the Anoma state model.
-type Resource :=
-  mkResource {
-    logicRef : LogicRef;
-    labelRef : LabelRef;
-    valueRef : ValueRef;
-    quantity : Quantity;
-    ephemeral : Bool;
-    nullifierKeyCommitment : NullifierKeyCommitment;
-    nonce : Nonce;
-    randSeed : RandSeed
-  };
+--- The resource label type.
+type Label := mkLabel {unLabel : Nat};
+
+--- The resource value type.
+type Value := mkValue {unValue : Nat};
+
+--- The resource kind type.
+type Kind := mkKind {unKind : Nat};
+
+--- The resource commitment type.
+type Commitment := mkCommitment {unCommitment : Nat};
+
+--- The resource nullifier type.
+type Nullifier := mkNullifier {unNullifier : Nat};
+
+--- The nullifier key type describing a secret required to compute the ;Nullifier; of a resource
+type NullifierKey := mkNullifierKey {unNullifierKey : PrivateKey};

@@ -1,7 +1,7 @@
 module Anoma.Transaction.Metadata;
 
 import Stdlib.Prelude open;
-import Anoma.Transaction.Types as Transaction open using {Transaction};
+import Anoma.Transaction.Object as Transaction open using {Transaction};
 import Anoma.Transaction.Preference as Preference open using {Preference; compose};
 import Anoma.Transaction.InformationFlow open using {InformationFlowControlPredicate};
 
