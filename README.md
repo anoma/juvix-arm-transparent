@@ -31,6 +31,7 @@ ARM instantiations (e.g., the transparent or shielded resource machines) must ad
 │   │   ├── Index.juvix
 │   │   ├── Label.juvix                 (!)
 │   │   ├── Logic.juvix                 (!)
+│   │   ├── Object.juvix
 │   │   ├── Types.juvix                 (!)
 │   │   └── Value.juvix                 (!)
 │   ├── State
@@ -45,7 +46,7 @@ ARM instantiations (e.g., the transparent or shielded resource machines) must ad
 │   │   ├── InformationFlow.juvix       (2)
 │   │   ├── Metadata.juvix              (2)
 │   │   ├── Preference.juvix            (2)
-│   │   └── Types.juvix
+│   │   └── Object.juvix
 │   └── Utils.juvix
 └── Package.juvix
 ```
