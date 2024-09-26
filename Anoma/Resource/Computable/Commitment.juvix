@@ -9,7 +9,8 @@ import Anoma.Resource.Object open using {Resource};
 
 --- Computes the ;Commitment; of a ;Resource;.
 --- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L55
-commitment (r : Resource) : Commitment := anomaEncode (commitmentHeader, r) |> mkCommitment;
+commitment (resource : Resource) : Commitment :=
+  anomaEncode (commitmentHeader, resource) |> mkCommitment;
 
 -- The header to use in a commitment cell
 commitmentHeader : String := "committo";
