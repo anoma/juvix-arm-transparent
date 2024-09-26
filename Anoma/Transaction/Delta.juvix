@@ -21,7 +21,7 @@ delta
     | error duplicates, _ := error (DisjointSet (NonDisjointCommitmentsError duplicates))
     | _, error duplicates := error (DisjointSet (NonDisjointNullifiersError duplicates))
     | ok cms, ok nfs :=
-      listFor (acc := ok Delta.zero) (r, nk? in Set.toList resourcesAndMaybeNullifierKeys)
+      for (acc := ok Delta.zero) (r, nk? in resourcesAndMaybeNullifierKeys)
         {case acc of
           | error err := error err
           | ok accDelta :=
