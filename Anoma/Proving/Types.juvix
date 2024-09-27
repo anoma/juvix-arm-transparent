@@ -25,7 +25,7 @@ module Delta;
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    axiom compare : (lhs rhs : Proof) -> Ordering;
+    compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -38,7 +38,8 @@ module Delta;
 
   module VerifyingKeyInternal;
     --- Compares two ;VerifyingKey; objects.
-    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+    compare (lhs rhs : VerifyingKey) : Ordering :=
+      Ord.cmp (VerifyingKey.unVerifyingKey lhs) (VerifyingKey.unVerifyingKey rhs);
 
     --- Implements the ;Ord; trait for ;VerifyingKey;.
     instance
@@ -51,7 +52,8 @@ module Delta;
 
   module WitnessInternal;
     --- Compares two ;Witness; objects.
-    axiom compare : (lhs rhs : Witness) -> Ordering;
+    compare (lhs rhs : Witness) : Ordering :=
+      Ord.cmp (Witness.unWitness lhs) (Witness.unWitness rhs);
 
     --- Implements the ;Ord; trait for ;Witness;.
     instance
@@ -93,14 +95,10 @@ module ResourceLogic;
     };
 
   syntax alias CustomInputs := AppData;
-  --- Custom inputs of the resource logic function proof being defined on the application level.
-  --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
-  --- NOTE: For the private testnet, this can be of type ;AppData;.
-  axiom CustomInputs : Type;
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    axiom compare : (lhs rhs : Proof) -> Ordering;
+    compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -113,7 +111,8 @@ module ResourceLogic;
 
   module VerifyingKeyInternal;
     --- Compares two ;VerifyingKey; objects.
-    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+    compare (lhs rhs : VerifyingKey) : Ordering :=
+      Ord.cmp (VerifyingKey.unVerifyingKey lhs) (VerifyingKey.unVerifyingKey rhs);
 
     --- Implements the ;Ord; trait for ;VerifyingKey;.
     instance
@@ -126,7 +125,10 @@ module ResourceLogic;
 
   module WitnessInternal;
     --- Compares two ;Witness; objects.
-    axiom compare : (lhs rhs : Witness) -> Ordering;
+    compare (lhs rhs : Witness) : Ordering :=
+      let
+        prod (w : Witness) : _ := Witness.created w, Witness.consumed w, Witness.custom w;
+      in Ord.cmp (prod lhs) (prod rhs);
 
     --- Implements the ;Ord; trait for ;Witness;.
     instance
@@ -151,7 +153,7 @@ module Compliance;
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    axiom compare : (lhs rhs : Proof) -> Ordering;
+    compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -164,7 +166,8 @@ module Compliance;
 
   module VerifyingKeyInternal;
     --- Compares two ;VerifyingKey; objects.
-    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+    compare (lhs rhs : VerifyingKey) : Ordering :=
+      Ord.cmp (VerifyingKey.unVerifyingKey lhs) (VerifyingKey.unVerifyingKey rhs);
 
     --- Implements the ;Ord; trait for ;VerifyingKey;.
     instance
@@ -177,7 +180,8 @@ module Compliance;
 
   module WitnessInternal;
     --- Compares two ;Witness; objects.
-    axiom compare : (lhs rhs : Witness) -> Ordering;
+    compare (lhs rhs : Witness) : Ordering :=
+      Ord.cmp (Witness.unWitness lhs) (Witness.unWitness rhs);
 
     --- Implements the ;Ord; trait for ;Witness;.
     instance
