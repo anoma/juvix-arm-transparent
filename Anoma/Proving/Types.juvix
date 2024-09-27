@@ -5,30 +5,30 @@ import Data.Set as Set open using {Set};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.Transaction.AppData open using {AppData};
-import Anoma.Utils open using {UNUSED};
+import Anoma.Utils open using {UNUSED; UNKOWN};
 
 --- A record describing a proof record, a map entry constituted by a VerifyingKey as the lookup-key
 --- and a Proof and associated Witness as the value.
 ProofRecord (Proof VerifyingKey Witness : Type) : Type := Pair VerifyingKey (Pair Proof Witness);
 
 module Delta;
-  axiom Proof : Type;
+  type Proof := mkProof {unProof : UNKOWN};
 
-  axiom VerifyingKey : Type;
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNKOWN};
 
-  axiom ProvingKey : Type;
+  type ProvingKey := mkProvingKey {unProvingKey : UNKOWN};
 
-  axiom Instance : Type;
+  type Instance := mkInstance {unInstance : UNKOWN};
 
-  axiom Witness : Type;
+  type Witness := mkWitness {unWitness : UNKOWN};
 end;
 
 module ResourceLogic;
-  axiom Proof : Type;
+  type Proof := mkProof {unProof : UNKOWN};
 
-  axiom VerifyingKey : Type;
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNKOWN};
 
-  axiom ProvingKey : Type;
+  type ProvingKey := mkProvingKey {unProvingKey : UNKOWN};
 
   --- The reference to the ;Resource; carrying the logic function.
   type Tag :=
@@ -59,13 +59,13 @@ module ResourceLogic;
 end;
 
 module Compliance;
-  axiom Proof : Type;
+  type Proof := mkProof {unProof : UNKOWN};
 
-  axiom VerifyingKey : Type;
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNKOWN};
 
-  axiom ProvingKey : Type;
+  type ProvingKey := mkProvingKey {unProvingKey : UNKOWN};
 
-  axiom Instance : Type;
+  type Instance := mkInstance {unInstance : UNKOWN};
 
-  axiom Witness : Type;
+  type Witness := mkWitness {unWitness : UNKOWN};
 end;

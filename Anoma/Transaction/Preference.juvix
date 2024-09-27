@@ -1,9 +1,10 @@
 module Anoma.Transaction.Preference;
 
 import Anoma.Transaction.Object open using {Transaction};
+import Anoma.Utils open using {UNKOWN};
 
 --- A fixed-size type describing the unit interval `[0,1]`.
-axiom UnitInterval : Type;
+type UnitInterval := mkUnitInterval {unUnitInterval : UNKOWN};
 
 --- The preference function signature.
 Preference : Type := (tx : Transaction) -> UnitInterval;

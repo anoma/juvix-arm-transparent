@@ -5,10 +5,10 @@ import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 
 --- A fixed-size data type encoding the lookup key of application.
-axiom Key : Type;
+type Key := mkKey {unKey : Nat};
 
 --- A fixed-size data type encoding the lookup value of application data.
-axiom Value : Type;
+type Value := mkValue {unValue : Nat};
 
 --- A type describing an app data map entry.
 Entry : Type := Pair Key Value;
@@ -19,7 +19,7 @@ AppData : Type := Set Entry;
 --- A module implementing traits for ;Key;.
 module KeyInternal;
   --- Compares two ;Key;s.
-  axiom compare : (lhs rhs : Key) -> Ordering;
+  compare (lhs rhs : Key) : Ordering := Ord.cmp (Key.unKey lhs) (Key.unKey rhs);
 
   --- Implements the ;Ord; trait for ;Key;.
   instance
@@ -33,7 +33,7 @@ end;
 --- A module implementing traits for ;Value;.
 module ValueInternal;
   --- Compares two ;Value;s.
-  axiom compare : (lhs rhs : Value) -> Ordering;
+  compare (lhs rhs : Value) : Ordering := Ord.cmp (Value.unValue lhs) (Value.unValue rhs);
 
   --- Implements the ;Ord; trait for ;Value;.
   instance
