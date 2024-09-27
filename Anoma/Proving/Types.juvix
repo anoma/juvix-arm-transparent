@@ -1,6 +1,7 @@
 module Anoma.Proving.Types;
 
 import Stdlib.Prelude open;
+import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
@@ -21,6 +22,45 @@ module Delta;
   axiom Instance : Type;
 
   axiom Witness : Type;
+
+  module ProofInternal;
+    --- Compares two ;Proof; objects.
+    axiom compare : (lhs rhs : Proof) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;Proof;.
+    instance
+    Proof-Ord : Ord Proof := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;Proof;.
+    instance
+    Proof-Eq : Eq Proof := fromOrdToEq;
+  end;
+
+  module VerifyingKeyInternal;
+    --- Compares two ;VerifyingKey; objects.
+    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;VerifyingKey;.
+    instance
+    VerifyingKey-Ord : Ord VerifyingKey := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;VerifyingKey;.
+    instance
+    VerifyingKey-Eq : Eq VerifyingKey := fromOrdToEq;
+  end;
+
+  module WitnessInternal;
+    --- Compares two ;Witness; objects.
+    axiom compare : (lhs rhs : Witness) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;Witness;.
+    instance
+    Witness-Ord : Ord Witness := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;Witness;.
+    instance
+    Witness-Eq : Eq Witness := fromOrdToEq;
+  end;
 end;
 
 module ResourceLogic;
@@ -54,8 +94,47 @@ module ResourceLogic;
 
   --- Custom inputs of the resource logic function proof being defined on the application level.
   --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
-  --- NOTE: For the private testnet, this can be of ;AppData; or ;UNUSED; type.
+  --- NOTE: For the private testnet, this can be of type ;AppData;.
   axiom CustomInputs : Type;
+
+  module ProofInternal;
+    --- Compares two ;Proof; objects.
+    axiom compare : (lhs rhs : Proof) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;Proof;.
+    instance
+    Proof-Ord : Ord Proof := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;Proof;.
+    instance
+    Proof-Eq : Eq Proof := fromOrdToEq;
+  end;
+
+  module VerifyingKeyInternal;
+    --- Compares two ;VerifyingKey; objects.
+    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;VerifyingKey;.
+    instance
+    VerifyingKey-Ord : Ord VerifyingKey := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;VerifyingKey;.
+    instance
+    VerifyingKey-Eq : Eq VerifyingKey := fromOrdToEq;
+  end;
+
+  module WitnessInternal;
+    --- Compares two ;Witness; objects.
+    axiom compare : (lhs rhs : Witness) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;Witness;.
+    instance
+    Witness-Ord : Ord Witness := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;Witness;.
+    instance
+    Witness-Eq : Eq Witness := fromOrdToEq;
+  end;
 end;
 
 module Compliance;
@@ -68,4 +147,43 @@ module Compliance;
   axiom Instance : Type;
 
   axiom Witness : Type;
+
+  module ProofInternal;
+    --- Compares two ;Proof; objects.
+    axiom compare : (lhs rhs : Proof) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;Proof;.
+    instance
+    Proof-Ord : Ord Proof := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;Proof;.
+    instance
+    Proof-Eq : Eq Proof := fromOrdToEq;
+  end;
+
+  module VerifyingKeyInternal;
+    --- Compares two ;VerifyingKey; objects.
+    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;VerifyingKey;.
+    instance
+    VerifyingKey-Ord : Ord VerifyingKey := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;VerifyingKey;.
+    instance
+    VerifyingKey-Eq : Eq VerifyingKey := fromOrdToEq;
+  end;
+
+  module WitnessInternal;
+    --- Compares two ;Witness; objects.
+    axiom compare : (lhs rhs : Witness) -> Ordering;
+
+    --- Implements the ;Ord; trait for ;Witness;.
+    instance
+    Witness-Ord : Ord Witness := mkOrd compare;
+
+    --- Implements the ;Eq; trait for ;Witness;.
+    instance
+    Witness-Eq : Eq Witness := fromOrdToEq;
+  end;
 end;
