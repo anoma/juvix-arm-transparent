@@ -15,11 +15,12 @@ type DeltaComponent :=
   };
 
 --- Adds two ;Delta; values.
---- TODO This should be a builtin
-axiom addDelta : (d1 d2 : Delta) -> Delta;
+--- TODO This should be an anoma builtin.
+--- TODO IMPLEMENT until a builtin is provided.
+addDelta (d1 d2 : Delta) : Delta := d1;
 
 -- NOTE: THIS IS NOT PART OF THE SPEC
--- TODO This should be a builtin
+--- TODO This should be an anoma builtin.
 -- axiom subDelta : (d1 d2 : Delta) -> Delta;
 
 --- The ;Delta; value zero.

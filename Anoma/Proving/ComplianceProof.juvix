@@ -8,12 +8,16 @@ import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 ProofRecord : Type :=
   Parametrized.ProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;
 
-axiom prove : (provingKey : Compliance.ProvingKey)
-  -> (publicInputs : Compliance.Instance)
-  -> (privateInputs : Compliance.Witness)
-  -> Compliance.Proof;
 
-axiom verify : (proofRecord : ProofRecord) -> Bool;
+--- TODO IMPLEMENT
+prove  (provingKey : Compliance.ProvingKey)
+  (publicInputs : Compliance.Instance)
+   (privateInputs : Compliance.Witness)
+  : Compliance.Proof := Compliance.mkProof unit;
+
+  
+-- TODO IMPLEMENT
+verify (proofRecord : ProofRecord) : Bool := false;
 
 instance
 Compliance-ProvingSystem

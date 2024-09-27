@@ -92,6 +92,7 @@ module ResourceLogic;
       custom : CustomInputs
     };
 
+  syntax alias CustomInputs := AppData;
   --- Custom inputs of the resource logic function proof being defined on the application level.
   --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
   --- NOTE: For the private testnet, this can be of type ;AppData;.
