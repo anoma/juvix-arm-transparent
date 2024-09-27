@@ -68,15 +68,3 @@ module Compliance;
 
   axiom Witness : Type;
 end;
-
---- A set of ProofRecords.
---- Each ;ProofRecord; in the set may be parameterized with different types for
---- Proof, VerifyingKey and Witness, allowing for heterogeneous ;ProofRecord;s
---- within the set. It's not currently possible to represent such a set in Juvix.
-axiom ProofRecordSet : Type;
-
-module ProofRecordSet;
-  axiom empty : ProofRecordSet;
-
-  axiom verify : ProofRecordSet -> Bool;
-end;

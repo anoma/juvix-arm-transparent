@@ -1,0 +1,22 @@
+module Anoma.Proving.ProofRecordSet;
+
+import Stdlib.Prelude open;
+import Data.Set as Set open using {Set};
+import Anoma.Proving.ComplianceProof as ComplianceProof open;
+import Anoma.Proving.ResourceLogicProof as ResourceLogicProof open;
+import Anoma.Proving.DeltaProof as DeltaProof open;
+import Anoma.Proving.Types open;
+
+--- A set of proof records, where each proof record in the set may be parameterized with different types for
+--- Proof, VerifyingKey and Witness, allowing for heterogeneous proof records
+--- within the set. It's not currently possible to represent such a set in Juvix.
+type ProofRecordSet :=
+  mkProofRecordSet {
+    resourceLogicProofs : Set ResourceLogicProof.ProofRecord;
+    complianceProofs : Set ComplianceProof.ProofRecord;
+    deltaProofs : Set DeltaProof.ProofRecord
+  };
+
+axiom empty : ProofRecordSet;
+
+axiom verify : (proofRecords : ProofRecordSet) -> Bool;
