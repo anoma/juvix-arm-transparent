@@ -1,22 +1,36 @@
 module Anoma.Proving.ProofRecordSet;
 
 import Stdlib.Prelude open;
-import Data.Set as Set open using {Set};
+import Data.Set as Set open using {Set; toList; empty};
 import Anoma.Proving.ComplianceProof as ComplianceProof open;
 import Anoma.Proving.ResourceLogicProof as ResourceLogicProof open;
 import Anoma.Proving.DeltaProof as DeltaProof open;
 import Anoma.Proving.Types open;
 
---- A set of proof records, where each proof record in the set may be parameterized with different types for
---- Proof, VerifyingKey and Witness, allowing for heterogeneous proof records
---- within the set. It's not currently possible to represent such a set in Juvix.
+--- A set of proof records.
 type ProofRecordSet :=
   mkProofRecordSet {
-    resourceLogicProofs : Set ResourceLogicProof.ProofRecord;
     complianceProofs : Set ComplianceProof.ProofRecord;
-    deltaProofs : Set DeltaProof.ProofRecord
+    resourceLogicProofs : Set ResourceLogicProof.ProofRecord;
+    deltaProof : Maybe DeltaProof.ProofRecord
   };
 
-axiom empty : ProofRecordSet;
+empty : ProofRecordSet :=
+  mkProofRecordSet@{
+    resourceLogicProofs := Set.empty;
+    complianceProofs := Set.empty;
+    deltaProof := nothing
+  };
 
-axiom verify : (proofRecords : ProofRecordSet) -> Bool;
+--- Verifies a ;ProofRecordSet; ;nothing;.
+--- NOTE: At verification time, a proof record set must contain exactly one ;DeltaProof.ProofRecord;.
+verify (proofRecords : ProofRecordSet) : Bool :=
+  case ProofRecordSet.deltaProof proofRecords of {
+    | just deltaProof := DeltaProof.verify deltaProof
+    -- At verification time, this is must not be ;nothing;.
+    | nothing := false
+  }
+    && all (p in Set.toList (ProofRecordSet.complianceProofs proofRecords))
+         {ComplianceProof.verify p}
+    && all (p in Set.toList (ProofRecordSet.resourceLogicProofs proofRecords))
+         {ResourceLogicProof.verify p};

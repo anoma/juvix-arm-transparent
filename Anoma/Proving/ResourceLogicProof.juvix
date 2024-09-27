@@ -5,7 +5,6 @@ import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module ResourceLogic};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 
---- TODO Ask paul how to move it
 ProofRecord : Type :=
   Parametrized.ProofRecord ResourceLogic.Proof ResourceLogic.VerifyingKey ResourceLogic.Witness;
 
