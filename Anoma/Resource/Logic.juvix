@@ -15,6 +15,7 @@ Logic : Type :=
 
 --- Computes the ;LogicRef; from the ;Logic; function.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
+--- TODO This should be an anoma builtin.
 logicRef (logic : Logic) : LogicRef := logic |> anomaEncode |> mkLogicRef;
 
 --- Implements the ;Ref; trait for ;Logic;.

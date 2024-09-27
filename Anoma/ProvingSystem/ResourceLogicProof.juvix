@@ -7,6 +7,7 @@ import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.ProvingSystem.Types as Parametrized;
 
+--- TODO is this a ;Bool;?
 axiom Proof : Type;
 
 axiom VerifyingKey : Type;

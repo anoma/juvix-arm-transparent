@@ -2,24 +2,25 @@ module Anoma.Delta;
 
 import Stdlib.Prelude open;
 import Anoma.Math as Math open;
-import Anoma.Resource.Types open using {Kind; mkKind};
+import Anoma.Resource.Types open using {Quantity; Kind};
 
 Delta : Type := List DeltaComponent;
 
 type DeltaComponent :=
   mkDeltaComponent {
-    denom : Kind;
-    sign : Bool;
+    kind : Kind;
+    quantity : Quantity;
     -- TODO Should this be removed?
-    amount : Nat
+    sign : Bool
   };
 
 --- Adds two ;Delta; values.
 --- TODO This should be a builtin
 axiom addDelta : (d1 d2 : Delta) -> Delta;
 
---- TODO This should be a builtin
-axiom subDelta : (d1 d2 : Delta) -> Delta;
+-- NOTE: THIS IS NOT PART OF THE SPEC
+-- TODO This should be a builtin
+-- axiom subDelta : (d1 d2 : Delta) -> Delta;
 
 --- The ;Delta; value zero.
 zero : Delta := [];

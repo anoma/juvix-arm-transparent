@@ -6,6 +6,7 @@ import Anoma.Resource.Types open using {Value; module Value; ValueRef; mkValueRe
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
+--- TODO This should be an anoma builtin.
 valueRef (value : Value) : ValueRef := value |> Value.unValue |> mkValueRef;
 
 --- Implements the ;Ref; trait for ;Value;.

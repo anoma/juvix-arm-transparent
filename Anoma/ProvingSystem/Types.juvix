@@ -12,6 +12,7 @@ ProofRecord (Proof VerifyingKey Witness : Type) : Type := Pair VerifyingKey (Pai
 --- within the set. It's not currently possible to represent such a set in Juvix.
 axiom ProofRecordSet : Type;
 
+--- TODO: How can we get this to work?
 module ProofRecordSet;
   axiom empty : ProofRecordSet;
 

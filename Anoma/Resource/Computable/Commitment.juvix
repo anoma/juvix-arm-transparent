@@ -8,6 +8,7 @@ import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitm
 import Anoma.Resource.Object open using {Resource};
 
 --- Computes the ;Commitment; of a ;Resource;.
+--- TODO This should be an anoma builtin.
 --- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L55
 commitment (resource : Resource) : Commitment :=
   anomaEncode (commitmentHeader, resource) |> mkCommitment;

@@ -1,6 +1,7 @@
 module Anoma.Resource.Computable.Delta;
 
-import Anoma.Delta open using {Delta};
+import Stdlib.Prelude open;
+import Anoma.Delta open using {Delta; mkDeltaComponent};
 import Anoma.Resource.Object open using {Resource; module Resource};
 import Anoma.Resource.Types open using {Kind; Quantity};
 import Anoma.Resource.Computable.Kind as Computable open using {kind};
@@ -10,7 +11,14 @@ module ResourceDeltaInternal;
   --- NOTE: This definition does not specify that the ;Kind; and ;Quantity; arguments
   --- must come from the same ;Resource; although this must be the case.
   --- TODO
-  axiom delta : (kind : Kind) -> (quantity : Quantity) -> Delta;
+  delta (kind : Kind) (quantity : Quantity) : Delta :=
+    [ mkDeltaComponent@{
+      kind;
+      quantity;
+      -- TODO this sign should be removed from here.
+      sign := true
+    }
+    ];
 end;
 
 --- Computes the ;Delta; value of a given ;Resource;.
