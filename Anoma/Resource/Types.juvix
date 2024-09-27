@@ -50,7 +50,8 @@ type NullifierKey := mkNullifierKey {unNullifierKey : PrivateKey};
 
 module LogicRefInternal;
   --- Compares two ;LogicRef; objects.
-  axiom compare : (lhs rhs : LogicRef) -> Ordering;
+  compare (lhs rhs : LogicRef) : Ordering :=
+    Ord.cmp (LogicRef.unLogicRef lhs) (LogicRef.unLogicRef rhs);
 
   --- Implements the ;Ord; trait for ;LogicRef;.
   instance
@@ -63,7 +64,8 @@ end;
 
 module LabelRefInternal;
   --- Compares two ;LabelRef; objects.
-  axiom compare : (lhs rhs : LabelRef) -> Ordering;
+  compare (lhs rhs : LabelRef) : Ordering :=
+    Ord.cmp (LabelRef.unLabelRef lhs) (LabelRef.unLabelRef rhs);
 
   --- Implements the ;Ord; trait for ;LabelRef;.
   instance
@@ -76,7 +78,8 @@ end;
 
 module ValueRefInternal;
   --- Compares two ;ValueRef; objects.
-  axiom compare : (lhs rhs : ValueRef) -> Ordering;
+  compare (lhs rhs : ValueRef) : Ordering :=
+    Ord.cmp (ValueRef.unValueRef lhs) (ValueRef.unValueRef rhs);
 
   --- Implements the ;Ord; trait for ;ValueRef;.
   instance
@@ -89,7 +92,8 @@ end;
 
 module QuantityInternal;
   --- Compares two ;Quantity; objects.
-  axiom compare : (lhs rhs : Quantity) -> Ordering;
+  compare (lhs rhs : Quantity) : Ordering :=
+    Ord.cmp (Quantity.unQuantity lhs) (Quantity.unQuantity rhs);
 
   --- Implements the ;Ord; trait for ;Quantity;.
   instance
@@ -102,7 +106,10 @@ end;
 
 module NullifierKeyCommitmentInternal;
   --- Compares two ;NullifierKeyCommitment; objects.
-  axiom compare : (lhs rhs : NullifierKeyCommitment) -> Ordering;
+  compare (lhs rhs : NullifierKeyCommitment) : Ordering :=
+    Ord.cmp
+      (NullifierKeyCommitment.unNullifierKeyCommitment lhs)
+      (NullifierKeyCommitment.unNullifierKeyCommitment rhs);
 
   --- Implements the ;Ord; trait for ;NullifierKeyCommitment;.
   instance
@@ -115,7 +122,7 @@ end;
 
 module NonceInternal;
   --- Compares two ;Nonce; objects.
-  axiom compare : (lhs rhs : Nonce) -> Ordering;
+  compare (lhs rhs : Nonce) : Ordering := Ord.cmp (Nonce.unNonce lhs) (Nonce.unNonce rhs);
 
   --- Implements the ;Ord; trait for ;Nonce;.
   instance
@@ -128,7 +135,8 @@ end;
 
 module RandSeedInternal;
   --- Compares two ;RandSeed; objects.
-  axiom compare : (lhs rhs : RandSeed) -> Ordering;
+  compare (lhs rhs : RandSeed) : Ordering :=
+    Ord.cmp (RandSeed.unRandSeed lhs) (RandSeed.unRandSeed rhs);
 
   --- Implements the ;Ord; trait for ;RandSeed;.
   instance

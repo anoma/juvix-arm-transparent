@@ -96,19 +96,6 @@ module ResourceLogic;
 
   syntax alias CustomInputs := AppData;
 
-  module CustomInputs;
-    --- Compares two ;CustomInputs; objects.
-    axiom compare : (lhs rhs : CustomInputs) -> Ordering;
-
-    --- Implements the ;Ord; trait for ;Proof;.
-    instance
-    CustomInputs-Ord : Ord CustomInputs := mkOrd compare;
-
-    --- Implements the ;Eq; trait for ;CustomInputs;.
-    instance
-    CustomInputs-Eq : Eq CustomInputs := fromOrdToEq;
-  end;
-
   module ProofInternal;
     --- Compares two ;Proof; objects.
     compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
