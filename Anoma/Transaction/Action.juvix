@@ -49,7 +49,11 @@ verify (a : Action) : Bool := ProofRecordSet.verify (Action.proofs a);
 
 module ActionInternal;
   --- Compares two ;Action; objects.
-  axiom compare : (lhs rhs : Action) -> Ordering;
+    compare (lhs rhs : Action) : Ordering := 
+        let
+      prod (a : Action) : _ :=
+        Action.commitments a, Action.nullifiers a, Action.proofs a, Action.appData a;
+    in  Ord.cmp (prod lhs) (prod rhs);
 
   --- Implements the ;Ord; trait for ;Action;.
   instance
