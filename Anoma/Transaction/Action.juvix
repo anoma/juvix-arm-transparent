@@ -4,7 +4,7 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set; union; intersection};
 import Anoma.Resource.Index as Resource open;
-import Anoma.ProvingSystem.Types open using {ProofRecord; ProofRecordSet; module ProofRecordSet};
+import Anoma.Proving.Types open using {ProofRecord; ProofRecordSet; module ProofRecordSet};
 import Anoma.Math open using {disjointUnion};
 import Anoma.Transaction.AppData open using {AppData};
 
