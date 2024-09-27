@@ -4,6 +4,8 @@ import Stdlib.Prelude open;
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
+import Anoma.Transaction.AppData open using {AppData};
+import Anoma.Utils open using {UNUSED};
 
 --- A record describing a proof record, a map entry constituted by a VerifyingKey as the lookup-key
 --- and a Proof and associated Witness as the value.
@@ -39,22 +41,21 @@ module ResourceLogic;
       tag : Tag;
       commitments : Set Commitment;
       nullifiers : Set Nullifier;
-      custom : InstanceCustomInputs
+      appData : AppData
     };
-
-  --- Custom public inputs of the resource logic function proof being defined on the application level.
-  axiom InstanceCustomInputs : Type;
 
   --- The private inputs (Witness) of the resource logic function proof.
   type Witness :=
     mkWitness {
       created : Set Resource;
       consumed : Set Resource;
-      custom : WitnessCustomInputs
+      custom : CustomInputs
     };
 
-  --- Custom private inputs of the resource logic function proof being defined on the application level.
-  axiom WitnessCustomInputs : Type;
+  --- Custom inputs of the resource logic function proof being defined on the application level.
+  --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
+  --- NOTE: For the private testnet, this can be of ;AppData; or ;UNUSED; type.
+  axiom CustomInputs : Type;
 end;
 
 module Compliance;
