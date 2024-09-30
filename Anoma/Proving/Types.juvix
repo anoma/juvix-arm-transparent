@@ -86,6 +86,11 @@ module ResourceLogic;
       appData : AppData
     };
 
+  --- Custom inputs of the resource logic function proof being defined on the application level.
+  --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
+  --- NOTE: For the private testnet, this can be of type ;AppData;.
+  CustomInputs : Type := AppData;
+
   --- The private inputs (Witness) of the resource logic function proof.
   type Witness :=
     mkWitness {
@@ -93,8 +98,6 @@ module ResourceLogic;
       consumed : Set Resource;
       custom : CustomInputs
     };
-
-  syntax alias CustomInputs := AppData;
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
