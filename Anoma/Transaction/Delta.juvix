@@ -14,7 +14,10 @@ type DeltaComputationError :=
 
 --- Computes the ;Delta; of a ;Resource; ;Set; being part of a ;Transaction;.
 --- TODO This should be an Anoma builtin.
-delta
+--- TODO IMPLEMENT
+delta (transaction : Transaction) : Delta := Delta.zero;
+-- NOTE The implementation below is most likely wrong.
+{-delta
   (resourcesAndMaybeNullifierKeys : Set (Pair Resource (Maybe Resource.NullifierKey)))
   (transaction : Transaction)
   : Result DeltaComputationError Delta :=
@@ -34,3 +37,4 @@ delta
             in if
               | isPartOfSet := ok (AdditivelyHomomorphic.add accDelta (Resource.delta r))
               | else := error (InvalidResource r)};
+-}
