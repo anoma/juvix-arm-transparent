@@ -13,7 +13,10 @@ type DeltaComputationError :=
   | InvalidResource Resource;
 
 --- Computes the ;Delta; of a ;Resource; ;Set; being part of a ;Transaction;.
-delta
+--- TODO Confirm with Yulia and engineering.
+axiom delta : (transaction : Transaction) -> Delta;
+-- NOTE The implementation below is most likely wrong.
+{-delta
   (resourcesAndMaybeNullifierKeys : Set (Pair Resource (Maybe Resource.NullifierKey)))
   (transaction : Transaction)
   : Result DeltaComputationError Delta :=
@@ -33,3 +36,4 @@ delta
             in if
               | isPartOfSet := ok (AdditivelyHomomorphic.add accDelta (Resource.delta r))
               | else := error (InvalidResource r)};
+-}
