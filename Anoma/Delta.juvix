@@ -5,12 +5,16 @@ import Anoma.Math as Math open;
 import Anoma.Resource.Types open using {Quantity; Kind};
 
 Delta : Type := List DeltaComponent;
+-- heindel: why is this `Delta` ☝️ a List type and not a (Multi-)Set?
+-- heindel: Delta should correspond to 𝔽_Δ of the resource machine specs
 
 type DeltaComponent :=
   mkDeltaComponent {
     kind : Kind;
+    -- heindel: kind should correspond to $h_{kind}$
     quantity : Quantity;
     -- TODO Should this be removed?
+    -- heindel: yes, the sign field below should not be necessary
     sign : Bool
   };
 
@@ -18,10 +22,14 @@ type DeltaComponent :=
 --- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT
 addDelta (d1 d2 : Delta) : Delta := d1;
+-- heindel: addDelta should correspond to homorphic addition of h_Δ
+-- if you are using lists, why do you not use list concatenation?
+-- then we only would need a "normalization procedure" for these lists ... 
 
 -- NOTE: THIS IS NOT PART OF THE SPEC
 --- TODO This should be an Anoma builtin.
 -- axiom subDelta : (d1 d2 : Delta) -> Delta;
+-- heindel: additive inverses would suffice: "invDelta : (d : Delta) -> Delta;"
 
 --- The ;Delta; value zero.
 zero : Delta := [];
