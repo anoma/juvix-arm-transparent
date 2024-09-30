@@ -4,47 +4,79 @@ import Stdlib.Prelude open;
 import Anoma.Identity.Internal open;
 import Anoma.Identity.External open;
 
-axiom Signature : Type;
+import Anoma.Types open using {module PublicKey; module PrivateKey};
+import Anoma.System.Builtin as Builtin;
+import Anoma.Data.ByteArray open using {ByteArray} public;
 
-axiom verify : {Message : Type}
-  -- | The signature to verify.
-  -> Signature
-  -- | The message to verify against.
-  -> Message
-  -- | The signer external identity to verify against.
-  -> ExternalIdentity
-  -- | The verification result.
-  -> Bool;
+type Signature := mkSignature {unSignature : ByteArray};
 
-axiom sign : {Message : Type}
-  -- | The message to sign.
-  -> Message
-  -- | The signing internal identity .
-  -> InternalIdentity
-  -- | The resulting signature
-  -> Signature;
+{-# inline: true #-}
+verify
+  : {Message : Type}
+    -- | The signature to verify.
+    -> Signature
+    -- | The message to verify against.
+    -> Message
+    -- | The signer external identity to verify against.
+    -> ExternalIdentity
+    -- | The verification result.
+    -> Bool
+  | (mkSignature signature) message externalIdentity :=
+    Builtin.anomaVerifyDetached
+      signature
+      message
+      (PublicKey.toByteArray (ExternalIdentity.unExternalIdentity externalIdentity));
+
+{-# inline: true #-}
+sign
+  : {Message : Type}
+    -- | The message to sign.
+    -> Message
+    -- | The signing internal identity.
+    -> InternalIdentity
+    -- | The resulting signature
+    -> Signature
+  | message internalIdentity :=
+    Builtin.anomaSign
+        message
+        (PrivateKey.toByteArray (InternalIdentity.unInternalIdentity internalIdentity))
+      |> mkSignature;
 
 module NonDetached;
-  axiom SignedMessage : Type;
+  type SignedMessage := mkSignedMessage {unSignedMessage : ByteArray};
 
+  {-# inline: true #-}
   verify (signedMessage : SignedMessage) (externalIdentity : ExternalIdentity) : Bool :=
     case verifyWithMessage {Unit} signedMessage externalIdentity of
       | just _ := true
       | nothing := false;
 
-  axiom verifyWithMessage : {Message : Type}
-    -- | The signed message to verify.
-    -> SignedMessage
-    -- | The signer external identity to verify against.
-    -> ExternalIdentity
-    -- | The original message.
-    -> Maybe Message;
+  {-# inline: true #-}
+  verifyWithMessage
+    : {Message : Type}
+      -- | The signed message to verify.
+      -> SignedMessage
+      -- | The signer external identity to verify against.
+      -> ExternalIdentity
+      -- | The original message.
+      -> Maybe Message
+    | (mkSignedMessage signedMessage) externalIdentity :=
+      Builtin.anomaVerifyWithMessage
+        signedMessage
+        (PublicKey.toByteArray (ExternalIdentity.unExternalIdentity externalIdentity));
 
-  axiom sign : {Message : Type}
-    -- | The message to sign.
-    -> Message
-    -- | The signing internal identity.
-    -> InternalIdentity
-    -- | The resulting signed message.
-    -> SignedMessage;
+  {-# inline: true #-}
+  sign
+    : {Message : Type}
+      -- | The message to sign.
+      -> Message
+      -- | The signing internal identity.
+      -> InternalIdentity
+      -- | The resulting signed message.
+      -> SignedMessage
+    | message internalIdentity :=
+      Builtin.anomaSign
+          message
+          (PrivateKey.toByteArray (InternalIdentity.unInternalIdentity internalIdentity))
+        |> mkSignedMessage;
 end;

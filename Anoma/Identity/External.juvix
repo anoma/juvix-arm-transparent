@@ -2,13 +2,15 @@ module Anoma.Identity.External;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Anoma.Types open using {PublicKey};
 
 --- A fixed-size data type describing an external identity.
-axiom ExternalIdentity : Type;
+type ExternalIdentity := mkExternalIdentity {unExternalIdentity : PublicKey};
 
 module ExternalIdentityInternal;
   --- Compares two ;ExternalIdentity; objects.
-  axiom compare : (lhs rhs : ExternalIdentity) -> Ordering;
+  compare (lhs rhs : ExternalIdentity) : Ordering :=
+    Ord.cmp (ExternalIdentity.unExternalIdentity lhs) (ExternalIdentity.unExternalIdentity rhs);
 
   --- Implements the ;Ord; trait for ;ExternalIdentity;.
   instance

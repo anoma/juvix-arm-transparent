@@ -2,13 +2,15 @@ module Anoma.Identity.Internal;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Anoma.Types open using {PrivateKey};
 
 --- A fixed-size data type describing an internal identity.
-axiom InternalIdentity : Type;
+type InternalIdentity := mkInternalIdentity {unInternalIdentity : PrivateKey};
 
 module InternalIdentityInternal;
   --- Compares two ;InternalIdentity; objects.
-  axiom compare : (lhs rhs : InternalIdentity) -> Ordering;
+  compare (lhs rhs : InternalIdentity) : Ordering :=
+    Ord.cmp (InternalIdentity.unInternalIdentity lhs) (InternalIdentity.unInternalIdentity rhs);
 
   --- Implements the ;Ord; trait for ;InternalIdentity;.
   instance
