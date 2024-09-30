@@ -8,16 +8,16 @@ import Anoma.Transaction.Action open using {DisjointSetError; NonDisjointCommitm
 import Anoma.Resource.Index as Resource open using {Resource};
 import Anoma.Math as Math open;
 
-type DeltaComputationError :=
-  | DisjointSet DisjointSetError
-  | InvalidResource Resource;
-
 --- Computes the ;Delta; of a ;Resource; ;Set; being part of a ;Transaction;.
 --- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT
 delta (transaction : Transaction) : Delta := Delta.zero;
 -- NOTE The implementation below is most likely wrong.
-{-delta
+{-
+type DeltaComputationError :=
+  | DisjointSet DisjointSetError
+  | InvalidResource Resource;
+delta
   (resourcesAndMaybeNullifierKeys : Set (Pair Resource (Maybe Resource.NullifierKey)))
   (transaction : Transaction)
   : Result DeltaComputationError Delta :=
