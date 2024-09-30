@@ -2,7 +2,7 @@ module Anoma.Transaction.InformationFlow;
 
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; toList; member?};
-import Anoma.Identity open using {ExternalIdentity};
+import Anoma.Identity.Index as Identity open using {ExternalIdentity};
 import Anoma.Transaction.Object open using {Transaction};
 import Anoma.Utils open using {UNKOWN};
 

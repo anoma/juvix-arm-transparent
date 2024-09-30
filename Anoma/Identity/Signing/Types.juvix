@@ -1,0 +1,50 @@
+module Anoma.Identity.Signing.Types;
+
+import Stdlib.Prelude open;
+import Anoma.Identity.Internal open;
+import Anoma.Identity.External open;
+
+axiom Signature : Type;
+
+axiom verify : {Message : Type}
+  -- | The signature to verify.
+  -> Signature
+  -- | The message to verify against.
+  -> Message
+  -- | The signer external identity to verify against.
+  -> ExternalIdentity
+  -- | The verification result.
+  -> Bool;
+
+axiom sign : {Message : Type}
+  -- | The message to sign.
+  -> Message
+  -- | The signing internal identity .
+  -> InternalIdentity
+  -- | The resulting signature
+  -> Signature;
+
+module NonDetached;
+  axiom SignedMessage : Type;
+
+  verify (signedMessage : SignedMessage) (externalIdentity : ExternalIdentity) : Bool :=
+    case verifyWithMessage {Unit} signedMessage externalIdentity of
+      | just _ := true
+      | nothing := false;
+
+  axiom verifyWithMessage : {Message : Type}
+    -- | The signed message to verify.
+    -> SignedMessage
+    -- | The signer external identity to verify against.
+    -> ExternalIdentity
+    -- | The original message.
+    -> Maybe Message;
+
+  axiom sign : {Message : Type}
+    -- | The message to sign.
+    -> Message
+    -- | The signing internal identity.
+    -> InternalIdentity
+    -- | The resulting signed message.
+    -> SignedMessage;
+end;

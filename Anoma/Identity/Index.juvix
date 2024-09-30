@@ -1,0 +1,5 @@
+module Anoma.Identity.Index;
+
+import Anoma.Identity.External open using {ExternalIdentity} public;
+import Anoma.Identity.Internal open using {InternalIdentity} public;
+import Anoma.Identity.Signing.Types open using {Signature; sign; verify} public;
