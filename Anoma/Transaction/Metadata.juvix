@@ -24,6 +24,7 @@ type TransactionWithMetadata :=
 
 --- Composes two ;TransactionWithMetadata; objects.
 --- NOTE: For the private testnet, this is not required yet.
+--- TODO This should be an Anoma builtin.
 compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   let
     meta1 := TransactionWithMetadata.metadata txwm1;

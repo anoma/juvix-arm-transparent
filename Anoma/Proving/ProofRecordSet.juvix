@@ -24,8 +24,9 @@ empty : ProofRecordSet :=
     deltaProof := nothing
   };
 
---- Verifies a ;ProofRecordSet; ;nothing;.
+--- Verifies a ;ProofRecordSet;.
 --- NOTE: At verification time, a proof record set must contain exactly one ;DeltaProof.ProofRecord;.
+--- TODO This should be an Anoma builtin.
 verify (proofRecords : ProofRecordSet) : Bool :=
   case ProofRecordSet.deltaProof proofRecords of {
     | just deltaProof := DeltaProof.verify deltaProof

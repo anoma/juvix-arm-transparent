@@ -6,7 +6,7 @@ import Anoma.Resource.Types open using {Label; module Label; LabelRef; mkLabelRe
 
 --- Computes the ;LabelRef; from the ;Label; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
---- TODO This should be an anoma builtin.
+--- TODO This should be an Anoma builtin.
 labelRef (label : Label) : LabelRef := label |> Label.unLabel |> mkLabelRef;
 
 --- Implements the ;Ref; trait for ;Label;.

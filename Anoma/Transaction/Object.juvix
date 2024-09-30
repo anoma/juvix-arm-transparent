@@ -21,6 +21,7 @@ type Transaction :=
   };
 
 --- Composes two ;Transaction; objects.
+--- TODO This should be an Anoma builtin.
 compose (tx1 tx2 : Transaction) : Transaction :=
   create@{
     roots := union (Transaction.roots tx1) (Transaction.roots tx2);
@@ -30,6 +31,7 @@ compose (tx1 tx2 : Transaction) : Transaction :=
   };
 
 --- Verifies a ;Transaction;.
+--- TODO This should be an Anoma builtin.
 verify (tx : Transaction) : Bool :=
   all (a in Set.toList (Transaction.actions tx)) {Action.verify a}
     && DeltaProof.verify (Transaction.deltaProof tx);

@@ -7,7 +7,7 @@ import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 
 ProofRecord : Type := Parametrized.ProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
 
---- TODO This should be an anoma builtin.
+--- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT
 prove
   (provingKey : Delta.ProvingKey)
@@ -15,7 +15,7 @@ prove
   (privateInputs : Delta.Witness)
   : Delta.Proof := Delta.mkProof unit;
 
---- TODO This should be an anoma builtin.
+--- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT
 verify (proofRecord : ProofRecord) : Bool := false;
 

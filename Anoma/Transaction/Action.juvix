@@ -28,6 +28,7 @@ type DisjointSetError :=
   | NonDisjointNullifiersError (Set Resource.Nullifier);
 
 --- Composes two ;Action; objects.
+--- TODO This should be an Anoma builtin.
 compose (a1 a2 : Action) : Result DisjointSetError Action :=
   case
     disjointUnion (Action.commitments a1) (Action.commitments a2)

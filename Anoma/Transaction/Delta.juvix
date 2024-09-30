@@ -13,6 +13,7 @@ type DeltaComputationError :=
   | InvalidResource Resource;
 
 --- Computes the ;Delta; of a ;Resource; ;Set; being part of a ;Transaction;.
+--- TODO This should be an Anoma builtin.
 delta
   (resourcesAndMaybeNullifierKeys : Set (Pair Resource (Maybe Resource.NullifierKey)))
   (transaction : Transaction)

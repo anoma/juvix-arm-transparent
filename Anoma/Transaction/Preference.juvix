@@ -10,6 +10,6 @@ type UnitInterval := mkUnitInterval {unUnitInterval : UNKOWN};
 Preference : Type := (tx : Transaction) -> UnitInterval;
 
 --- The preference function composition function.
---- TODO This should be an anoma builtin.
+--- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT until a builtin is provided.
 compose (f1 f2 : Preference) : Preference := f1;

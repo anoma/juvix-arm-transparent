@@ -18,7 +18,6 @@ type Resource :=
   };
 
 module ResourceInternal;
-
   --- Compares two ;Resource; objects.
   compare (lhs rhs : Resource) : Ordering :=
     let

@@ -8,16 +8,16 @@ import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 ProofRecord : Type :=
   Parametrized.ProofRecord ResourceLogic.Proof ResourceLogic.VerifyingKey ResourceLogic.Witness;
 
---- TODO This should be an anoma builtin.
 --- TODO IMPLEMENT
+--- TODO This should be an Anoma builtin.
 prove
   (provingKey : ResourceLogic.ProvingKey)
   (publicInputs : ResourceLogic.Instance)
   (privateInputs : ResourceLogic.Witness)
   : ResourceLogic.Proof := ResourceLogic.mkProof unit;
 
---- TODO This should be an anoma builtin.
 --- TODO IMPLEMENT
+--- TODO This should be an Anoma builtin.
 verify (proofRecord : ProofRecord) : Bool := false;
 
 instance
