@@ -1,4 +1,4 @@
-module Anoma.Identity.Types;
+module Anoma.Identity.Object;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
