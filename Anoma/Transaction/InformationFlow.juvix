@@ -4,14 +4,14 @@ import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; toList; member?};
 import Anoma.Identity open using {ExternalIdentity};
 import Anoma.Transaction.Object open using {Transaction};
-import Anoma.Utils open using {UNKOWN};
+import Anoma.Utils open using {UNKNOWN};
 
 --- The information flow predicate function type definition.
 InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;
 
 --- A placeholder for an unspecified hash type.
 --- NOTE: this will be concretized in an upcoming RM specs version.
-type HashPlaceholder := mkHashPlaceholder {unHashPlaceholder : UNKOWN};
+type HashPlaceholder := mkHashPlaceholder {unHashPlaceholder : UNKNOWN};
 
 --- The input data of the basePredicate function.
 type BaseData :=

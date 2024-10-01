@@ -2,10 +2,10 @@ module Anoma.Transaction.Preference;
 
 import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Transaction.Object open using {Transaction};
-import Anoma.Utils open using {UNKOWN};
+import Anoma.Utils open using {UNKNOWN};
 
 --- A fixed-size type describing the unit interval `[0,1]`.
-type UnitInterval := mkUnitInterval {unUnitInterval : UNKOWN};
+type UnitInterval := mkUnitInterval {unUnitInterval : UNKNOWN};
 
 --- The preference function signature.
 Preference : Type := (tx : Transaction) -> UnitInterval;
