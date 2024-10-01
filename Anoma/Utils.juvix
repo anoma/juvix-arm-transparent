@@ -8,7 +8,7 @@ UNUSED : Type := Unit;
 
 --- A type describing an unknown type that must be clarified.
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not unknown.
-UNKOWN : Type := Unit;
+UNKNOWN : Type := Unit;
 
 --- A trait for transforming values of a `DataType` into values of its
 --- corresponding `RefType`. Values of `RefType` must have fixed size. For the
