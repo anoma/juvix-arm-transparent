@@ -3,13 +3,12 @@ module Anoma.Transaction.AppData;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.Builtin.ByteArray open using {ByteArray};
 
 --- A fixed-size data type encoding the lookup key of application.
-type AppDataKey := mkAppDataKey {unAppDataKey : ByteArray};
+type AppDataKey := mkAppDataKey {unAppDataKey : Nat};
 
 --- A fixed-size data type encoding the lookup value of application data.
-type AppDataValue := mkAppDataValue {unAppDataValue : ByteArray};
+type AppDataValue := mkAppDataValue {unAppDataValue : Nat};
 
 --- A type describing an app data map entry.
 type AppDataEntry :=
