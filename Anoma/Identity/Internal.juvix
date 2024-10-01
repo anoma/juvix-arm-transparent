@@ -2,7 +2,7 @@ module Anoma.Identity.Internal;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Types open using {PrivateKey};
+import Anoma.Types open using {PrivateKey} public;
 
 --- A fixed-size data type describing an internal identity.
 type InternalIdentity := mkInternalIdentity {unInternalIdentity : PrivateKey};
