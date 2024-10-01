@@ -11,7 +11,11 @@ axiom AppDataKey : Type;
 axiom AppDataValue : Type;
 
 --- A type describing an app data map entry.
-AppDataEntry : Type := Pair AppDataKey AppDataValue;
+type AppDataEntry :=
+  mkAppDataEntry {
+    key : AppDataKey;
+    value : AppDataValue
+  };
 
 --- A type describing an app data map.
 AppData : Type := Set AppDataEntry;
