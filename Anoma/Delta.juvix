@@ -1,6 +1,7 @@
 module Anoma.Delta;
 
 import Stdlib.Prelude open;
+import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Math as Math open;
 import Anoma.Resource.Types open using {Quantity; Kind};
 
@@ -17,10 +18,10 @@ type DeltaComponent :=
 --- Adds two ;Delta; values.
 --- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT
-addDelta (d1 d2 : Delta) : Delta := d1;
+addDelta (d1 d2 : Delta) : Delta := failwith "`addDelta (d1 d2 : Delta) : Delta` NOT IMPLEMENTED";
 
 -- NOTE: THIS IS NOT PART OF THE SPEC
---- TODO This should be an Anoma builtin.
+--- TODO Should this be an Anoma builtin?
 -- axiom subDelta : (d1 d2 : Delta) -> Delta;
 
 --- The ;Delta; value zero.

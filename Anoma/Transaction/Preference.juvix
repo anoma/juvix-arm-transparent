@@ -1,5 +1,6 @@
 module Anoma.Transaction.Preference;
 
+import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Transaction.Object open using {Transaction};
 import Anoma.Utils open using {UNKOWN};
 
@@ -12,4 +13,5 @@ Preference : Type := (tx : Transaction) -> UnitInterval;
 --- The preference function composition function.
 --- TODO This should be an Anoma builtin.
 --- TODO IMPLEMENT until a builtin is provided.
-composePreferences (f1 f2 : Preference) : Preference := f1;
+composePreferences (f1 f2 : Preference) : Preference :=
+  failwith "`composePreferences (f1 f2 : Preference) : Preference` NOT IMPLEMENTED";
