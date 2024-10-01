@@ -2,7 +2,7 @@ module Anoma.Resource.Types;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Types open using {PrivateKey};
+import Anoma.Builtin.ByteArray open using {ByteArray};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
@@ -46,7 +46,7 @@ type Commitment := mkCommitment {unCommitment : Nat};
 type Nullifier := mkNullifier {unNullifier : Nat};
 
 --- The nullifier key type describing a secret required to compute the ;Nullifier; of a resource
-type NullifierKey := mkNullifierKey {unNullifierKey : PrivateKey};
+type NullifierKey := mkNullifierKey {unNullifierKey : ByteArray};
 
 module LogicRefInternal;
   --- Compares two ;LogicRef; objects.

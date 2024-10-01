@@ -3,7 +3,7 @@ module Anoma.Resource.Computable.Kind;
 import Stdlib.Prelude open;
 import Anoma.Resource.Object open using {Resource; module Resource};
 import Anoma.Resource.Types open using {LogicRef; LabelRef; Kind; mkKind};
-import Anoma open using {anomaEncode};
+import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode};
 
 module KindInternal;
   --- The kind function as defined in the RM specs.
@@ -11,7 +11,7 @@ module KindInternal;
   --- must come from the same ;Resource; although this must be the case.
   --- TODO This should be an Anoma builtin.
   kind (logicRef : LogicRef) (labelRef : LabelRef) : Kind :=
-    anomaEncode (logicRef, labelRef) |> mkKind;
+    SystemBuiltins.anomaEncode (logicRef, labelRef) |> mkKind;
 end;
 
 --- Computes the ;Kind; value of a given ;Resource;.

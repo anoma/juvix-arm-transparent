@@ -3,15 +3,15 @@ module Anoma.Resource.Computable.Commitment;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.System open using {anomaEncode};
 import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitment};
 import Anoma.Resource.Object open using {Resource};
+import Anoma.Builtin.System as SystemBuiltins open;
 
 --- Computes the ;Commitment; of a ;Resource;.
 --- TODO This should be an Anoma builtin.
 --- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L55
 commitment (resource : Resource) : Commitment :=
-  anomaEncode (commitmentHeader, resource) |> mkCommitment;
+  SystemBuiltins.anomaEncode (commitmentHeader, resource) |> mkCommitment;
 
 -- The header to use in a commitment cell
 commitmentHeader : String := "committo";

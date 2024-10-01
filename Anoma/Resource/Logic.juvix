@@ -1,10 +1,10 @@
 module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
-import Anoma.System open using {anomaEncode};
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {LogicRef; mkLogicRef};
 import Anoma.Proving.Types open using {module ResourceLogic};
+import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode};
 
 --- The resource logic function signature.
 --- NOTE: Logic as a program is not defined in the spec.

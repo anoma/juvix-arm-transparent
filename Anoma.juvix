@@ -1,4 +1,4 @@
-module ARM;
+module Anoma;
 
 import Anoma.Resource.Index as Resource public;
 import Anoma.Transaction.Index as Transaction public;
