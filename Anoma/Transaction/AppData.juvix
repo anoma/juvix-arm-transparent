@@ -50,3 +50,20 @@ module AppDataValueInternal;
   instance
   AppDataValue-Eq : Eq AppDataValue := fromOrdToEq;
 end;
+
+--- A module implementing traits for ;AppDataEntry;.
+module AppDataEntryInternal;
+  --- Compares two ;AppDataEntry;s.
+  compare (lhs rhs : AppDataEntry) : Ordering :=
+    let
+      prod (entry : AppDataEntry) : _ := AppDataEntry.key entry, AppDataEntry.value entry;
+    in Ord.cmp (prod lhs) (prod rhs);
+
+  --- Implements the ;Ord; trait for ;AppDataEntry;.
+  instance
+  AppDataEntry-Ord : Ord AppDataEntry := mkOrd compare;
+
+  --- Implements the ;Eq; trait for ;AppDataEntry;.
+  instance
+  AppDataEntry-Eq : Eq AppDataEntry := fromOrdToEq;
+end;
