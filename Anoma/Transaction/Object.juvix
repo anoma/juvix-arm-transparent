@@ -13,7 +13,7 @@ import Anoma.Proving.DeltaProof as DeltaProof;
 --- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive
 type Transaction :=
-  create {
+  mkTransaction {
     roots : Set CommitmentTree.Root;
     actions : Set Action;
     delta : Delta;
@@ -21,8 +21,8 @@ type Transaction :=
   };
 
 --- Composes two ;Transaction; objects.
-compose (tx1 tx2 : Transaction) : Transaction :=
-  create@{
+composeTransactions (tx1 tx2 : Transaction) : Transaction :=
+  mkTransaction@{
     roots := union (Transaction.roots tx1) (Transaction.roots tx2);
     actions := union (Transaction.actions tx1) (Transaction.actions tx2);
     delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
@@ -30,8 +30,8 @@ compose (tx1 tx2 : Transaction) : Transaction :=
   };
 
 --- Verifies a ;Transaction;.
-verify (tx : Transaction) : Bool :=
-  all (a in Set.toList (Transaction.actions tx)) {Action.verify a}
+verifyTransaction (tx : Transaction) : Bool :=
+  all (a in Set.toList (Transaction.actions tx)) {Action.verifyAction a}
     && DeltaProof.verify (Transaction.deltaProof tx);
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.

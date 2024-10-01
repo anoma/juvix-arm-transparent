@@ -9,4 +9,4 @@ axiom UnitInterval : Type;
 Preference : Type := (tx : Transaction) -> UnitInterval;
 
 --- The preference function composition function.
-axiom compose : (f1 f2 : Preference) -> Preference;
+axiom composePreferences : (f1 f2 : Preference) -> Preference;

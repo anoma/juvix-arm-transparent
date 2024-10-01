@@ -2,7 +2,7 @@ module Anoma.Transaction.Metadata;
 
 import Stdlib.Prelude open;
 import Anoma.Transaction.Object as Transaction open using {Transaction};
-import Anoma.Transaction.Preference as Preference open using {Preference; compose};
+import Anoma.Transaction.Preference as Preference open using {Preference; composePreferences};
 import Anoma.Transaction.InformationFlow open using {InformationFlowControlPredicate};
 
 --- The metadata that can be associated with a ;Transaction;.
@@ -24,20 +24,20 @@ type TransactionWithMetadata :=
 
 --- Composes two ;TransactionWithMetadata; objects.
 --- NOTE: For the private testnet, this is not required yet.
-compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
+composeTransactionsWithMetadata (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   let
     meta1 := TransactionWithMetadata.metadata txwm1;
     meta2 := TransactionWithMetadata.metadata txwm2;
   in createWithMetadata@{
     transaction :=
-      Transaction.compose@{
+      Transaction.composeTransactions@{
         tx1 := TransactionWithMetadata.transaction txwm1;
         tx2 := TransactionWithMetadata.transaction txwm2
       };
     metadata :=
       mkMetadata@{
         preference :=
-          Preference.compose@{
+          Preference.composePreferences@{
             f1 := Metadata.preference meta1;
             f2 := Metadata.preference meta2
           };
@@ -49,5 +49,5 @@ compose (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   };
 
 --- Verifies a ;TransactionWithMetadata;.
-verify (txwm : TransactionWithMetadata) : Bool :=
-  Transaction.verify (TransactionWithMetadata.transaction txwm);
+verifyTransactionWithMetadata (txwm : TransactionWithMetadata) : Bool :=
+  Transaction.verifyTransaction (TransactionWithMetadata.transaction txwm);
