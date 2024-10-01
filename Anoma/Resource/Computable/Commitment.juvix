@@ -1,6 +1,7 @@
 module Anoma.Resource.Computable.Commitment;
 
 import Stdlib.Prelude open;
+import Stdlib.Debug.Fail open using {failwith};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitment};
@@ -9,12 +10,8 @@ import Anoma.Builtin.System as SystemBuiltins open;
 
 --- Computes the ;Commitment; of a ;Resource;.
 --- TODO This should be an Anoma builtin.
---- https://github.com/anoma/anoma/blob/ea25f88cea52226d77c8392ae16bbfc5a7ffccee/lib/anoma/resource.ex#L55
 commitment (resource : Resource) : Commitment :=
-  SystemBuiltins.anomaEncode (commitmentHeader, resource) |> mkCommitment;
-
--- The header to use in a commitment cell
-commitmentHeader : String := "committo";
+  failwith "`commitment (resource : Resource) : Commitment`  NOT IMPLEMENTED";
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.

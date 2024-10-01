@@ -7,9 +7,7 @@ import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Nullifier; module Nullifier; mkNullifier; NullifierKey; module NullifierKey};
 import Anoma.Resource.Object open using {Resource};
 
-
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
---- https://github.com/anoma/anoma/blob/d6a61451ae8fd0f046c083f5ca4a4f38e7ecffb1/lib/anoma/resource.ex#L66
 --- TODO This should be an Anoma builtin.
 nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier :=
   failwith
