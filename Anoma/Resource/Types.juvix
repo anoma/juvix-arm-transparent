@@ -40,10 +40,10 @@ type Value := mkValue {unValue : Nat};
 type Kind := mkKind {unKind : Nat};
 
 --- The resource commitment type.
-type Commitment := mkCommitment {unCommitment : Nat};
+type Commitment := mkCommitment {unCommitment : ByteArray};
 
 --- The resource nullifier type.
-type Nullifier := mkNullifier {unNullifier : Nat};
+type Nullifier := mkNullifier {unNullifier : ByteArray};
 
 --- The nullifier key type describing a secret required to compute the ;Nullifier; of a resource
 type NullifierKey := mkNullifierKey {unNullifierKey : ByteArray};
