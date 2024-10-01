@@ -1,12 +1,11 @@
 module Anoma.Identity.Signing.Types;
 
 import Stdlib.Prelude open;
+import Anoma.Utils open;
 import Anoma.Identity.Internal open;
 import Anoma.Identity.External open;
-
-import Anoma.Types open using {module PublicKey; module PrivateKey};
-import Anoma.System.Builtin as Builtin;
-import Anoma.Data.ByteArray open using {ByteArray} public;
+import Anoma.Builtin.ByteArray as ByteArray open;
+import Anoma.Builtin.System as SystemBuiltins open;
 
 type Signature := mkSignature {unSignature : ByteArray};
 
@@ -22,10 +21,10 @@ verify
     -- | The verification result.
     -> Bool
   | (mkSignature signature) message externalIdentity :=
-    Builtin.anomaVerifyDetached
+    SystemBuiltins.anomaVerifyDetached
       signature
       message
-      (PublicKey.toByteArray (ExternalIdentity.unExternalIdentity externalIdentity));
+      (ExternalIdentity.unExternalIdentity externalIdentity);
 
 {-# inline: true #-}
 sign
@@ -37,9 +36,7 @@ sign
     -- | The resulting signature
     -> Signature
   | message internalIdentity :=
-    Builtin.anomaSign
-        message
-        (PrivateKey.toByteArray (InternalIdentity.unInternalIdentity internalIdentity))
+    SystemBuiltins.anomaSign message (InternalIdentity.unInternalIdentity internalIdentity)
       |> mkSignature;
 
 module NonDetached;
@@ -61,9 +58,9 @@ module NonDetached;
       -- | The original message.
       -> Maybe Message
     | (mkSignedMessage signedMessage) externalIdentity :=
-      Builtin.anomaVerifyWithMessage
+      SystemBuiltins.anomaVerifyWithMessage
         signedMessage
-        (PublicKey.toByteArray (ExternalIdentity.unExternalIdentity externalIdentity));
+        (ExternalIdentity.unExternalIdentity externalIdentity);
 
   {-# inline: true #-}
   sign
@@ -75,8 +72,6 @@ module NonDetached;
       -- | The resulting signed message.
       -> SignedMessage
     | message internalIdentity :=
-      Builtin.anomaSign
-          message
-          (PrivateKey.toByteArray (InternalIdentity.unInternalIdentity internalIdentity))
+      SystemBuiltins.anomaSign message (InternalIdentity.unInternalIdentity internalIdentity)
         |> mkSignedMessage;
 end;
