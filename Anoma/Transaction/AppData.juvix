@@ -12,7 +12,11 @@ type AppDataKey := mkAppDataKey {unAppDataKey : ByteArray};
 type AppDataValue := mkAppDataValue {unAppDataValue : ByteArray};
 
 --- A type describing an app data map entry.
-AppDataEntry : Type := Pair AppDataKey AppDataValue;
+type AppDataEntry :=
+  mkAppDataEntry {
+    key : AppDataKey;
+    value : AppDataValue
+  };
 
 --- A type describing an app data map.
 AppData : Type := Set AppDataEntry;
