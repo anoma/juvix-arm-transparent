@@ -3,6 +3,7 @@ module Anoma.Resource.Types;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open using {ByteArray};
+import Anoma.Identity.External open using {ExternalIdentity};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
@@ -20,7 +21,7 @@ type ValueRef := mkValueRef {unValueRef : Nat};
 type Quantity := mkQuantity {unQuantity : Nat};
 
 --- A fixed-size data type encoding the public commitment to the private nullifier key.
-type NullifierKeyCommitment := mkNullifierKeyCommitment {unNullifierKeyCommitment : ByteArray};
+type NullifierKeyCommitment := mkNullifierKeyCommitment {unNullifierKeyCommitment : ExternalIdentity};
 
 --- A fixed-size data type encoding a number to be used once ensuring that the resource commitment is unique.
 --- NOTE: This should be a number having an at most negligible chance of repeating is sufficient, e.g., a pseudo-random number.
