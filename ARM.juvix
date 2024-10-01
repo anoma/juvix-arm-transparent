@@ -1,7 +1,0 @@
-module ARM;
-
-import Anoma.Resource.Index as Resource public;
-import Anoma.Transaction.Index as Transaction public;
-import Anoma.Identity.Index as Identity public;
-import Anoma.Delta as Delta public;
-import Anoma.Utils as Utils public;

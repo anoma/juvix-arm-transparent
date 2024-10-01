@@ -24,6 +24,7 @@ axiom sign : {Message : Type}
   -- | The resulting signature
   -> Signature;
 
+--- TODO Consider deleting the definitions below..
 module NonDetached;
   axiom SignedMessage : Type;
 

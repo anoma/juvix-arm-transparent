@@ -3,7 +3,7 @@ module Anoma.Transaction.Action;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set; union; intersection};
-import Anoma.Resource.Index as Resource open;
+import Anoma.Resource as Resource open;
 import Anoma.Proving.Types open using {ProofRecord};
 import Anoma.Proving.ProofRecordSet as ProofRecordSet open using {ProofRecordSet};
 import Anoma.Math open using {disjointUnion};
