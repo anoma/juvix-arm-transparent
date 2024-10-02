@@ -1,6 +1,5 @@
 module Anoma.Resource.Value;
 
-import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Value; ValueRef};
 import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};

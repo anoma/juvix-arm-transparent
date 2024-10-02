@@ -1,6 +1,5 @@
 module Anoma.Delta;
 
-import Stdlib.Prelude open;
 import Anoma.Math as Math open;
 import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION};
 
