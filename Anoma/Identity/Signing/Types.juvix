@@ -39,7 +39,7 @@ sign
     SystemBuiltins.anomaSign message (InternalIdentity.unInternalIdentity internalIdentity)
       |> mkSignature;
 
---- TODO Consider deleting the definitions below..
+--- TODO Consider deleting the definitions below.
 module NonDetached;
   type SignedMessage := mkSignedMessage {unSignedMessage : ByteArray};
 

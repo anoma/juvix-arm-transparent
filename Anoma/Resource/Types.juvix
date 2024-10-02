@@ -51,6 +51,8 @@ type NullifierKey := mkNullifierKey {unNullifierKey : ByteArray};
 
 module LogicRefInternal;
   --- Compares two ;LogicRef; objects.
+  --- TODO adapt implementation.
+  --- TODO Ask Paul how ;Ord; can be implemented for opaque types.
   compare (lhs rhs : LogicRef) : Ordering :=
     Ord.cmp (anomaEncode (LogicRef.unLogicRef lhs)) (anomaEncode (LogicRef.unLogicRef rhs));
 
