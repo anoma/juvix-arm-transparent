@@ -2,15 +2,15 @@ module Anoma.Resource.Value;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {Value; ValueRef; module ValueRef; mkValueRef};
+import Anoma.Resource.Types open using {Value; module Value; mkValue; ValueRef; module ValueRef; mkValueRef};
+import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-valueToRef (value : Value) : ValueRef := mkValueRef value;
+valueToRef (value : Value) : ValueRef := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Fetches the ;Value; from the ;ValueRef; function.
---- NOTE: For the private testnet, this is allowed to be the identity function.
-valueFromRef (valueRef : ValueRef) : Value := ValueRef.unValueRef valueRef;
+valueFromRef (valueRef : ValueRef) : Value := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance

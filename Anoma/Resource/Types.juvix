@@ -3,20 +3,19 @@ module Anoma.Resource.Types;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open using {ByteArray};
-import Anoma.Builtin.System open using {anomaEncode};
-import Anoma.Resource._LogicDuplicate open using {Logic'};
+import Anoma.Builtin.System open using {anomaEncode; AnomaOpaque};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
-type LogicRef := mkLogicRef {unLogicRef : Logic'};
+type LogicRef := mkLogicRef {unLogicRef : AnomaOpaque};
 
 --- A fixed-size data type encoding the reference to the resource label field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LabelRef; to be dynamically-sized.
-type LabelRef := mkLabelRef {unLabelRef : Label};
+type LabelRef := mkLabelRef {unLabelRef : AnomaOpaque};
 
 --- A fixed-size data type encoding the reference to the resource value field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
-type ValueRef := mkValueRef {unValueRef : Value};
+type ValueRef := mkValueRef {unValueRef : AnomaOpaque};
 
 --- A fixed-size data type encoding the quantity of a resource.
 type Quantity := mkQuantity {unQuantity : Nat};
@@ -55,7 +54,7 @@ module LogicRefInternal;
   --- TODO adapt implementation.
   --- TODO Ask Paul how ;Ord; can be implemented for opaque types.
   compare (lhs rhs : LogicRef) : Ordering :=
-    Ord.cmp (anomaEncode (LogicRef.unLogicRef lhs)) (anomaEncode (LogicRef.unLogicRef rhs));
+    Ord.cmp (LogicRef.unLogicRef lhs) (LogicRef.unLogicRef rhs);
 
   --- Implements the ;Ord; trait for ;LogicRef;.
   instance
@@ -70,7 +69,7 @@ module LabelInternal;
   --- Compares two ;Label; objects.
   compare (lhs rhs : Label) : Ordering := Ord.cmp (Label.unLabel lhs) (Label.unLabel rhs);
 
-  --- Implements the ;Ord; trait for ;RandSeed;.
+  --- Implements the ;Ord; trait for ;Label;.
   instance
   Label-Ord : Ord Label := mkOrd compare;
 

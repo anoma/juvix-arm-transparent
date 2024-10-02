@@ -2,15 +2,15 @@ module Anoma.Resource.Label;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {Label; LabelRef; module LabelRef; mkLabelRef};
+import Anoma.Resource.Types open using {Label; module Label; mkLabel; LabelRef; module LabelRef; mkLabelRef};
+import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};
 
 --- Computes the ;LabelRef; from the ;Label; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-labelToRef (label : Label) : LabelRef := mkLabelRef label;
+labelToRef (label : Label) : LabelRef := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Fetches the ;Label; from the ;LabelRef; function.
---- NOTE: For the private testnet, this is allowed to be the identity function.
-labelFromRef (labelRef : LabelRef) : Label := LabelRef.unLabelRef labelRef;
+labelFromRef (labelRef : LabelRef) : Label := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Implements the ;Ref; trait for ;Label;.
 instance
