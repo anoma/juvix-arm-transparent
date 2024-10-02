@@ -73,3 +73,8 @@ axiom anomaVerifyWithMessage : {Message : Type}
   -> Internal.PublicKey
   -- | The original message.
   -> Maybe Message;
+
+instance
+AnomaOpaque-Ord : Ord AnomaOpaque := mkOrd@{
+  cmp := Ord.cmp on anomaEncode
+};
