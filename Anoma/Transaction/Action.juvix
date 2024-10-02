@@ -30,7 +30,6 @@ type DisjointSetError :=
   | NonDisjointNullifiersError (Set Resource.Nullifier);
 
 --- Composes two ;Action; objects.
---- TODO Revisit naming.
 composeActions (a1 a2 : Action) : Result DisjointSetError Action := MISSING_ANOMA_BUILTIN;
 {-
   case
@@ -50,7 +49,6 @@ composeActions (a1 a2 : Action) : Result DisjointSetError Action := MISSING_ANOM
 -}
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
---- TODO Revisit naming.
 verifyAction (a : Action) : Bool := MISSING_ANOMA_BUILTIN;
 --ProofRecordSet.verify (Action.proofs a);
 

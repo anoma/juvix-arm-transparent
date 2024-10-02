@@ -28,8 +28,7 @@ empty : ProofRecordSet :=
 --- NOTE: At verification time, a proof record set must contain exactly one ;DeltaProof.ProofRecord;.
 --- TODO This should be an Anoma builtin.
 --- TODO Confirm with Paul that this can be removed.
---- TODO Revisit naming.
-verify (proofRecords : ProofRecordSet) : Bool :=
+verifyProofRecords (proofRecords : ProofRecordSet) : Bool :=
   case ProofRecordSet.deltaProof proofRecords of {
     | just deltaProof := DeltaProof.verify deltaProof
     -- At verification time, this is must not be ;nothing;.
