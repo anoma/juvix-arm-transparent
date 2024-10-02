@@ -16,9 +16,6 @@ MISSING_DEFINITION : Type := Unit;
 --- A placeholder for an implementation that is not required for the private testnet.
 NOT_REQUIRED : {A : Type} → A := failwith "THIS IS NOT REQUIRED FOR THE PRIVATE TESTNET";
 
---- A placeholder for a missing implementation.
-NOT_IMPLEMENTED : {A : Type} → A := failwith "NOT IMPLEMENTED";
-
 --- A placeholder for a missing Juvix implementation.
 MISSING_JUVIX_IMPLEMENTATION : {A : Type} → A := failwith "THIS MUST BE IMPLEMENT BY JUVIX";
 
