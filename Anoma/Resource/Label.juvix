@@ -2,13 +2,13 @@ module Anoma.Resource.Label;
 
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Label; LabelRef};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};
 
 --- Computes the ;LabelRef; from the ;Label;.
-labelToRef (label : Label) : LabelRef := MISSING_ANOMA_BUILTIN;
+labelToRef (label : Label) : LabelRef := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Fetches the ;Label; from the ;LabelRef; function.
-labelFromRef (labelRef : LabelRef) : Label := MISSING_ANOMA_BUILTIN;
+labelFromRef (labelRef : LabelRef) : Label := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Implements the ;Ref; trait for ;Label;.
 instance

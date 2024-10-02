@@ -51,7 +51,8 @@ type NullifierKey := mkNullifierKey {unNullifierKey : MISSING_DEFINITION};
 
 module LogicRefInternal;
   --- Compares two ;LogicRef; objects.
-  compare (lhs rhs : LogicRef) : Ordering := MISSING_ANOMA_BUILTIN;
+  compare (lhs rhs : LogicRef) : Ordering :=
+    Ord.cmp (LogicRef.unLogicRef lhs) (LogicRef.unLogicRef rhs);
 
   --- Implements the ;Ord; trait for ;LogicRef;.
   instance
@@ -66,7 +67,7 @@ module LabelInternal;
   --- Compares two ;Label; objects.
   compare (lhs rhs : Label) : Ordering := Ord.cmp (Label.unLabel lhs) (Label.unLabel rhs);
 
-  --- Implements the ;Ord; trait for ;RandSeed;.
+  --- Implements the ;Ord; trait for ;Label;.
   instance
   Label-Ord : Ord Label := mkOrd compare;
 
