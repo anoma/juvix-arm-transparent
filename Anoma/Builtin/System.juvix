@@ -75,6 +75,7 @@ axiom anomaVerifyWithMessage : {Message : Type}
   -> Maybe Message;
 
 instance
-AnomaOpaque-Ord : Ord AnomaOpaque := mkOrd@{
-  cmp := Ord.cmp on anomaEncode
-};
+AnomaOpaque-Ord : Ord AnomaOpaque :=
+  mkOrd@{
+    cmp := Ord.cmp on anomaEncode
+  };
