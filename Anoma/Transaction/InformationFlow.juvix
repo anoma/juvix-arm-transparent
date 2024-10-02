@@ -13,7 +13,7 @@ InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalId
 --- NOTE: this will be concretized in an upcoming RM specs version.
 type HashPlaceholder := mkHashPlaceholder {unHashPlaceholder : MISSING_DEFINITION};
 
---- The input data of the basePredicate function.
+--- The input data of the `basePredicate` function.
 type BaseData :=
   | AllowAny
   | AllowOnly (Set ExternalIdentity)

@@ -10,7 +10,6 @@ module KindInternal;
   --- NOTE: This definition does not specify that the ;LogicRef; and ;LabelRef; arguments
   --- must come from the same ;Resource; although this must be the case.
   kind (logicRef : LogicRef) (labelRef : LabelRef) : Kind := MISSING_ANOMA_BUILTIN;
---anomaEncode (logicRef, labelRef) |> mkKind;
 end;
 
 --- Computes the ;Kind; value of a given ;Resource;.

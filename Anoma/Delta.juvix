@@ -2,7 +2,6 @@ module Anoma.Delta;
 
 import Stdlib.Prelude open;
 import Anoma.Math as Math open;
-import Anoma.Resource.Types open using {Quantity; Kind};
 import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION};
 
 --- A fixed-size data type encoding the additively homomorphic and kind distinct ;Delta;.
