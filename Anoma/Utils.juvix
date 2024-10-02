@@ -13,7 +13,11 @@ UNUSED : Type := Unit;
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not unknown.
 UNKNOWN : Type := Unit;
 
-NOT_IMPLEMENTED : {A : Type} → A := failwith "NOT IMPLEMENTED";
+--- A placeholder for a missing Juvix implementation.
+MISSING_JUVIX_IMPLEMENTATION : {A : Type} → A := failwith "MISSING JUVIX IMPLEMENTATION";
+
+--- A placeholder for a missing Anoma builtin.
+MISSING_ANOMA_BUILTIN : {A : Type} → A := failwith "MISSING ANOMA BUILTIN ";
 
 --- A trait for transforming values of a `DataType` into values of its
 --- corresponding `RefType`. Values of `RefType` must have fixed size. For the

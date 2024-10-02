@@ -17,12 +17,11 @@ type DeltaComponent :=
 
 --- Adds two ;Delta; values.
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
-addDelta (d1 d2 : Delta) : Delta := NOT_IMPLEMENTED;
+addDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
 
 -- NOTE: THIS IS NOT PART OF THE SPEC
---- TODO Should this be an Anoma builtin?
--- axiom subDelta : (d1 d2 : Delta) -> Delta;
+-- TODO Should this be an Anoma builtin?
+-- subDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
 
 --- The ;Delta; value zero.
 zero : Delta := [];

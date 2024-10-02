@@ -1,7 +1,7 @@
 module Anoma.Transaction.Preference;
 
 import Anoma.Transaction.Object open using {Transaction};
-import Anoma.Utils open using {UNKNOWN; NOT_IMPLEMENTED};
+import Anoma.Utils open using {UNKNOWN; MISSING_ANOMA_BUILTIN};
 
 --- A fixed-size type describing the unit interval `[0,1]`.
 type UnitInterval := mkUnitInterval {unUnitInterval : UNKNOWN};
@@ -11,4 +11,4 @@ Preference : Type := (tx : Transaction) -> UnitInterval;
 
 --- The preference function composition function.
 --- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
-composePreferences (f1 f2 : Preference) : Preference := NOT_IMPLEMENTED;
+composePreferences (f1 f2 : Preference) : Preference := MISSING_ANOMA_BUILTIN;

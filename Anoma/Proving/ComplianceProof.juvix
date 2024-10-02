@@ -4,7 +4,7 @@ module Anoma.Proving.ComplianceProof;
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Compliance};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
-import Anoma.Utils open using {NOT_IMPLEMENTED};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 ProofRecord : Type :=
   Parametrized.ProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;
@@ -14,10 +14,10 @@ prove
   (provingKey : Compliance.ProvingKey)
   (publicInputs : Compliance.Instance)
   (privateInputs : Compliance.Witness)
-  : Compliance.Proof := NOT_IMPLEMENTED;
+  : Compliance.Proof := MISSING_ANOMA_BUILTIN;
 
 --- TODO This should be an Anoma builtin.
-verify (proofRecord : ProofRecord) : Bool := NOT_IMPLEMENTED;
+verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;
 
 instance
 Compliance-ProvingSystem
