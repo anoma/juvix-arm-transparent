@@ -3,6 +3,7 @@ module Anoma.Math;
 import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; union; intersection};
 
+-- TODO Delete depending on Yulias answer to the questions in `Anoma.Delta`.
 -- --- A trait describing additive homomorphicity.
 -- trait
 -- type AdditivelyHomomorphic T :=

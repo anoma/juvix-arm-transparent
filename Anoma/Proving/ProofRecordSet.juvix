@@ -28,15 +28,6 @@ empty : ProofRecordSet :=
 --- Verifies a ;ProofRecordSet;.
 --- NOTE: At verification time, a proof record set must contain exactly one ;DeltaProof.ProofRecord;.
 verifyProofRecords (proofRecords : ProofRecordSet) : Bool := MISSING_ANOMA_BUILTIN;
---  case ProofRecordSet.deltaProof proofRecords of {
---    | just deltaProof := DeltaProof.verify deltaProof
---    -- At verification time, this is must not be ;nothing;.
---    | nothing := false
---  }
---    && all (p in Set.toList (ProofRecordSet.complianceProofs proofRecords))
---         {ComplianceProof.verify p}
---    && all (p in Set.toList (ProofRecordSet.resourceLogicProofs proofRecords))
---         {ResourceLogicProof.verify p};
 
 module ProofRecordSetInternal;
   --- Compares two ;ProofRecordSet; objects.
