@@ -3,18 +3,20 @@ module Anoma.Resource.Types;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open using {ByteArray};
+import Anoma.Builtin.System open using {anomaEncode; anomaDecode};
+import Anoma.Resource._TempLogicRef open using {Logic'};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
-type LogicRef := mkLogicRef {unLogicRef : Nat};
+type LogicRef := mkLogicRef {unLogicRef : Logic'};
 
 --- A fixed-size data type encoding the reference to the resource label field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LabelRef; to be dynamically-sized.
-type LabelRef := mkLabelRef {unLabelRef : Nat};
+type LabelRef := mkLabelRef {unLabelRef : Label};
 
 --- A fixed-size data type encoding the reference to the resource value field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
-type ValueRef := mkValueRef {unValueRef : Nat};
+type ValueRef := mkValueRef {unValueRef : Value};
 
 --- A fixed-size data type encoding the quantity of a resource.
 type Quantity := mkQuantity {unQuantity : Nat};
@@ -51,7 +53,7 @@ type NullifierKey := mkNullifierKey {unNullifierKey : ByteArray};
 module LogicRefInternal;
   --- Compares two ;LogicRef; objects.
   compare (lhs rhs : LogicRef) : Ordering :=
-    Ord.cmp (LogicRef.unLogicRef lhs) (LogicRef.unLogicRef rhs);
+    Ord.cmp (anomaEncode (LogicRef.unLogicRef lhs)) (anomaEncode (LogicRef.unLogicRef rhs));
 
   --- Implements the ;Ord; trait for ;LogicRef;.
   instance
@@ -60,6 +62,19 @@ module LogicRefInternal;
   --- Implements the ;Eq; trait for ;LogicRef;.
   instance
   LogicRef-Eq : Eq LogicRef := fromOrdToEq;
+end;
+
+module LabelInternal;
+  --- Compares two ;Label; objects.
+  compare (lhs rhs : Label) : Ordering := Ord.cmp (Label.unLabel lhs) (Label.unLabel rhs);
+
+  --- Implements the ;Ord; trait for ;RandSeed;.
+  instance
+  Label-Ord : Ord Label := mkOrd compare;
+
+  --- Implements the ;Eq; trait for ;Label;.
+  instance
+  Label-Eq : Eq Label := fromOrdToEq;
 end;
 
 module LabelRefInternal;
@@ -74,6 +89,19 @@ module LabelRefInternal;
   --- Implements the ;Eq; trait for ;LabelRef;.
   instance
   LabelRef-Eq : Eq LabelRef := fromOrdToEq;
+end;
+
+module ValueInternal;
+  --- Compares two ;Value; objects.
+  compare (lhs rhs : Value) : Ordering := Ord.cmp (Value.unValue lhs) (Value.unValue rhs);
+
+  --- Implements the ;Ord; trait for ;Value;.
+  instance
+  Value-Ord : Ord Value := mkOrd compare;
+
+  --- Implements the ;Eq; trait for ;Value;.
+  instance
+  Value-Eq : Eq Value := fromOrdToEq;
 end;
 
 module ValueRefInternal;

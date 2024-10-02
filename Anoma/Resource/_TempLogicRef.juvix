@@ -1,0 +1,182 @@
+module Anoma.Resource._TempLogicRef;
+
+import Stdlib.Prelude open;
+import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Data.Set as Set open using {Set};
+import Anoma.Builtin.ByteArray open using {ByteArray};
+import Anoma.Builtin.System open using {anomaEncode; anomaDecode};
+import Anoma.Transaction.AppData open using {AppData};
+
+module Instance';
+  type Commitment' := mkCommitment' {unCommitment : ByteArray};
+
+  type Nullifier' := mkNullifier' {unNullifier : ByteArray};
+
+  type Tag' :=
+    | Created Commitment'
+    | Consumed Nullifier';
+
+  type Instance' :=
+    mkInstance' {
+      tag : Tag';
+      commitments : Set Commitment';
+      nullifiers : Set Nullifier';
+      appData : AppData
+    };
+end;
+
+open Instance' using {Instance'};
+
+module Witness';
+  Logic' : Type := (publicInputs : Instance') -> (privateInputs : Witness') -> Bool;
+
+  CustomInputs' : Type := AppData;
+
+  type Witness' :=
+    mkWitness {
+      created : Set Resource';
+      consumed : Set Resource';
+      custom : CustomInputs'
+    };
+
+  type Resource' :=
+    mkResource {
+      logicRef : LogicRef';
+      labelRef : LabelRef';
+      valueRef : ValueRef';
+      quantity : Quantity';
+      ephemeral : Bool;
+      nullifierKeyCommitment : NullifierKeyCommitment';
+      nonce : Nonce';
+      randSeed : RandSeed'
+    };
+
+  type LogicRef' := mkLogicRef {unLogicRef : Logic'};
+
+  type LabelRef' := mkLabelRef' {unLabelRef : Nat};
+
+  type ValueRef' := mkValueRef' {unValueRef : Nat};
+
+  type Quantity' := mkQuantity' {unQuantity : Nat};
+
+  type NullifierKeyCommitment' := mkNullifierKeyCommitment' {unNullifierKeyCommitment : ByteArray};
+
+  type Nonce' := mkNonce' {unNonce : Nat};
+
+  type RandSeed' := mkRandSeed' {unRandSeed : Nat};
+
+  module LogicRef'Internal;
+    compare (lhs rhs : LogicRef') : Ordering :=
+      Ord.cmp (anomaEncode (LogicRef'.unLogicRef lhs)) (anomaEncode (LogicRef'.unLogicRef rhs));
+
+    instance
+    LogicRef'-Ord : Ord LogicRef' := mkOrd compare;
+
+    instance
+    LogicRef'-Eq : Eq LogicRef' := fromOrdToEq;
+  end;
+
+  module LabelRef'Internal;
+    compare (lhs rhs : LabelRef') : Ordering :=
+      Ord.cmp (LabelRef'.unLabelRef lhs) (LabelRef'.unLabelRef rhs);
+
+    instance
+    LabelRef'-Ord : Ord LabelRef' := mkOrd compare;
+
+    instance
+    LabelRef'-Eq : Eq LabelRef' := fromOrdToEq;
+  end;
+
+  module ValueRef'Internal;
+    compare (lhs rhs : ValueRef') : Ordering :=
+      Ord.cmp (ValueRef'.unValueRef lhs) (ValueRef'.unValueRef rhs);
+
+    instance
+    ValueRef'-Ord : Ord ValueRef' := mkOrd compare;
+
+    instance
+    ValueRef'-Eq : Eq ValueRef' := fromOrdToEq;
+  end;
+
+  module Quantity'Internal;
+    compare (lhs rhs : Quantity') : Ordering :=
+      Ord.cmp (Quantity'.unQuantity lhs) (Quantity'.unQuantity rhs);
+
+    instance
+    Quantity'-Ord : Ord Quantity' := mkOrd compare;
+
+    instance
+    Quantity'-Eq : Eq Quantity' := fromOrdToEq;
+  end;
+
+  module NullifierKeyCommitment'Internal;
+    compare (lhs rhs : NullifierKeyCommitment') : Ordering :=
+      Ord.cmp
+        (NullifierKeyCommitment'.unNullifierKeyCommitment lhs)
+        (NullifierKeyCommitment'.unNullifierKeyCommitment rhs);
+
+    instance
+    NullifierKeyCommitment'-Ord : Ord NullifierKeyCommitment' := mkOrd compare;
+
+    instance
+    NullifierKeyCommitment'-Eq : Eq NullifierKeyCommitment' := fromOrdToEq;
+  end;
+
+  module Nonce'Internal;
+
+    compare (lhs rhs : Nonce') : Ordering := Ord.cmp (Nonce'.unNonce lhs) (Nonce'.unNonce rhs);
+
+    instance
+    Nonce'-Ord : Ord Nonce' := mkOrd compare;
+
+    instance
+    Nonce'-Eq : Eq Nonce' := fromOrdToEq;
+  end;
+
+  module RandSeed'Internal;
+    compare (lhs rhs : RandSeed') : Ordering :=
+      Ord.cmp (RandSeed'.unRandSeed lhs) (RandSeed'.unRandSeed rhs);
+
+    instance
+    RandSeed'-Ord : Ord RandSeed' := mkOrd compare;
+
+    instance
+    RandSeed'-Eq : Eq RandSeed' := fromOrdToEq;
+  end;
+
+  module ResourceInternal;
+    compare (lhs rhs : Resource') : Ordering :=
+      let
+        prod (r : Resource') : _ :=
+          Resource'.logicRef r
+            , Resource'.labelRef r
+            , Resource'.valueRef r
+            , Resource'.quantity r
+            , Resource'.ephemeral r
+            , Resource'.nullifierKeyCommitment r
+            , Resource'.nonce r
+            , Resource'.randSeed r;
+      in Ord.cmp (prod lhs) (prod rhs);
+
+    instance
+    Resource-Ord : Ord Resource' := mkOrd compare;
+
+    instance
+    Resource-Eq : Eq Resource' := fromOrdToEq;
+  end;
+
+  module Witness'Internal;
+    compare (lhs rhs : Witness') : Ordering :=
+      let
+        prod (w : Witness') : _ := Witness'.created w, Witness'.consumed w, Witness'.custom w;
+      in Ord.cmp (prod lhs) (prod rhs);
+
+    instance
+    Witness'-Ord : Ord Witness' := mkOrd compare;
+
+    instance
+    Witness'-Eq : Eq Witness' := fromOrdToEq;
+  end;
+end;
+
+open Witness' using {Logic'} public;

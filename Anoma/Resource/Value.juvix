@@ -2,13 +2,24 @@ module Anoma.Resource.Value;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {Value; module Value; ValueRef; mkValueRef};
+import Anoma.Resource.Types open using {Value; module Value; mkValue; ValueRef; module ValueRef; mkValueRef};
+import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode; anomaDecode};
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
+--- TODO ASK IF THIS CAN BE `anomaEncode` for now.
 --- TODO This should be an Anoma builtin.
-valueRef (value : Value) : ValueRef := value |> Value.unValue |> mkValueRef;
+valueToRef (value : Value) : ValueRef := value |> anomaEncode |> anomaDecode |> mkValueRef;
+
+--- Fetches the ;Value; from the ;ValueRef; function.
+--- TODO This should be an Anoma builtin.
+valueFromRef (valueRef : ValueRef) : Value :=
+  valueRef |> ValueRef.unValueRef |> anomaEncode |> anomaDecode;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance
-Value-Ref : Ref Value ValueRef := mkRef valueRef;
+Value-Ref : Ref Value ValueRef :=
+  mkRef@{
+    toRef := valueToRef;
+    fromRef := valueFromRef
+  };

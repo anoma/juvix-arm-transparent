@@ -2,13 +2,23 @@ module Anoma.Resource.Label;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {Label; module Label; LabelRef; mkLabelRef};
+import Anoma.Resource.Types open using {Label; module Label; mkLabel; LabelRef; module LabelRef; mkLabelRef};
+import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode; anomaDecode};
 
 --- Computes the ;LabelRef; from the ;Label; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
 --- TODO This should be an Anoma builtin.
-labelRef (label : Label) : LabelRef := label |> Label.unLabel |> mkLabelRef;
+labelToRef (label : Label) : LabelRef := label |> anomaEncode |> anomaDecode |> mkLabelRef;
+
+--- Fetches the ;Label; from the ;LabelRef; function.
+--- TODO This should be an Anoma builtin.
+labelFromRef (labelRef : LabelRef) : Label :=
+  labelRef |> LabelRef.unLabelRef |> anomaEncode |> anomaDecode;
 
 --- Implements the ;Ref; trait for ;Label;.
 instance
-Label-Ref : Ref Label LabelRef := mkRef labelRef;
+Label-Ref : Ref Label LabelRef :=
+  mkRef@{
+    toRef := labelToRef;
+    fromRef := labelFromRef
+  };
