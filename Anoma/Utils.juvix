@@ -3,8 +3,6 @@ module Anoma.Utils;
 import Stdlib.Prelude open;
 import Anoma.Builtin.System open using {anomaEncode; anomaDecode};
 import Stdlib.Debug.Fail open using {failwith};
-import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Builtin.ByteArray open;
 
 --- A type describing the absence of a types.
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not used.

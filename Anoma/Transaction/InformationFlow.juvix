@@ -30,10 +30,12 @@ requireShieldedCheckPlaceholder (tx : Transaction) (hashes : Set HashPlaceholder
 --- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
 --- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
 terminating
-basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
+basePredicate (baseData : BaseData) : InformationFlowControlPredicate := NOT_REQUIRED;
+{-
   case baseData of
     | AllowAny := \ {_ _ := true}
     | AllowOnly identites := \ {_ self := member? self identites}
     | RequireShielded hashes := \ {tx _ := requireShieldedCheckPlaceholder tx hashes}
     | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
     | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};
+-}
