@@ -5,32 +5,30 @@ import Stdlib.Debug.Fail open using {failwith};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open;
 
---builtin anoma-opaque
---axiom AnomaOpaque : Type;
-
 --- A type describing the absence of a types.
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not used.
 UNUSED : Type := Unit;
 
 --- A type describing an unknown type that must be clarified.
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not unknown.
-UNKNOWN : Type := Unit;
+MISSING_DEFINITION : Type := Unit;
+
+--- A placeholder for an implementation that is not required for the private testnet.
+NOT_REQUIRED : {A : Type} → A := failwith "THIS IS NOT REQUIRED FOR THE PRIVATE TESTNET";
 
 --- A placeholder for a missing implementation.
 NOT_IMPLEMENTED : {A : Type} → A := failwith "NOT IMPLEMENTED";
 
--- TODO Improve
-NOT_RELEVANT_FOR_JUVIX_FOLKS : {A : Type} → A :=
-  failwith "MUST_BE_IMPLEMENTED_IN_ELIXIR_AND_IT_IS_NOT_CALLED_FROM_JUVIX";
-
 --- A placeholder for a missing Juvix implementation.
-MISSING_JUVIX_IMPLEMENTATION : {A : Type} → A := NOT_IMPLEMENTED;
+MISSING_JUVIX_IMPLEMENTATION : {A : Type} → A := failwith "THIS MUST BE IMPLEMENT BY JUVIX";
 
 --- A placeholder for a missing Anoma builtin.
-MISSING_ANOMA_BUILTIN : {A : Type} → A := NOT_IMPLEMENTED;
+MISSING_ANOMA_BUILTIN : {A : Type} → A :=
+  failwith "THIS MUST BE PROVIDED AS AN ANOMA BUILTIN IN JUVIX";
 
---- A placeholder for an implementation that is not required for the private testnet.
-NOT_REQURED_YET : {A : Type} → A := NOT_IMPLEMENTED;
+--- A placeholder for an implementation that must be implemented on by the Anoma instantiator in the backend, but is not supposed to be called from Juvix.
+ANOMA_BACKEND_IMPLEMENTATION : {A : Type} → A :=
+  failwith "THIS BACKEND IMPLEMENTATION IS NOT SUPPOSED TO BE CALLED FROM JUVIX";
 
 --- A trait for transforming values of a `DataType` into values of its
 --- corresponding `RefType`. Values of `RefType` must have fixed size. For the

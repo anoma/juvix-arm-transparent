@@ -6,13 +6,13 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Types as Resource open using {Commitment};
-import Anoma.Utils open using {UNKNOWN};
+import Anoma.Utils open using {MISSING_DEFINITION};
 
 --- A state root of the commitment tree.
-type Root := mkRoot {unRoot : UNKNOWN};
+type Root := mkRoot {unRoot : MISSING_DEFINITION};
 
 --- A path in the commitment tree.
-type Path := mkPath {unPath : UNKNOWN};
+type Path := mkPath {unPath : MISSING_DEFINITION};
 
 --- The interface of the commitment tree.
 positive

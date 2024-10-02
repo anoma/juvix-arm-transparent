@@ -3,18 +3,17 @@ module Anoma.Delta;
 import Stdlib.Prelude open;
 import Anoma.Math as Math open;
 import Anoma.Resource.Types open using {Quantity; Kind};
-import Anoma.Utils open using {UNKNOWN; MISSING_ANOMA_BUILTIN; NOT_RELEVANT_FOR_JUVIX_FOLKS};
+import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION};
 
 --- A fixed-size data type encoding the additively homomorphic and kind distinct ;Delta;.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;Delta; to be dynamically-sized.
-type Delta := mkDelta {unDelta : UNKNOWN};
+type Delta := mkDelta {unDelta : MISSING_DEFINITION};
 
 --- The ;Delta; value zero.
 zero : Delta := MISSING_ANOMA_BUILTIN;
 
--- TODO Ask Yulia if this is needed in the interface (i.e., if there are cases where an app would call this).
--- --- Adds two ;Delta; values.
-addDelta (d1 d2 : Delta) : Delta := NOT_RELEVANT_FOR_JUVIX_FOLKS;
+--- Adds two ;Delta; values.
+addDelta (d1 d2 : Delta) : Delta := ANOMA_BACKEND_IMPLEMENTATION;
 
 --- Implements the ;Math.AdditivelyHomomorphic; trait for ;Delta;.
 instance

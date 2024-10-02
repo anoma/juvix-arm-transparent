@@ -4,7 +4,7 @@ module Anoma.Proving.DeltaProof;
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Delta};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION};
 
 ProofRecord : Type := Parametrized.ProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
 
@@ -30,5 +30,4 @@ Delta-ProvingSystem
   };
 
 --- Aggregates two  delta ;ProofRecord;s.
---- TODO Ask Yulia if this is needed in the interface (i.e., if there are cases where an app would call this).
-aggregate (p1 p2 : ProofRecord) : ProofRecord := MISSING_ANOMA_BUILTIN;
+aggregate (p1 p2 : ProofRecord) : ProofRecord := ANOMA_BACKEND_IMPLEMENTATION;
