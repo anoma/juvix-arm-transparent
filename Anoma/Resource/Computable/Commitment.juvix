@@ -1,17 +1,14 @@
 module Anoma.Resource.Computable.Commitment;
 
 import Stdlib.Prelude open;
-import Stdlib.Debug.Fail open using {failwith};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitment};
 import Anoma.Resource.Object open using {Resource};
-import Anoma.Builtin.System as SystemBuiltins open;
+import Anoma.Utils open using {NOT_IMPLEMENTED};
 
 --- Computes the ;Commitment; of a ;Resource;.
 --- TODO This should be an Anoma builtin.
-commitment (resource : Resource) : Commitment :=
-  failwith "`commitment (resource : Resource) : Commitment`  NOT IMPLEMENTED";
+commitment (resource : Resource) : Commitment := NOT_IMPLEMENTED;
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.

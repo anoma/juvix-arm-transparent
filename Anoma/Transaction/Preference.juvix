@@ -1,8 +1,7 @@
 module Anoma.Transaction.Preference;
 
-import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Transaction.Object open using {Transaction};
-import Anoma.Utils open using {UNKNOWN};
+import Anoma.Utils open using {UNKNOWN; NOT_IMPLEMENTED};
 
 --- A fixed-size type describing the unit interval `[0,1]`.
 type UnitInterval := mkUnitInterval {unUnitInterval : UNKNOWN};
@@ -11,7 +10,5 @@ type UnitInterval := mkUnitInterval {unUnitInterval : UNKNOWN};
 Preference : Type := (tx : Transaction) -> UnitInterval;
 
 --- The preference function composition function.
---- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT until a builtin is provided.
-composePreferences (f1 f2 : Preference) : Preference :=
-  failwith "`composePreferences (f1 f2 : Preference) : Preference` NOT IMPLEMENTED";
+--- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
+composePreferences (f1 f2 : Preference) : Preference := NOT_IMPLEMENTED;

@@ -1,17 +1,14 @@
 module Anoma.Resource.Computable.Nullifier;
 
 import Stdlib.Prelude open;
-import Stdlib.Debug.Fail open using {failwith};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Nullifier; module Nullifier; mkNullifier; NullifierKey; module NullifierKey};
 import Anoma.Resource.Object open using {Resource};
+import Anoma.Utils open using {NOT_IMPLEMENTED};
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
 --- TODO This should be an Anoma builtin.
-nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier :=
-  failwith
-    "`nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier`  NOT IMPLEMENTED";
+nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier := NOT_IMPLEMENTED;
 
 module NullfierInternal;
   --- Compares two ;Nullifier; and returns their ;Ordering;.

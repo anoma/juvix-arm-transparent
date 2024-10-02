@@ -2,27 +2,22 @@
 module Anoma.Proving.ResourceLogicProof;
 
 import Stdlib.Prelude open;
-import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Proving.Types as Parametrized open using {module ResourceLogic};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
+import Anoma.Utils open using {NOT_IMPLEMENTED};
 
 ProofRecord : Type :=
   Parametrized.ProofRecord ResourceLogic.Proof ResourceLogic.VerifyingKey ResourceLogic.Witness;
 
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
 prove
   (provingKey : ResourceLogic.ProvingKey)
   (publicInputs : ResourceLogic.Instance)
   (privateInputs : ResourceLogic.Witness)
-  : ResourceLogic.Proof :=
-  failwith
-    "`prove : ResourceLogic.ProvingKey -> ResourceLogic.Instance -> ResourceLogic.Witness -> ResourceLogic.Proof` NOT IMPLEMENTED";
+  : ResourceLogic.Proof := NOT_IMPLEMENTED;
 
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
-verify (proofRecord : ProofRecord) : Bool :=
-  failwith "`verify (proofRecord : ProofRecord) : Bool` NOT IMPLEMENTED";
+verify (proofRecord : ProofRecord) : Bool := NOT_IMPLEMENTED;
 
 instance
 ResourceLogic-ProvingSystem

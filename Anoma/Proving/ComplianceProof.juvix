@@ -2,27 +2,22 @@
 module Anoma.Proving.ComplianceProof;
 
 import Stdlib.Prelude open;
-import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Proving.Types as Parametrized open using {module Compliance};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
+import Anoma.Utils open using {NOT_IMPLEMENTED};
 
 ProofRecord : Type :=
   Parametrized.ProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;
 
---- TODO IMPLEMENT
 --- TODO This should be an Anoma builtin.
 prove
   (provingKey : Compliance.ProvingKey)
   (publicInputs : Compliance.Instance)
   (privateInputs : Compliance.Witness)
-  : Compliance.Proof :=
-  failwith
-    "`prove : Compliance.ProvingKey -> Compliance.Instance -> Compliance.Witness -> Compliance.Proof` NOT IMPLEMENTED";
+  : Compliance.Proof := NOT_IMPLEMENTED;
 
---- TODO IMPLEMENT
 --- TODO This should be an Anoma builtin.
-verify (proofRecord : ProofRecord) : Bool :=
-  failwith "`verify (proofRecord : ProofRecord) : Bool` NOT IMPLEMENTED";
+verify (proofRecord : ProofRecord) : Bool := NOT_IMPLEMENTED;
 
 instance
 Compliance-ProvingSystem

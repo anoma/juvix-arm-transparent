@@ -3,7 +3,6 @@ module Anoma.Resource.Logic;
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {LogicRef; module LogicRef; mkLogicRef};
-import Anoma.Resource._TempLogicRef open using {Logic'};
 import Anoma.Proving.Types open using {module ResourceLogic};
 import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode; anomaDecode};
 

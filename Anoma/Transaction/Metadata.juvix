@@ -24,7 +24,7 @@ type TransactionWithMetadata :=
 
 --- Composes two ;TransactionWithMetadata; objects.
 --- NOTE: For the private testnet, this is not required yet.
---- TODO This should be an Anoma builtin.
+--- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
 composeTransactionsWithMetadata (txwm1 txwm2 : TransactionWithMetadata) : TransactionWithMetadata :=
   let
     meta1 := TransactionWithMetadata.metadata txwm1;
@@ -50,5 +50,6 @@ composeTransactionsWithMetadata (txwm1 txwm2 : TransactionWithMetadata) : Transa
   };
 
 --- Verifies a ;TransactionWithMetadata;.
+--- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
 verifyTransactionWithMetadata (txwm : TransactionWithMetadata) : Bool :=
   Transaction.verifyTransaction (TransactionWithMetadata.transaction txwm);

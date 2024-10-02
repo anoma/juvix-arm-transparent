@@ -2,26 +2,21 @@
 module Anoma.Proving.DeltaProof;
 
 import Stdlib.Prelude open;
-import Stdlib.Debug.Fail open using {failwith};
 import Anoma.Proving.Types as Parametrized open using {module Delta};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
+import Anoma.Utils open using {NOT_IMPLEMENTED};
 
 ProofRecord : Type := Parametrized.ProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
 
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
 prove
   (provingKey : Delta.ProvingKey)
   (publicInputs : Delta.Instance)
   (privateInputs : Delta.Witness)
-  : Delta.Proof :=
-  failwith
-    "`prove : Delta.ProvingKey -> Delta.Instance -> Delta.Witness -> Delta.Proof` NOT IMPLEMENTED";
+  : Delta.Proof := NOT_IMPLEMENTED;
 
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
-verify (proofRecord : ProofRecord) : Bool :=
-  failwith "`verify (proofRecord : ProofRecord) : Bool` NOT IMPLEMENTED";
+verify (proofRecord : ProofRecord) : Bool := NOT_IMPLEMENTED;
 
 instance
 Delta-ProvingSystem
@@ -38,6 +33,4 @@ Delta-ProvingSystem
 
 --- Aggregates two  delta ;ProofRecord;s.
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
-aggregate (p1 p2 : ProofRecord) : ProofRecord :=
-  failwith "`aggregate (p1 p2 : ProofRecord) : ProofRecord` NOT IMPLEMENTED";
+aggregate (p1 p2 : ProofRecord) : ProofRecord := NOT_IMPLEMENTED;

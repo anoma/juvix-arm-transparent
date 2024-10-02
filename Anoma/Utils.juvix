@@ -1,6 +1,7 @@
 module Anoma.Utils;
 
 import Stdlib.Prelude open;
+import Stdlib.Debug.Fail open using {failwith};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open;
 
@@ -11,6 +12,8 @@ UNUSED : Type := Unit;
 --- A type describing an unknown type that must be clarified.
 --- NOTE: This can be used in instantiated interfaces for type parameters that are not unknown.
 UNKNOWN : Type := Unit;
+
+NOT_IMPLEMENTED : {A : Type} → A := failwith "NOT IMPLEMENTED";
 
 --- A trait for transforming values of a `DataType` into values of its
 --- corresponding `RefType`. Values of `RefType` must have fixed size. For the

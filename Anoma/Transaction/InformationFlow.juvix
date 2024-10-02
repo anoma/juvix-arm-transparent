@@ -23,11 +23,11 @@ type BaseData :=
   | Or (List BaseData);
 
 --- A placeholder for a function checking if a ;Transaction; does not include ;HashPlaceholder; ;Set;.
---- NOTE: this will be concretized in an upcoming RM specs version.
+--- NOTE: This will be concretized in an upcoming RM specs version.
 requireShieldedCheckPlaceholder (tx : Transaction) (hashes : Set HashPlaceholder) : Bool := false;
 
 --- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
---- TODO This should be an Anoma builtin.
+--- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
 terminating
 basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
   case baseData of

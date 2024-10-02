@@ -1,42 +1,10 @@
 module Anoma.Transaction.Delta;
 
 import Stdlib.Prelude open;
-import Stdlib.Debug.Fail open using {failwith};
-import Data.Set as Set open using {Set; union; member?; toList};
+import Anoma.Transaction.Object open using {Transaction};
 import Anoma.Delta open using {Delta};
-import Anoma.Transaction.Object open using {Transaction; commitmentSet; nullifierSet};
-import Anoma.Transaction.Action open using {DisjointSetError; NonDisjointCommitmentsError; NonDisjointNullifiersError};
-import Anoma.Resource open using {Resource};
-import Anoma.Math as Math open;
+import Anoma.Utils open using {NOT_IMPLEMENTED};
 
---- Computes the ;Delta; of a ;Resource; ;Set; being part of a ;Transaction;.
+--- Computes the ;Transaction; ;Delta;.
 --- TODO This should be an Anoma builtin.
---- TODO IMPLEMENT
-delta (transaction : Transaction) : Delta := failwith "`delta (transaction : Transaction) : Delta` NOT IMPLEMENTED";
-
--- NOTE The implementation below is most likely wrong.
-{-
-type DeltaComputationError :=
-  | DisjointSet DisjointSetError
-  | InvalidResource Resource;
-delta
-  (resourcesAndMaybeNullifierKeys : Set (Pair Resource (Maybe Resource.NullifierKey)))
-  (transaction : Transaction)
-  : Result DeltaComputationError Delta :=
-  case commitmentSet transaction, nullifierSet transaction of
-    | error duplicates, _ := error (DisjointSet (NonDisjointCommitmentsError duplicates))
-    | _, error duplicates := error (DisjointSet (NonDisjointNullifiersError duplicates))
-    | ok cms, ok nfs :=
-      for (acc := ok Delta.zero) (r, nk? in resourcesAndMaybeNullifierKeys)
-        {case acc of
-          | error err := error err
-          | ok accDelta :=
-            let
-              isPartOfSet :=
-                case nk? of
-                  | nothing := member? (Resource.commitment r) cms
-                  | just nk := member? (Resource.nullifier r nk) nfs;
-            in if
-              | isPartOfSet := ok (AdditivelyHomomorphic.add accDelta (Resource.delta r))
-              | else := error (InvalidResource r)};
--}
+delta (transaction : Transaction) : Delta := NOT_IMPLEMENTED;
