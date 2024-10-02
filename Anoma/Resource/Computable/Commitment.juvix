@@ -2,7 +2,6 @@ module Anoma.Resource.Computable.Commitment;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Commitment};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};

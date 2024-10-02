@@ -1,6 +1,5 @@
 module Anoma.Transaction.Delta;
 
-import Stdlib.Prelude open;
 import Anoma.Delta open using {Delta};
 import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 import Anoma.Transaction.Object open using {Transaction};
