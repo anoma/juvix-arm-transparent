@@ -1,10 +1,9 @@
 module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
-import Anoma.Utils open using {Ref; mkRef};
+import Anoma.Utils open using {Ref; mkRef; unsafeForceCast};
 import Anoma.Resource.Types open using {LogicRef; module LogicRef; mkLogicRef};
 import Anoma.Proving.Types open using {module ResourceLogic};
-import Anoma.Builtin.System open using {anomaEncode; anomaDecode};
 
 --- The resource logic function signature.
 Logic : Type :=
@@ -12,12 +11,11 @@ Logic : Type :=
 
 --- Computes the ;LogicRef; from the ;Logic; function.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-logicToRef (logic : Logic) : LogicRef := logic |> anomaEncode |> anomaDecode |> mkLogicRef;
+logicToRef (logic : Logic) : LogicRef := logic |> unsafeForceCast |> mkLogicRef;
 
 --- Fetches the ;Logic; from the ;LogicRef; function.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
-logicFromRef (logicRef : LogicRef) : Logic :=
-  logicRef |> LogicRef.unLogicRef |> anomaEncode |> anomaDecode;
+logicFromRef (logicRef : LogicRef) : Logic := logicRef |> LogicRef.unLogicRef |> unsafeForceCast;
 
 --- Implements the ;Ref; trait for ;Logic;.
 instance

@@ -1,6 +1,7 @@
 module Anoma.Utils;
 
 import Stdlib.Prelude open;
+import Anoma.Builtin.System open using {anomaEncode; anomaDecode};
 import Stdlib.Debug.Fail open using {failwith};
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open;
@@ -26,6 +27,11 @@ MISSING_ANOMA_BUILTIN : {A : Type} → A :=
 --- A placeholder for an implementation that must be implemented on by the Anoma instantiator in the backend, but is not supposed to be called from Juvix.
 ANOMA_BACKEND_IMPLEMENTATION : {A : Type} → A :=
   failwith "THIS BACKEND IMPLEMENTATION IS NOT SUPPOSED TO BE CALLED FROM JUVIX";
+
+--- A force type cast with runtime side-effects.
+--- This function must eventually be removed, please do not use this.
+--- If the cast is not valid then at best you'll get a runtime error.
+unsafeForceCast {A B} : A -> B := anomaEncode >> anomaDecode;
 
 --- A trait for transforming values of a `DataType` into values of its
 --- corresponding `RefType`. Values of `RefType` must have fixed size. For the
