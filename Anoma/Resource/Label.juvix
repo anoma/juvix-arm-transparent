@@ -9,6 +9,7 @@ import Anoma.Resource.Types open using {Label; LabelRef; module LabelRef; mkLabe
 labelToRef (label : Label) : LabelRef := mkLabelRef label;
 
 --- Fetches the ;Label; from the ;LabelRef; function.
+--- NOTE: For the private testnet, this is allowed to be the identity function.
 labelFromRef (labelRef : LabelRef) : Label := LabelRef.unLabelRef labelRef;
 
 --- Implements the ;Ref; trait for ;Label;.

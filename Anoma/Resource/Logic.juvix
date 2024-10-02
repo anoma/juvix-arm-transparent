@@ -15,6 +15,7 @@ Logic : Type :=
 logicToRef (logic : Logic) : LogicRef := logic |> anomaEncode |> anomaDecode |> mkLogicRef;
 
 --- Fetches the ;Logic; from the ;LogicRef; function.
+--- NOTE: For the private testnet, this is allowed to be the identity function.
 logicFromRef (logicRef : LogicRef) : Logic :=
   logicRef |> LogicRef.unLogicRef |> anomaEncode |> anomaDecode;
 
