@@ -2,12 +2,13 @@ module Anoma.Resource.Value;
 
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Value; ValueRef};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- Computes the ;ValueRef; from the ;Value;.
-axiom valueToRef : (value : Value) -> ValueRef;
+valueToRef (value : Value) : ValueRef := MISSING_ANOMA_BUILTIN;
 
 --- Fetches the ;Value; from the ;ValueRef; function.
-axiom valueFromRef : (valueRef : ValueRef) -> Value;
+valueFromRef (valueRef : ValueRef) : Value := MISSING_ANOMA_BUILTIN;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance

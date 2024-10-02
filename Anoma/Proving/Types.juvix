@@ -6,26 +6,26 @@ import Data.Set as Set open using {Set};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.Transaction.AppData open using {AppData};
-import Anoma.Utils open using {UNUSED};
+import Anoma.Utils open using {UNUSED; MISSING_DEFINITION};
 
 --- A record describing a proof record, a map entry constituted by a VerifyingKey as the lookup-key
 --- and a Proof and associated Witness as the value.
 ProofRecord (Proof VerifyingKey Witness : Type) : Type := Pair VerifyingKey (Pair Proof Witness);
 
 module Delta;
-  axiom Proof : Type;
+  type Proof := mkProof {unProof : MISSING_DEFINITION};
 
-  axiom VerifyingKey : Type;
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
 
-  axiom ProvingKey : Type;
+  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
 
-  axiom Instance : Type;
+  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
 
-  axiom Witness : Type;
+  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    axiom compare : (lhs rhs : Proof) -> Ordering;
+    compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -38,7 +38,8 @@ module Delta;
 
   module VerifyingKeyInternal;
     --- Compares two ;VerifyingKey; objects.
-    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+    compare (lhs rhs : VerifyingKey) : Ordering :=
+      Ord.cmp (VerifyingKey.unVerifyingKey lhs) (VerifyingKey.unVerifyingKey rhs);
 
     --- Implements the ;Ord; trait for ;VerifyingKey;.
     instance
@@ -51,7 +52,8 @@ module Delta;
 
   module WitnessInternal;
     --- Compares two ;Witness; objects.
-    axiom compare : (lhs rhs : Witness) -> Ordering;
+    compare (lhs rhs : Witness) : Ordering :=
+      Ord.cmp (Witness.unWitness lhs) (Witness.unWitness rhs);
 
     --- Implements the ;Ord; trait for ;Witness;.
     instance
@@ -64,11 +66,11 @@ module Delta;
 end;
 
 module ResourceLogic;
-  axiom Proof : Type;
+  type Proof := mkProof {unProof : MISSING_DEFINITION};
 
-  axiom VerifyingKey : Type;
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
 
-  axiom ProvingKey : Type;
+  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
 
   --- The reference to the ;Resource; carrying the logic function.
   type Tag :=
@@ -87,7 +89,7 @@ module ResourceLogic;
   --- Custom inputs of the resource logic function proof being defined on the application level.
   --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
   --- NOTE: For the private testnet, this can be of type ;AppData;.
-  axiom CustomInputs : Type;
+  type CustomInputs := mkCustomInputs {unCustomInputs : MISSING_DEFINITION};
 
   --- The private inputs (Witness) of the resource logic function proof.
   type Witness :=
@@ -97,9 +99,10 @@ module ResourceLogic;
       custom : CustomInputs
     };
 
-  module CustomInputs;
+  module CustomInputsInternal;
     --- Compares two ;CustomInputs; objects.
-    axiom compare : (lhs rhs : CustomInputs) -> Ordering;
+    compare (lhs rhs : CustomInputs) : Ordering :=
+      Ord.cmp (CustomInputs.unCustomInputs lhs) (CustomInputs.unCustomInputs rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -112,7 +115,7 @@ module ResourceLogic;
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    axiom compare : (lhs rhs : Proof) -> Ordering;
+    compare (lhs rhs : Proof) : Ordering :=  Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -125,7 +128,8 @@ module ResourceLogic;
 
   module VerifyingKeyInternal;
     --- Compares two ;VerifyingKey; objects.
-    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+    compare (lhs rhs : VerifyingKey) : Ordering :=
+      Ord.cmp (VerifyingKey.unVerifyingKey lhs) (VerifyingKey.unVerifyingKey rhs);
 
     --- Implements the ;Ord; trait for ;VerifyingKey;.
     instance
@@ -154,19 +158,19 @@ module ResourceLogic;
 end;
 
 module Compliance;
-  axiom Proof : Type;
+  type Proof := mkProof {unProof : MISSING_DEFINITION};
 
-  axiom VerifyingKey : Type;
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
 
-  axiom ProvingKey : Type;
+  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
 
-  axiom Instance : Type;
+  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
 
-  axiom Witness : Type;
+  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    axiom compare : (lhs rhs : Proof) -> Ordering;
+    compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
@@ -179,7 +183,8 @@ module Compliance;
 
   module VerifyingKeyInternal;
     --- Compares two ;VerifyingKey; objects.
-    axiom compare : (lhs rhs : VerifyingKey) -> Ordering;
+    compare (lhs rhs : VerifyingKey) : Ordering :=
+      Ord.cmp (VerifyingKey.unVerifyingKey lhs) (VerifyingKey.unVerifyingKey rhs);
 
     --- Implements the ;Ord; trait for ;VerifyingKey;.
     instance
@@ -192,7 +197,8 @@ module Compliance;
 
   module WitnessInternal;
     --- Compares two ;Witness; objects.
-    axiom compare : (lhs rhs : Witness) -> Ordering;
+    compare (lhs rhs : Witness) : Ordering :=
+      Ord.cmp (Witness.unWitness lhs) (Witness.unWitness rhs);
 
     --- Implements the ;Ord; trait for ;Witness;.
     instance

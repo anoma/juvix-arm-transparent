@@ -45,7 +45,7 @@ composeActions (a1 a2 : Action) : Result DisjointSetError Action :=
         };
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
-verifyAction (a : Action) : Bool := ProofRecordSet.verify (Action.proofs a);
+verifyAction (a : Action) : Bool := ProofRecordSet.verifyProofRecords (Action.proofs a);
 
 module ActionInternal;
   --- Compares two ;Action; objects.

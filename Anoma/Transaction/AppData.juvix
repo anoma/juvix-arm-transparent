@@ -3,12 +3,13 @@ module Anoma.Transaction.AppData;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
+import Anoma.Utils open using {MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the lookup key of application.
-axiom AppDataKey : Type;
+type AppDataKey := mkAppDataKey {unAppDataKey : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the lookup value of application data.
-axiom AppDataValue : Type;
+type AppDataValue := mkAppDataValue {unAppDataValue : MISSING_DEFINITION};
 
 --- A type describing an app data map entry.
 type AppDataEntry :=
@@ -23,7 +24,8 @@ AppData : Type := Set AppDataEntry;
 --- A module implementing traits for ;AppDataKey;.
 module AppDataKeyInternal;
   --- Compares two ;AppDataKey;s.
-  axiom compare : (lhs rhs : AppDataKey) -> Ordering;
+  compare (lhs rhs : AppDataKey) : Ordering :=
+    Ord.cmp (AppDataKey.unAppDataKey lhs) (AppDataKey.unAppDataKey rhs);
 
   --- Implements the ;Ord; trait for ;AppDataKey;.
   instance
@@ -37,7 +39,8 @@ end;
 --- A module implementing traits for ;AppDataValue;.
 module AppDataValueInternal;
   --- Compares two ;AppDataValue;s.
-  axiom compare : (lhs rhs : AppDataValue) -> Ordering;
+  compare (lhs rhs : AppDataValue) : Ordering :=
+    Ord.cmp (AppDataValue.unAppDataValue lhs) (AppDataValue.unAppDataValue rhs);
 
   --- Implements the ;Ord; trait for ;AppDataValue;.
   instance

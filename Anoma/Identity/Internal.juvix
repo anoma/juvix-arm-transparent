@@ -2,13 +2,14 @@ module Anoma.Identity.Internal;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN};
 
 --- A fixed-size data type describing an internal identity.
-axiom InternalIdentity : Type;
+type InternalIdentity := mkInternalIdentity {unInternalIdentity : MISSING_DEFINITION};
 
 module InternalIdentityInternal;
   --- Compares two ;InternalIdentity; objects.
-  axiom compare : (lhs rhs : InternalIdentity) -> Ordering;
+  compare (lhs rhs : InternalIdentity) : Ordering := MISSING_ANOMA_BUILTIN;
 
   --- Implements the ;Ord; trait for ;InternalIdentity;.
   instance

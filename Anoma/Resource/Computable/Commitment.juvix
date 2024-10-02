@@ -5,13 +5,14 @@ import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Types open using {Commitment};
 import Anoma.Resource.Object open using {Resource};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- Computes the ;Commitment; of a ;Resource;.
-axiom commitment : (resource : Resource) -> Commitment;
+commitment (resource : Resource) : Commitment := MISSING_ANOMA_BUILTIN;
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.
-  axiom compare : (lhs rhs : Commitment) -> Ordering;
+  compare (lhs rhs : Commitment) : Ordering := MISSING_ANOMA_BUILTIN;
 
   --- Implements the ;Ord; trait for ;Commitment;.
   instance

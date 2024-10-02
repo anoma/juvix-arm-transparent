@@ -2,13 +2,14 @@ module Anoma.Identity.External;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
+import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN};
 
 --- A fixed-size data type describing an external identity.
-axiom ExternalIdentity : Type;
+type ExternalIdentity := mkExternalIdentity {unExternalIdentity : MISSING_DEFINITION};
 
 module ExternalIdentityInternal;
   --- Compares two ;ExternalIdentity; objects.
-  axiom compare : (lhs rhs : ExternalIdentity) -> Ordering;
+  compare (lhs rhs : ExternalIdentity) : Ordering := MISSING_ANOMA_BUILTIN;
 
   --- Implements the ;Ord; trait for ;ExternalIdentity;.
   instance
