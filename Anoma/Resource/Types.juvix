@@ -4,19 +4,18 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open using {ByteArray};
 import Anoma.Builtin.System open using {anomaEncode};
-import Anoma.Resource._LogicDuplicate open using {Logic'};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
-type LogicRef := mkLogicRef {unLogicRef : Logic'};
+type LogicRef := mkLogicRef {unLogicRef : ByteArray};
 
 --- A fixed-size data type encoding the reference to the resource label field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LabelRef; to be dynamically-sized.
-type LabelRef := mkLabelRef {unLabelRef : Label};
+type LabelRef := mkLabelRef {unLabelRef : ByteArray};
 
 --- A fixed-size data type encoding the reference to the resource value field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
-type ValueRef := mkValueRef {unValueRef : Value};
+type ValueRef := mkValueRef {unValueRef : ByteArray};
 
 --- A fixed-size data type encoding the quantity of a resource.
 type Quantity := mkQuantity {unQuantity : Nat};
