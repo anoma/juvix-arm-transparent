@@ -22,45 +22,39 @@ type Transaction :=
   };
 
 --- Composes two ;Transaction; objects.
---- TODO This should be an Anoma builtin.
 composeTransactions (tx1 tx2 : Transaction) : Transaction := MISSING_ANOMA_BUILTIN;
--- TODO delete below after discussion with Paul.
-{-
-  mkTransaction@{
-    roots := union (Transaction.roots tx1) (Transaction.roots tx2);
-    actions := union (Transaction.actions tx1) (Transaction.actions tx2);
-    delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
-    deltaProof := DeltaProof.aggregate (Transaction.deltaProof tx1) (Transaction.deltaProof tx2)
-  };
--}
+--  mkTransaction@{
+--    roots := union (Transaction.roots tx1) (Transaction.roots tx2);
+--    actions := union (Transaction.actions tx1) (Transaction.actions tx2);
+--    delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
+--    deltaProof := DeltaProof.aggregate (Transaction.deltaProof tx1) (Transaction.deltaProof tx2)
+--  };
 
 --- Verifies a ;Transaction;.
---- TODO This should be an Anoma builtin.
 verifyTransaction (tx : Transaction) : Bool := MISSING_ANOMA_BUILTIN;
--- TODO delete below after discussion with Paul.
-{-
-  all (a in Set.toList (Transaction.actions tx)) {Action.verifyAction a}
-    && DeltaProof.verify (Transaction.deltaProof tx);
--}
+--  all (a in Set.toList (Transaction.actions tx)) {Action.verifyAction a}
+--    && DeltaProof.verify (Transaction.deltaProof tx);
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.
 --- TODO Should this be an Anoma builtin?
 --- TODO Adapt the function signature depending on where errors for the disjoint set union will be handled.
-commitmentSet
-  (transaction : Transaction) : Result (Set Resource.Commitment) (Set Resource.Commitment) :=
-  accumulateFromActions (Action.commitments) transaction;
+commitmentSet (transaction : Transaction) : Set Resource.Commitment := MISSING_ANOMA_BUILTIN;
+-- commitmentSet
+--   (transaction : Transaction) : Result (Set Resource.Commitment) (Set Resource.Commitment) :=
+--   accumulateFromActions (Action.commitments) transaction;
 
 --- Returns the ;Resource.Nullifier; ;Set; of a ;Transaction;.
 --- TODO Should this be an Anoma builtin?
 --- TODO Adapt the function signature depending on where errors for the disjoint set union will be handled.
-nullifierSet
-  (transaction : Transaction) : Result (Set Resource.Nullifier) (Set Resource.Nullifier) :=
-  accumulateFromActions (Action.nullifiers) transaction;
+nullifierSet (transaction : Transaction) : Set Resource.Nullifier := MISSING_ANOMA_BUILTIN;
+-- nullifierSet
+--   (transaction : Transaction) : Result (Set Resource.Nullifier) (Set Resource.Nullifier) :=
+--   accumulateFromActions (Action.nullifiers) transaction;
 
---- TODO if the above are builtins, delete below.
-accumulateFromActions
-  {T} {{Ord T}} (getter : Action -> Set T) (transaction : Transaction) : Result (Set T) (Set T) :=
-  for (acc := ok Set.empty) (a in Transaction.actions transaction)
-    {case acc of
-      | ok acc' := disjointUnion acc' (getter a)
-      | error err := error err};
+-- --- TODO if the above are builtins, delete below.
+-- accumulateFromActions
+--   {T} {{Ord T}} (getter : Action -> Set T) (transaction : Transaction) : Result (Set T) (Set T) :=
+--   for (acc := ok Set.empty) (a in Transaction.actions transaction)
+--     {case acc of
+--       | ok acc' := disjointUnion acc' (getter a)
+--       | error err := error err};

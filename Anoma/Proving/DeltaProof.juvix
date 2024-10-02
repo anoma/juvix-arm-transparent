@@ -30,5 +30,5 @@ Delta-ProvingSystem
   };
 
 --- Aggregates two  delta ;ProofRecord;s.
---- TODO Needed? ASK Yulia.
+--- TODO Ask Yulia if this is needed in the interface (i.e., if there are cases where an app would call this).
 aggregate (p1 p2 : ProofRecord) : ProofRecord := MISSING_ANOMA_BUILTIN;

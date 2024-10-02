@@ -24,14 +24,15 @@ type Action :=
     appData : AppData
   };
 
---- TODO Remove the function signature depending on where errors for the disjoint set union will be handled.
-type DisjointSetError :=
-  | NonDisjointCommitmentsError (Set Resource.Commitment)
-  | NonDisjointNullifiersError (Set Resource.Nullifier);
+-- --- TODO Remove the function signature depending on where errors for the disjoint set union will be handled.
+-- type DisjointSetError :=
+--   | NonDisjointCommitmentsError (Set Resource.Commitment)
+--   | NonDisjointNullifiersError (Set Resource.Nullifier);
 
 --- Composes two ;Action; objects.
 --- TODO Adapt the function signature depending on where errors for the disjoint set union will be handled.
-composeActions (a1 a2 : Action) : Result DisjointSetError Action := MISSING_ANOMA_BUILTIN;
+composeActions (a1 a2 : Action) : Action := MISSING_ANOMA_BUILTIN;
+--composeActions (a1 a2 : Action) : Result DisjointSetError Action := MISSING_ANOMA_BUILTIN;
 {-
   case
     disjointUnion (Action.commitments a1) (Action.commitments a2)

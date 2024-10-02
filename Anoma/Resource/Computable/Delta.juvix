@@ -11,7 +11,7 @@ module ResourceDeltaInternal;
   --- The delta function as defined in the RM specs.
   --- NOTE: This definition does not specify that the ;Kind; and ;Quantity; arguments
   --- must come from the same ;Resource; although this must be the case.
-  delta (kind : Kind) (quantity : Quantity) : Delta := MISSING_ANOMA_BUILTIN;
+  delta (kind : Kind) (quantity : Quantity) : Delta := MISSING_ANOMA_BUILTIN;s
 end;
 
 --- Computes the ;Delta; value of a given ;Resource;.

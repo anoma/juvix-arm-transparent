@@ -17,7 +17,7 @@ Delta : Type := MISSING_ANOMA_BUILTIN;
 --- The ;Delta; value zero.
 zero : Delta := MISSING_ANOMA_BUILTIN;
 
--- TODO Needed?
+-- TODO Ask Yulia if this is needed in the interface (i.e., if there are cases where an app would call this).
 -- --- Adds two ;Delta; values.
 -- addDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
 
