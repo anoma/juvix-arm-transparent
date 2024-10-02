@@ -3,18 +3,14 @@ module Anoma.Resource.Value;
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Value; module Value; mkValue; ValueRef; module ValueRef; mkValueRef};
-import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode; anomaDecode};
+import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};
 
 --- Computes the ;ValueRef; from the ;Value; record.
 --- NOTE: For the private testnet, this is allowed to be the identity function.
---- TODO ASK IF THIS CAN BE `anomaEncode` for now.
---- TODO This should be an Anoma builtin.
-valueToRef (value : Value) : ValueRef := value |> anomaEncode |> anomaDecode |> mkValueRef;
+valueToRef (value : Value) : ValueRef := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Fetches the ;Value; from the ;ValueRef; function.
---- TODO This should be an Anoma builtin.
-valueFromRef (valueRef : ValueRef) : Value :=
-  valueRef |> ValueRef.unValueRef |> anomaEncode |> anomaDecode;
+valueFromRef (valueRef : ValueRef) : Value := MISSING_JUVIX_IMPLEMENTATION;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance

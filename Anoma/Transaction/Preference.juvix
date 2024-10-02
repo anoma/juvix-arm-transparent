@@ -10,5 +10,5 @@ type UnitInterval := mkUnitInterval {unUnitInterval : UNKNOWN};
 Preference : Type := (tx : Transaction) -> UnitInterval;
 
 --- The preference function composition function.
---- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
+--- TODO NOTE: For the private testnet, this Anoma builtin is NOT required yet.
 composePreferences (f1 f2 : Preference) : Preference := MISSING_ANOMA_BUILTIN;

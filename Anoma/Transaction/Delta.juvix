@@ -6,5 +6,4 @@ import Anoma.Delta open using {Delta};
 import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- Computes the ;Transaction; ;Delta;.
---- TODO This should be an Anoma builtin.
 delta (transaction : Transaction) : Delta := MISSING_ANOMA_BUILTIN;

@@ -7,7 +7,6 @@ import Anoma.Resource.Object open using {Resource};
 import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
---- TODO This should be an Anoma builtin.
 nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier := MISSING_ANOMA_BUILTIN;
 
 module NullfierInternal;

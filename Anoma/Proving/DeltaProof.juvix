@@ -8,14 +8,12 @@ import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 ProofRecord : Type := Parametrized.ProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
 
---- TODO This should be an Anoma builtin.
 prove
   (provingKey : Delta.ProvingKey)
   (publicInputs : Delta.Instance)
   (privateInputs : Delta.Witness)
   : Delta.Proof := MISSING_ANOMA_BUILTIN;
 
---- TODO This should be an Anoma builtin.
 verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;
 
 instance
@@ -32,5 +30,4 @@ Delta-ProvingSystem
   };
 
 --- Aggregates two  delta ;ProofRecord;s.
---- TODO This should be an Anoma builtin.
 aggregate (p1 p2 : ProofRecord) : ProofRecord := MISSING_ANOMA_BUILTIN;

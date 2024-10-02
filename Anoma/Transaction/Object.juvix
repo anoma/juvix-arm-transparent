@@ -9,6 +9,7 @@ import Anoma.Delta as Delta open using {Delta};
 import Anoma.Math open;
 import Anoma.Proving.Types open;
 import Anoma.Proving.DeltaProof as DeltaProof;
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive
@@ -22,30 +23,39 @@ type Transaction :=
 
 --- Composes two ;Transaction; objects.
 --- TODO This should be an Anoma builtin.
-composeTransactions (tx1 tx2 : Transaction) : Transaction :=
+composeTransactions (tx1 tx2 : Transaction) : Transaction := MISSING_ANOMA_BUILTIN;
+-- TODO delete below after discussion with Paul.
+{-
   mkTransaction@{
     roots := union (Transaction.roots tx1) (Transaction.roots tx2);
     actions := union (Transaction.actions tx1) (Transaction.actions tx2);
     delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
     deltaProof := DeltaProof.aggregate (Transaction.deltaProof tx1) (Transaction.deltaProof tx2)
   };
+-}
 
 --- Verifies a ;Transaction;.
 --- TODO This should be an Anoma builtin.
-verifyTransaction (tx : Transaction) : Bool :=
+verifyTransaction (tx : Transaction) : Bool := MISSING_ANOMA_BUILTIN;
+-- TODO delete below after discussion with Paul.
+{-
   all (a in Set.toList (Transaction.actions tx)) {Action.verifyAction a}
     && DeltaProof.verify (Transaction.deltaProof tx);
+-}
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.
+--- TODO Should this be an Anoma builtin? ADAPT SIGNATURE
 commitmentSet
   (transaction : Transaction) : Result (Set Resource.Commitment) (Set Resource.Commitment) :=
   accumulateFromActions (Action.commitments) transaction;
 
 --- Returns the ;Resource.Nullifier; ;Set; of a ;Transaction;.
+--- TODO Should this be an Anoma builtin? ADAPT SIGNATURE
 nullifierSet
   (transaction : Transaction) : Result (Set Resource.Nullifier) (Set Resource.Nullifier) :=
   accumulateFromActions (Action.nullifiers) transaction;
 
+--- TODO if the above are builtins, delete below.
 accumulateFromActions
   {T} {{Ord T}} (getter : Action -> Set T) (transaction : Transaction) : Result (Set T) (Set T) :=
   for (acc := ok Set.empty) (a in Transaction.actions transaction)

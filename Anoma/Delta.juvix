@@ -16,7 +16,6 @@ type DeltaComponent :=
   };
 
 --- Adds two ;Delta; values.
---- TODO This should be an Anoma builtin.
 addDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
 
 -- NOTE: THIS IS NOT PART OF THE SPEC

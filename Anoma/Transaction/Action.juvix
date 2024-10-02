@@ -8,6 +8,7 @@ import Anoma.Proving.Types open using {ProofRecord};
 import Anoma.Proving.ProofRecordSet as ProofRecordSet open using {ProofRecordSet};
 import Anoma.Math open using {disjointUnion};
 import Anoma.Transaction.AppData open using {AppData};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- The record describing an action and defining the proof context.
 --- Proofs includes resource logic and compliance proofs of created and consumed resources.
@@ -23,13 +24,15 @@ type Action :=
     appData : AppData
   };
 
+--- TODO Remove?
 type DisjointSetError :=
   | NonDisjointCommitmentsError (Set Resource.Commitment)
   | NonDisjointNullifiersError (Set Resource.Nullifier);
 
 --- Composes two ;Action; objects.
---- TODO This should be an Anoma builtin.
-composeActions (a1 a2 : Action) : Result DisjointSetError Action :=
+--- TODO Revisit naming.
+composeActions (a1 a2 : Action) : Result DisjointSetError Action := MISSING_ANOMA_BUILTIN;
+{-
   case
     disjointUnion (Action.commitments a1) (Action.commitments a2)
       , disjointUnion (Action.nullifiers a1) (Action.nullifiers a2)
@@ -44,9 +47,12 @@ composeActions (a1 a2 : Action) : Result DisjointSetError Action :=
           appData := union (Action.appData a1) (Action.appData a2);
           proofs := ProofRecordSet.empty
         };
+-}
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
-verifyAction (a : Action) : Bool := ProofRecordSet.verify (Action.proofs a);
+--- TODO Revisit naming.
+verifyAction (a : Action) : Bool := MISSING_ANOMA_BUILTIN;
+--ProofRecordSet.verify (Action.proofs a);
 
 module ActionInternal;
   --- Compares two ;Action; objects.
