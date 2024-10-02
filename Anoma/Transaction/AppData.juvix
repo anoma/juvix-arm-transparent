@@ -3,43 +3,67 @@ module Anoma.Transaction.AppData;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
+import Anoma.Utils open using {MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the lookup key of application.
-axiom Key : Type;
+type AppDataKey := mkAppDataKey {unAppDataKey : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the lookup value of application data.
-axiom Value : Type;
+type AppDataValue := mkAppDataValue {unAppDataValue : MISSING_DEFINITION};
 
 --- A type describing an app data map entry.
-Entry : Type := Pair Key Value;
+type AppDataEntry :=
+  mkAppDataEntry {
+    key : AppDataKey;
+    value : AppDataValue
+  };
 
 --- A type describing an app data map.
-AppData : Type := Set Entry;
+AppData : Type := Set AppDataEntry;
 
---- A module implementing traits for ;Key;.
-module KeyInternal;
-  --- Compares two ;Key;s.
-  axiom compare : (k1 k2 : Key) -> Ordering;
+--- A module implementing traits for ;AppDataKey;.
+module AppDataKeyInternal;
+  --- Compares two ;AppDataKey;s.
+  compare (lhs rhs : AppDataKey) : Ordering :=
+    Ord.cmp (AppDataKey.unAppDataKey lhs) (AppDataKey.unAppDataKey rhs);
 
-  --- Implements the ;Ord; trait for ;Key;.
+  --- Implements the ;Ord; trait for ;AppDataKey;.
   instance
-  Key-Ord : Ord Key := mkOrd compare;
+  AppDataKey-Ord : Ord AppDataKey := mkOrd compare;
 
-  --- Implements the ;Eq; trait for ;Key;.
+  --- Implements the ;Eq; trait for ;AppDataKey;.
   instance
-  Key-Eq : Eq Key := fromOrdToEq;
+  AppDataKey-Eq : Eq AppDataKey := fromOrdToEq;
 end;
 
---- A module implementing traits for ;Value;.
-module ValueInternal;
-  --- Compares two ;Value;s.
-  axiom compare : (v1 v2 : Value) -> Ordering;
+--- A module implementing traits for ;AppDataValue;.
+module AppDataValueInternal;
+  --- Compares two ;AppDataValue;s.
+  compare (lhs rhs : AppDataValue) : Ordering :=
+    Ord.cmp (AppDataValue.unAppDataValue lhs) (AppDataValue.unAppDataValue rhs);
 
-  --- Implements the ;Ord; trait for ;Value;.
+  --- Implements the ;Ord; trait for ;AppDataValue;.
   instance
-  Value-Ord : Ord Value := mkOrd compare;
+  AppDataValue-Ord : Ord AppDataValue := mkOrd compare;
 
-  --- Implements the ;Eq; trait for ;Value;.
+  --- Implements the ;Eq; trait for ;AppDataValue;.
   instance
-  Value-Eq : Eq Value := fromOrdToEq;
+  AppDataValue-Eq : Eq AppDataValue := fromOrdToEq;
+end;
+
+--- A module implementing traits for ;AppDataEntry;.
+module AppDataEntryInternal;
+  --- Compares two ;AppDataEntry;s.
+  compare (lhs rhs : AppDataEntry) : Ordering :=
+    let
+      prod (entry : AppDataEntry) : _ := AppDataEntry.key entry, AppDataEntry.value entry;
+    in Ord.cmp (prod lhs) (prod rhs);
+
+  --- Implements the ;Ord; trait for ;AppDataEntry;.
+  instance
+  AppDataEntry-Ord : Ord AppDataEntry := mkOrd compare;
+
+  --- Implements the ;Eq; trait for ;AppDataEntry;.
+  instance
+  AppDataEntry-Eq : Eq AppDataEntry := fromOrdToEq;
 end;

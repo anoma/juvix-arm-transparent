@@ -1,7 +1,7 @@
 module Anoma.Proving.System;
 
 import Stdlib.Prelude open;
-import Anoma.Proving.Types open;
+import Anoma.Proving.Types open using {ProofRecord};
 
 --- The interface of the resource machine proving system.
 --- Proof: A fixed-size data type encoding a proof.

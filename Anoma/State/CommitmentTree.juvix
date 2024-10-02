@@ -6,12 +6,13 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Types as Resource open using {Commitment};
+import Anoma.Utils open using {MISSING_DEFINITION};
 
 --- A state root of the commitment tree.
-axiom Root : Type;
+type Root := mkRoot {unRoot : MISSING_DEFINITION};
 
 --- A path in the commitment tree.
-axiom Path : Type;
+type Path := mkPath {unPath : MISSING_DEFINITION};
 
 --- The interface of the commitment tree.
 positive
@@ -33,7 +34,7 @@ type CommitmentTree :=
 
 module RootInternal;
   --- Compares two ;Root;s and returns their ;Ordering;.
-  axiom compare : (lhs rhs : Root) -> Ordering;
+  compare (lhs rhs : Root) : Ordering := Ord.cmp (Root.unRoot lhs) (Root.unRoot rhs);
 
   --- Implements the ;Ord; trait for ;Root;.
   instance

@@ -4,17 +4,18 @@ module Anoma.Proving.ResourceLogicProof;
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module ResourceLogic};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
---- TODO Ask paul how to move it
 ProofRecord : Type :=
   Parametrized.ProofRecord ResourceLogic.Proof ResourceLogic.VerifyingKey ResourceLogic.Witness;
 
-axiom prove : (provingKey : ResourceLogic.ProvingKey)
-  -> (publicInputs : ResourceLogic.Instance)
-  -> (privateInputs : ResourceLogic.Witness)
-  -> ResourceLogic.Proof;
+prove
+  (provingKey : ResourceLogic.ProvingKey)
+  (publicInputs : ResourceLogic.Instance)
+  (privateInputs : ResourceLogic.Witness)
+  : ResourceLogic.Proof := MISSING_ANOMA_BUILTIN;
 
-axiom verify : (proofRecord : ProofRecord) -> Bool;
+verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;
 
 instance
 ResourceLogic-ProvingSystem

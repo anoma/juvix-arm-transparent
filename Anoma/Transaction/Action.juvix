@@ -3,8 +3,9 @@ module Anoma.Transaction.Action;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set; union; intersection};
-import Anoma.Resource.Index as Resource open;
-import Anoma.Proving.Types open using {ProofRecord; ProofRecordSet; module ProofRecordSet};
+import Anoma.Resource as Resource open;
+import Anoma.Proving.Types open using {ProofRecord};
+import Anoma.Proving.ProofRecordSet as ProofRecordSet open using {ProofRecordSet};
 import Anoma.Math open using {disjointUnion};
 import Anoma.Transaction.AppData open using {AppData};
 
@@ -15,7 +16,7 @@ import Anoma.Transaction.AppData open using {AppData};
 --- - existence of consumed ;Resource;s in the commitment tree
 --- - non-existence of consumed ;Resource;s in the nullifier set.
 type Action :=
-  create {
+  mkAction {
     commitments : Set Resource.Commitment;
     nullifiers : Set Resource.Nullifier;
     proofs : ProofRecordSet;
@@ -27,7 +28,7 @@ type DisjointSetError :=
   | NonDisjointNullifiersError (Set Resource.Nullifier);
 
 --- Composes two ;Action; objects.
-compose (a1 a2 : Action) : Result DisjointSetError Action :=
+composeActions (a1 a2 : Action) : Result DisjointSetError Action :=
   case
     disjointUnion (Action.commitments a1) (Action.commitments a2)
       , disjointUnion (Action.nullifiers a1) (Action.nullifiers a2)
@@ -36,7 +37,7 @@ compose (a1 a2 : Action) : Result DisjointSetError Action :=
     | _, error duplicatedNullifiers := error (NonDisjointNullifiersError duplicatedNullifiers)
     | ok commitments, ok nullifiers :=
       ok
-        create@{
+        mkAction@{
           commitments;
           nullifiers;
           appData := union (Action.appData a1) (Action.appData a2);
@@ -44,11 +45,15 @@ compose (a1 a2 : Action) : Result DisjointSetError Action :=
         };
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
-verify (a : Action) : Bool := ProofRecordSet.verify (Action.proofs a);
+verifyAction (a : Action) : Bool := ProofRecordSet.verifyProofRecords (Action.proofs a);
 
 module ActionInternal;
   --- Compares two ;Action; objects.
-  axiom compare : (lhs rhs : Action) -> Ordering;
+  compare (lhs rhs : Action) : Ordering :=
+    let
+      prod (a : Action) : _ :=
+        Action.commitments a, Action.nullifiers a, Action.proofs a, Action.appData a;
+    in Ord.cmp (prod lhs) (prod rhs);
 
   --- Implements the ;Ord; trait for ;Action;.
   instance

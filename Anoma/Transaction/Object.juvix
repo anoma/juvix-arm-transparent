@@ -1,19 +1,18 @@
 module Anoma.Transaction.Object;
 
 import Stdlib.Prelude open;
-import Data.Set as Set open using {Set; toList; union};
-import Anoma.Resource.Types as Resource open using {Commitment; Nullifier};
-import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
-import Anoma.Transaction.Action as Action open using {Action; module Action};
+import Data.Set as Set open using {Set};
+import Anoma.Resource.Types as Resource;
+import Anoma.State.CommitmentTree as CommitmentTree;
+import Anoma.Transaction.Action open using {Action};
 import Anoma.Delta as Delta open using {Delta};
-import Anoma.Math open;
-import Anoma.Proving.Types open;
 import Anoma.Proving.DeltaProof as DeltaProof;
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
 --- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive
 type Transaction :=
-  create {
+  mkTransaction {
     roots : Set CommitmentTree.Root;
     actions : Set Action;
     delta : Delta;
@@ -21,32 +20,13 @@ type Transaction :=
   };
 
 --- Composes two ;Transaction; objects.
-compose (tx1 tx2 : Transaction) : Transaction :=
-  create@{
-    roots := union (Transaction.roots tx1) (Transaction.roots tx2);
-    actions := union (Transaction.actions tx1) (Transaction.actions tx2);
-    delta := AdditivelyHomomorphic.add (Transaction.delta tx1) (Transaction.delta tx2);
-    deltaProof := DeltaProof.aggregate (Transaction.deltaProof tx1) (Transaction.deltaProof tx2)
-  };
+composeTransactions (tx1 tx2 : Transaction) : Transaction := MISSING_ANOMA_BUILTIN;
 
 --- Verifies a ;Transaction;.
-verify (tx : Transaction) : Bool :=
-  all (a in Set.toList (Transaction.actions tx)) {Action.verify a}
-    && DeltaProof.verify (Transaction.deltaProof tx);
+verifyTransaction (tx : Transaction) : Bool := MISSING_ANOMA_BUILTIN;
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.
-commitmentSet
-  (transaction : Transaction) : Result (Set Resource.Commitment) (Set Resource.Commitment) :=
-  accumulateFromActions (Action.commitments) transaction;
+commitmentSet (transaction : Transaction) : Set Resource.Commitment := MISSING_ANOMA_BUILTIN;
 
 --- Returns the ;Resource.Nullifier; ;Set; of a ;Transaction;.
-nullifierSet
-  (transaction : Transaction) : Result (Set Resource.Nullifier) (Set Resource.Nullifier) :=
-  accumulateFromActions (Action.nullifiers) transaction;
-
-accumulateFromActions
-  {T} {{Ord T}} (getter : Action -> Set T) (transaction : Transaction) : Result (Set T) (Set T) :=
-  for (acc := ok Set.empty) (a in Transaction.actions transaction)
-    {case acc of
-      | ok acc' := disjointUnion acc' (getter a)
-      | error err := error err};
+nullifierSet (transaction : Transaction) : Set Resource.Nullifier := MISSING_ANOMA_BUILTIN;

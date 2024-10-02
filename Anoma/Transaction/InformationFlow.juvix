@@ -4,21 +4,16 @@ import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; toList; member?};
 import Anoma.Identity open using {ExternalIdentity};
 import Anoma.Transaction.Object open using {Transaction};
+import Anoma.Utils open using {MISSING_DEFINITION; NOT_REQUIRED};
 
 --- The information flow predicate function type definition.
 InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;
 
 --- A placeholder for an unspecified hash type.
 --- NOTE: this will be concretized in an upcoming RM specs version.
-axiom HashPlaceholder : Type;
+type HashPlaceholder := mkHashPlaceholder {unHashPlaceholder : MISSING_DEFINITION};
 
---- A placeholder for a function checking if a ;Transaction; does not include ;HashPlaceholder; ;Set;.
---- NOTE: this will be concretized in an upcoming RM specs version.
-axiom requireShieldedCheckPlaceholder : (tx : Transaction)
-  -> (hashes : Set HashPlaceholder)
-  -> Bool;
-
---- The input data of the basePredicate function.
+--- The input data of the `basePredicate` function.
 type BaseData :=
   | AllowAny
   | AllowOnly (Set ExternalIdentity)
@@ -27,12 +22,19 @@ type BaseData :=
   | And (List BaseData)
   | Or (List BaseData);
 
+--- A placeholder for a function checking if a ;Transaction; does not include ;HashPlaceholder; ;Set;.
+--- NOTE: This will be concretized in an upcoming RM specs version.
+requireShieldedCheckPlaceholder (tx : Transaction) (hashes : Set HashPlaceholder) : Bool :=
+  NOT_REQUIRED;
+
 --- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
 terminating
-basePredicate (baseData : BaseData) : InformationFlowControlPredicate :=
+basePredicate (baseData : BaseData) : InformationFlowControlPredicate := NOT_REQUIRED;
+{-
   case baseData of
     | AllowAny := \ {_ _ := true}
     | AllowOnly identites := \ {_ self := member? self identites}
     | RequireShielded hashes := \ {tx _ := requireShieldedCheckPlaceholder tx hashes}
     | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
     | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};
+-}
