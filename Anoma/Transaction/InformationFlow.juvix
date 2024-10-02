@@ -28,7 +28,6 @@ requireShieldedCheckPlaceholder (tx : Transaction) (hashes : Set HashPlaceholder
   NOT_REQUIRED;
 
 --- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
---- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
 terminating
 basePredicate (baseData : BaseData) : InformationFlowControlPredicate := NOT_REQUIRED;
 {-
