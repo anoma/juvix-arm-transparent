@@ -2,7 +2,7 @@ module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
 import Anoma.Utils open using {Ref; mkRef};
-import Anoma.Resource.Types open using {LogicRef; module LogicRef; mkLogicRef};
+import Anoma.Resource.Types open using {LogicRef};
 import Anoma.Proving.Types open using {module ResourceLogic};
 import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
@@ -11,11 +11,9 @@ Logic : Type :=
   (publicInputs : ResourceLogic.Instance) -> (privateInputs : ResourceLogic.Witness) -> Bool;
 
 --- Computes the ;LogicRef; from the ;Logic; function.
---- NOTE: For the private testnet, this is allowed to be the identity function.
 logicToRef (logic : Logic) : LogicRef := MISSING_ANOMA_BUILTIN;
 
 --- Fetches the ;Logic; from the ;LogicRef; function.
---- NOTE: For the private testnet, this is allowed to be the identity function.
 logicFromRef (logicRef : LogicRef) : Logic := MISSING_ANOMA_BUILTIN;
 
 --- Implements the ;Ref; trait for ;Logic;.
