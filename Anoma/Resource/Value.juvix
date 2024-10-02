@@ -9,7 +9,6 @@ import Anoma.Resource.Types open using {Value; ValueRef; module ValueRef; mkValu
 valueToRef (value : Value) : ValueRef := mkValueRef value;
 
 --- Fetches the ;Value; from the ;ValueRef; function.
---- NOTE: For the private testnet, this is allowed to be the identity function.
 valueFromRef (valueRef : ValueRef) : Value := ValueRef.unValueRef valueRef;
 
 --- Implements the ;Ref; trait for ;Value;.
