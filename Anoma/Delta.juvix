@@ -5,6 +5,7 @@ import Anoma.Math as Math open;
 import Anoma.Resource.Types open using {Quantity; Kind};
 import Anoma.Utils open;
 
+--- TODO Is this the correct type?
 Delta : Type := List DeltaComponent;
 
 type DeltaComponent :=
