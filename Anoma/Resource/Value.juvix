@@ -3,10 +3,16 @@ module Anoma.Resource.Value;
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Value; ValueRef};
 
---- Computes the ;ValueRef; from the ;Value; record.
---- NOTE: For the private testnet, this is allowed to be the identity function.
-axiom valueRef : (value : Value) -> ValueRef;
+--- Computes the ;ValueRef; from the ;Value;.
+axiom valueToRef : (value : Value) -> ValueRef;
+
+--- Fetches the ;Value; from the ;ValueRef; function.
+axiom valueFromRef : (valueRef : ValueRef) -> Value;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance
-Value-Ref : Ref Value ValueRef := mkRef valueRef;
+Value-Ref : Ref Value ValueRef :=
+  mkRef@{
+    toRef := valueToRef;
+    fromRef := valueFromRef
+  };

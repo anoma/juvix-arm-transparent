@@ -3,10 +3,16 @@ module Anoma.Resource.Label;
 import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Label; LabelRef};
 
---- Computes the ;LabelRef; from the ;Label; record.
---- NOTE: For the private testnet, this is allowed to be the identity function.
-axiom labelRef : (label : Label) -> LabelRef;
+--- Computes the ;LabelRef; from the ;Label;.
+axiom labelToRef : (label : Label) -> LabelRef;
+
+--- Fetches the ;Label; from the ;LabelRef; function.
+axiom labelFromRef : (labelRef : LabelRef) -> Label;
 
 --- Implements the ;Ref; trait for ;Label;.
 instance
-Label-Ref : Ref Label LabelRef := mkRef labelRef;
+Label-Ref : Ref Label LabelRef :=
+  mkRef@{
+    toRef := labelToRef;
+    fromRef := labelFromRef
+  };

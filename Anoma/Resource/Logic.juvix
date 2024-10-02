@@ -6,14 +6,19 @@ import Anoma.Resource.Types open using {LogicRef};
 import Anoma.Proving.Types open using {module ResourceLogic};
 
 --- The resource logic function signature.
---- NOTE: Logic as a program is not defined in the spec.
 Logic : Type :=
   (publicInputs : ResourceLogic.Instance) -> (privateInputs : ResourceLogic.Witness) -> Bool;
 
 --- Computes the ;LogicRef; from the ;Logic; function.
---- NOTE: For the private testnet, this is allowed to be the identity function.
-axiom logicRef : (logic : Logic) -> LogicRef;
+axiom logicToRef : (logic : Logic) -> LogicRef;
+
+--- Fetches the ;Logic; from the ;LogicRef; function.
+axiom logicFromRef : (logicRef : LogicRef) -> Logic;
 
 --- Implements the ;Ref; trait for ;Logic;.
 instance
-Logic-Ref : Ref Logic LogicRef := mkRef logicRef;
+Logic-Ref : Ref Logic LogicRef :=
+  mkRef@{
+    toRef := logicToRef;
+    fromRef := logicFromRef
+  };

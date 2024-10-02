@@ -15,4 +15,8 @@ UNKNOWN : Type := Unit;
 --- private testnet, the requirement can be relaxed by allowing ;RefType; to be
 --- dynamically-sized.
 trait
-type Ref DataType RefType := mkRef {ref : DataType -> RefType};
+type Ref DataType RefType :=
+  mkRef {
+    toRef : DataType -> RefType;
+    fromRef : RefType -> DataType
+  };
