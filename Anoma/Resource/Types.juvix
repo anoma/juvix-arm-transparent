@@ -3,7 +3,7 @@ module Anoma.Resource.Types;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open using {ByteArray};
-import Anoma.Builtin.System open using {anomaEncode; anomaDecode};
+import Anoma.Builtin.System open using {anomaEncode};
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.

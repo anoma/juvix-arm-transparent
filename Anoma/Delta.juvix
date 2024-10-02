@@ -3,39 +3,34 @@ module Anoma.Delta;
 import Stdlib.Prelude open;
 import Anoma.Math as Math open;
 import Anoma.Resource.Types open using {Quantity; Kind};
-import Anoma.Utils open;
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 
---- TODO Is this the correct type?
-Delta : Type := List DeltaComponent;
-
-type DeltaComponent :=
-  mkDeltaComponent {
-    kind : Kind;
-    quantity : Quantity;
-    -- TODO Should this be removed?
-    sign : Bool
-  };
-
---- Adds two ;Delta; values.
-addDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
-
--- NOTE: THIS IS NOT PART OF THE SPEC
--- TODO Should this be an Anoma builtin?
--- subDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
+--- A fixed-size data type encoding the additively homomorphic and  kind distinct ;Delta;.
+--- NOTE: For the private testnet, the requirement can be relaxed by allowing ;Delta; to be dynamically-sized.
+Delta : Type := MISSING_ANOMA_BUILTIN;
+{-
+  -- An opaque type.
+  builtin anoma-delta
+  axiom Delta : Type
+-}
 
 --- The ;Delta; value zero.
-zero : Delta := [];
+zero : Delta := MISSING_ANOMA_BUILTIN;
 
---- Implements the ;Math.AdditivelyHomomorphic; trait for ;Delta;.
-instance
-Delta-AdditivelyHomomorphic : Math.AdditivelyHomomorphic Delta :=
-  Math.mkAdditivelyHomomorphic@{
-    add (a b : Delta) : Delta := addDelta a b
-  };
+-- TODO Needed?
+-- --- Adds two ;Delta; values.
+-- addDelta (d1 d2 : Delta) : Delta := MISSING_ANOMA_BUILTIN;
 
---- Implements the ;Math.KindDistinct; trait for ;Delta;.
-instance
-Delta-KindDistinct : Math.KindDistinct Delta :=
-  Math.mkKindDistinct@{
-    add (a b : Delta) : Delta := addDelta a b
-  };
+-- --- Implements the ;Math.AdditivelyHomomorphic; trait for ;Delta;.
+-- instance
+-- Delta-AdditivelyHomomorphic : Math.AdditivelyHomomorphic Delta :=
+--   Math.mkAdditivelyHomomorphic@{
+--     add (a b : Delta) : Delta := addDelta a b
+--   };
+
+-- --- Implements the ;Math.KindDistinct; trait for ;Delta;.
+-- instance
+-- Delta-KindDistinct : Math.KindDistinct Delta :=
+--   Math.mkKindDistinct@{
+--     add (a b : Delta) : Delta := addDelta a b
+--   };

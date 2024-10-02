@@ -30,4 +30,5 @@ Delta-ProvingSystem
   };
 
 --- Aggregates two  delta ;ProofRecord;s.
+--- TODO Needed? ASK Yulia.
 aggregate (p1 p2 : ProofRecord) : ProofRecord := MISSING_ANOMA_BUILTIN;

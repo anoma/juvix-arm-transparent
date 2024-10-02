@@ -44,13 +44,15 @@ verifyTransaction (tx : Transaction) : Bool := MISSING_ANOMA_BUILTIN;
 -}
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.
---- TODO Should this be an Anoma builtin? ADAPT SIGNATURE
+--- TODO Should this be an Anoma builtin?
+--- TODO Adapt the function signature depending on where errors for the disjoint set union will be handled.
 commitmentSet
   (transaction : Transaction) : Result (Set Resource.Commitment) (Set Resource.Commitment) :=
   accumulateFromActions (Action.commitments) transaction;
 
 --- Returns the ;Resource.Nullifier; ;Set; of a ;Transaction;.
---- TODO Should this be an Anoma builtin? ADAPT SIGNATURE
+--- TODO Should this be an Anoma builtin?
+--- TODO Adapt the function signature depending on where errors for the disjoint set union will be handled.
 nullifierSet
   (transaction : Transaction) : Result (Set Resource.Nullifier) (Set Resource.Nullifier) :=
   accumulateFromActions (Action.nullifiers) transaction;

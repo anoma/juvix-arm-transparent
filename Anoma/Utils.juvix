@@ -19,6 +19,9 @@ MISSING_JUVIX_IMPLEMENTATION : {A : Type} → A := failwith "MISSING JUVIX IMPLE
 --- A placeholder for a missing Anoma builtin.
 MISSING_ANOMA_BUILTIN : {A : Type} → A := failwith "MISSING ANOMA BUILTIN ";
 
+--- A placeholder for an implementation that is not required for the private testnet.
+NOT_REQURED_YET : {A : Type} → A := failwith "NOT REQURED YET";
+
 --- A trait for transforming values of a `DataType` into values of its
 --- corresponding `RefType`. Values of `RefType` must have fixed size. For the
 --- private testnet, the requirement can be relaxed by allowing ;RefType; to be

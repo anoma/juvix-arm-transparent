@@ -4,7 +4,7 @@ import Stdlib.Prelude open;
 import Data.Set as Set open using {Set; toList; member?};
 import Anoma.Identity open using {ExternalIdentity};
 import Anoma.Transaction.Object open using {Transaction};
-import Anoma.Utils open using {UNKNOWN};
+import Anoma.Utils open using {UNKNOWN; NOT_REQURED_YET};
 
 --- The information flow predicate function type definition.
 InformationFlowControlPredicate : Type := (tx : Transaction) -> (id : ExternalIdentity) -> Bool;
@@ -24,7 +24,8 @@ type BaseData :=
 
 --- A placeholder for a function checking if a ;Transaction; does not include ;HashPlaceholder; ;Set;.
 --- NOTE: This will be concretized in an upcoming RM specs version.
-requireShieldedCheckPlaceholder (tx : Transaction) (hashes : Set HashPlaceholder) : Bool := false;
+requireShieldedCheckPlaceholder (tx : Transaction) (hashes : Set HashPlaceholder) : Bool :=
+  NOT_REQURED_YET;
 
 --- Returns the ;InformationFlowControlPredicate; depending on the provided ;BaseData;.
 --- TODO This should be an Anoma builtin. NOTE: For the private testnet, this is not required yet.
