@@ -8,7 +8,6 @@ import Anoma.Proving.Types open using {module ResourceLogic};
 import Anoma.Builtin.System as SystemBuiltins open using {anomaEncode; anomaDecode};
 
 --- The resource logic function signature.
---- NOTE: Logic as a program is not defined in the spec.
 Logic : Type :=
   (publicInputs : ResourceLogic.Instance) -> (privateInputs : ResourceLogic.Witness) -> Bool;
 
