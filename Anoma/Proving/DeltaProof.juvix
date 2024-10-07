@@ -4,7 +4,7 @@ module Anoma.Proving.DeltaProof;
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Delta};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION};
+import Anoma.Utils open using {MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION; MISSING_JUVIX_BUILTIN};
 
 ProofRecord : Type := Parametrized.ProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
 
@@ -12,8 +12,9 @@ prove
   (provingKey : Delta.ProvingKey)
   (publicInputs : Delta.Instance)
   (privateInputs : Delta.Witness)
-  : Delta.Proof := MISSING_ANOMA_BUILTIN;
+  : Delta.Proof := MISSING_JUVIX_BUILTIN;
 
+-- TODO: Builtin not required fro testnet
 verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;
 
 instance

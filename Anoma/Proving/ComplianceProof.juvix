@@ -15,6 +15,7 @@ prove
   (privateInputs : Compliance.Witness)
   : Compliance.Proof := MISSING_ANOMA_BUILTIN;
 
+-- TODO: Builtin not required for testnet
 verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;
 
 instance

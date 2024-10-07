@@ -7,21 +7,22 @@ import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.Transaction.AppData open using {AppData};
 import Anoma.Utils open using {UNUSED; MISSING_DEFINITION};
+import Anoma.Builtin.System open using {AnomaOpaque};
 
 --- A record describing a proof record, a map entry constituted by a VerifyingKey as the lookup-key
 --- and a Proof and associated Witness as the value.
 ProofRecord (Proof VerifyingKey Witness : Type) : Type := Pair VerifyingKey (Pair Proof Witness);
 
 module Delta;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof {unProof : AnomaOpaque};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey {unProvingKey : UNUSED};
 
-  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
+  type Instance := mkInstance {unInstance : UNUSED};
 
-  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
+  type Witness := mkWitness {unWitness : UNUSED};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
@@ -66,11 +67,11 @@ module Delta;
 end;
 
 module ResourceLogic;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof {unProof : AnomaOpaque};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey {unProvingKey : Resource};
 
   --- The reference to the ;Resource; carrying the logic function.
   type Tag :=
@@ -143,12 +144,14 @@ module ResourceLogic;
   end;
 end;
 
+-- Is this what is meant by action compliance in the RM interface?
+-- https://github.com/anoma/anoma/blob/2bd7784de9543d9cfc85ed49bd77cec549f8249c/hoon/resource-machine.hoon#L90
 module Compliance;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof {unProof : AnomaOpaque};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey {unProvingKey : UNUSED};
 
   type Instance := mkInstance {unInstance : MISSING_DEFINITION};
 
