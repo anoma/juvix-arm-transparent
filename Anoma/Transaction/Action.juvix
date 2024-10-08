@@ -22,7 +22,7 @@ type Action :=
     appData : AppData
   };
 
---- Verifies an ;Action; by verifying all proofs in the ;ProofRecord;.
+--- Verifies an ;Action; by verifying all proofs in the ;ProofRecord; ;Set;.
 verifyAction (a : Action) : Bool := NOT_REQUIRED;
 
 module ActionInternal;
