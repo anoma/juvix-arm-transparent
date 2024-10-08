@@ -16,13 +16,17 @@ type ProofRecord :=
 module ProofRecordInternal;
   instance
   ProofRecord-Ord : Ord ProofRecord :=
+    -- lexicographical ordering with proofRecordCompliance _ < proofRecordResourceLogic _ < proofRecordDelta _
     mkOrd@{
       cmp (p1 p2 : ProofRecord) : Ordering :=
         case p1, p2 of
           | proofRecordCompliance c1, proofRecordCompliance c2 := Ord.cmp c1 c2
           | proofRecordResourceLogic r1, proofRecordResourceLogic r2 := Ord.cmp r1 r2
           | proofRecordDelta d1, proofRecordDelta d2 := Ord.cmp d1 d2
-          | _, _ := LT
+          | proofRecordCompliance _, _ := LT
+          | proofRecordResourceLogic _, proofRecordCompliance _ := GT
+          | proofRecordResourceLogic _, proofRecordDelta _ := LT
+          | proofRecordDelta _, _ := GT
     };
 
 end;
