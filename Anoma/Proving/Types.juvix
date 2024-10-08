@@ -115,7 +115,7 @@ module ResourceLogic;
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
-    compare (lhs rhs : Proof) : Ordering :=  Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
+    compare (lhs rhs : Proof) : Ordering := Ord.cmp (Proof.unProof lhs) (Proof.unProof rhs);
 
     --- Implements the ;Ord; trait for ;Proof;.
     instance
