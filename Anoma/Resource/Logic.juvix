@@ -1,10 +1,9 @@
 module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
-import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {LogicRef};
 import Anoma.Proving.Types open using {module ResourceLogic};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- The resource logic function signature.
 Logic : Type :=

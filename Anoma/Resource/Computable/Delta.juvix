@@ -5,7 +5,7 @@ import Anoma.Delta open using {Delta};
 import Anoma.Resource.Object open using {Resource; module Resource};
 import Anoma.Resource.Types open using {Kind; Quantity};
 import Anoma.Resource.Computable.Kind as Computable open;
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 module ResourceDeltaInternal;
   --- The delta function as defined in the RM specs.

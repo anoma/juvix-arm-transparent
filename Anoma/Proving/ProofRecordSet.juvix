@@ -7,7 +7,7 @@ import Anoma.Proving.ComplianceProof as ComplianceProof open;
 import Anoma.Proving.ResourceLogicProof as ResourceLogicProof open;
 import Anoma.Proving.DeltaProof as DeltaProof open;
 import Anoma.Proving.Types open;
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- A proof record set.
 type ProofRecordSet :=

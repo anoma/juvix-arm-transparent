@@ -1,8 +1,7 @@
 module Anoma.Resource.Label;
 
-import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Label; LabelRef};
-import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};
+import Anoma.Utils open;
 
 --- Computes the ;LabelRef; from the ;Label;.
 labelToRef (label : Label) : LabelRef := MISSING_JUVIX_IMPLEMENTATION;
