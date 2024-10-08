@@ -13,15 +13,15 @@ import Anoma.Utils open;
 ProofRecord (Proof VerifyingKey Witness : Type) : Type := Pair VerifyingKey (Pair Proof Witness);
 
 module Delta;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof {unProof : STILL_MISSING_DEFINITION};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : STILL_MISSING_DEFINITION};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey {unProvingKey : STILL_MISSING_DEFINITION};
 
-  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
+  type Instance := mkInstance {unInstance : STILL_MISSING_DEFINITION};
 
-  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
+  type Witness := mkWitness {unWitness : STILL_MISSING_DEFINITION};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
@@ -66,11 +66,11 @@ module Delta;
 end;
 
 module ResourceLogic;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof {unProof : STILL_MISSING_DEFINITION};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : STILL_MISSING_DEFINITION};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey {unProvingKey : STILL_MISSING_DEFINITION};
 
   --- The reference to the ;Resource; carrying the logic function.
   type Tag :=
@@ -144,15 +144,15 @@ module ResourceLogic;
 end;
 
 module Compliance;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof {unProof : STILL_MISSING_DEFINITION};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey {unVerifyingKey : STILL_MISSING_DEFINITION};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey {unProvingKey : STILL_MISSING_DEFINITION};
 
-  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
+  type Instance := mkInstance {unInstance : STILL_MISSING_DEFINITION};
 
-  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
+  type Witness := mkWitness {unWitness : STILL_MISSING_DEFINITION};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.

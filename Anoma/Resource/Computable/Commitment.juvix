@@ -7,7 +7,7 @@ import Anoma.Resource.Object open using {Resource};
 import Anoma.Utils open;
 
 --- Computes the ;Commitment; of a ;Resource;.
-commitment (resource : Resource) : Commitment := MISSING_ANOMA_BUILTIN;
+commitment (resource : Resource) : Commitment := STILL_MISSING_ANOMA_BUILTIN;
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.

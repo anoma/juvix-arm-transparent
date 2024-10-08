@@ -24,10 +24,10 @@ type Action :=
   };
 
 --- Composes two ;Action; objects.
-composeActions (a1 a2 : Action) : Action := MISSING_ANOMA_BUILTIN;
+composeActions (a1 a2 : Action) : Action := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
-verifyAction (a : Action) : Bool := MISSING_ANOMA_BUILTIN;
+verifyAction (a : Action) : Bool := STILL_MISSING_ANOMA_BUILTIN;
 
 module ActionInternal;
   --- Compares two ;Action; objects.
