@@ -19,6 +19,8 @@ type Action :=
   mkAction {
     commitments : Set Resource.Commitment;
     nullifiers : Set Resource.Nullifier;
+    -- TODO: proofs is not compatible with RM instantiation.
+    -- https://github.com/anoma/anoma/blob/2bd7784de9543d9cfc85ed49bd77cec549f8249c/hoon/resource-machine.hoon#L60
     proofs : ProofRecordSet;
     appData : AppData
   };

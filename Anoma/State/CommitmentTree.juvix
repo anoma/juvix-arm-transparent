@@ -9,9 +9,10 @@ import Anoma.Resource.Types as Resource open using {Commitment};
 import Anoma.Utils open;
 
 --- A state root of the commitment tree.
-type Root := mkRoot {unRoot : STILL_MISSING_DEFINITION};
+type Root := mkRoot {unRoot : Nat};
 
 --- A path in the commitment tree.
+--- TODO: Ask Ray - what is this type in transparent RM?
 type Path := mkPath {unPath : STILL_MISSING_DEFINITION};
 
 --- The interface of the commitment tree.

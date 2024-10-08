@@ -15,7 +15,7 @@ prove
   (privateInputs : ResourceLogic.Witness)
   : ResourceLogic.Proof := STILL_MISSING_ANOMA_BUILTIN;
 
-verify (proofRecord : ProofRecord) : Bool := STILL_MISSING_ANOMA_BUILTIN;
+verify (proofRecord : ProofRecord) : Bool := NOT_REQUIRED;
 
 instance
 ResourceLogic-ProvingSystem

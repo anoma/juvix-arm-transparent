@@ -14,7 +14,8 @@ end;
 -- TODO Add builtin.
 -- builtin anoma-opaque
 -- axiom AnomaOpaque : Type;
-type AnomaOpaque := STILL_MISSING_ANOMA_BUILTIN;
+-- In the backend this can be any noun.
+axiom AnomaOpaque : Type;
 
 --- Encodes a value into a natural number.
 builtin anoma-encode

@@ -27,7 +27,7 @@ empty : ProofRecordSet :=
 
 --- Verifies a ;ProofRecordSet;.
 --- NOTE: At verification time, a proof record set must contain exactly one ;DeltaProof.ProofRecord;.
-verifyProofRecords (proofRecords : ProofRecordSet) : Bool := STILL_MISSING_ANOMA_BUILTIN;
+verifyProofRecords (proofRecords : ProofRecordSet) : Bool := NOT_REQUIRED;
 
 module ProofRecordSetInternal;
   --- Compares two ;ProofRecordSet; objects.
