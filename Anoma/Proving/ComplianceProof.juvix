@@ -3,11 +3,10 @@ module Anoma.Proving.ComplianceProof;
 
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Compliance};
-import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 import Anoma.Utils open;
 
 ProofRecord : Type :=
-  Parametrized.ProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;
+  Parametrized.GenericProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;
 
 prove
   (provingKey : Compliance.ProvingKey)
@@ -16,16 +15,3 @@ prove
   : Compliance.Proof := STILL_MISSING_ANOMA_BUILTIN;
 
 verify (proofRecord : ProofRecord) : Bool := NOT_REQUIRED;
-
-instance
-Compliance-ProvingSystem
-  : Parametrized.ProvingSystem
-    Compliance.Proof
-    Compliance.VerifyingKey
-    Compliance.ProvingKey
-    Compliance.Instance
-    Compliance.Witness :=
-  Parametrized.mkProvingSystem@{
-    prove;
-    verify
-  };

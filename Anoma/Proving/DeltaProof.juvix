@@ -3,10 +3,9 @@ module Anoma.Proving.DeltaProof;
 
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Delta};
-import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 import Anoma.Utils open;
 
-ProofRecord : Type := Parametrized.ProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
+ProofRecord : Type := Parametrized.GenericProofRecord Delta.Proof Delta.VerifyingKey Delta.Witness;
 
 prove
   (provingKey : Delta.ProvingKey)
@@ -15,19 +14,6 @@ prove
   : Delta.Proof := STILL_MISSING_ANOMA_BUILTIN;
 
 verify (proofRecord : ProofRecord) : Bool := NOT_REQUIRED;
-
-instance
-Delta-ProvingSystem
-  : Parametrized.ProvingSystem
-    Delta.Proof
-    Delta.VerifyingKey
-    Delta.ProvingKey
-    Delta.Instance
-    Delta.Witness :=
-  Parametrized.mkProvingSystem@{
-    prove;
-    verify
-  };
 
 --- Aggregates two  delta ;ProofRecord;s.
 aggregate (p1 p2 : ProofRecord) : ProofRecord := ANOMA_BACKEND_IMPLEMENTATION;

@@ -3,11 +3,13 @@ module Anoma.Proving.ResourceLogicProof;
 
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module ResourceLogic};
-import Anoma.Proving.System as Parametrized open using {ProvingSystem};
 import Anoma.Utils open;
 
 ProofRecord : Type :=
-  Parametrized.ProofRecord ResourceLogic.Proof ResourceLogic.VerifyingKey ResourceLogic.Witness;
+  Parametrized.GenericProofRecord
+    ResourceLogic.Proof
+    ResourceLogic.VerifyingKey
+    ResourceLogic.Witness;
 
 prove
   (provingKey : ResourceLogic.ProvingKey)
@@ -16,16 +18,3 @@ prove
   : ResourceLogic.Proof := STILL_MISSING_ANOMA_BUILTIN;
 
 verify (proofRecord : ProofRecord) : Bool := NOT_REQUIRED;
-
-instance
-ResourceLogic-ProvingSystem
-  : Parametrized.ProvingSystem
-    ResourceLogic.Proof
-    ResourceLogic.VerifyingKey
-    ResourceLogic.ProvingKey
-    ResourceLogic.Instance
-    ResourceLogic.Witness :=
-  Parametrized.mkProvingSystem@{
-    prove;
-    verify
-  };

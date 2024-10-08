@@ -4,8 +4,7 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource as Resource open;
-import Anoma.Proving.Types open using {ProofRecord};
-import Anoma.Proving.ProofRecordSet as ProofRecordSet open using {ProofRecordSet};
+import Anoma.Proving.ProofRecord open using {ProofRecord};
 import Anoma.Transaction.AppData open using {AppData};
 import Anoma.Utils open;
 
@@ -19,13 +18,11 @@ type Action :=
   mkAction {
     commitments : Set Resource.Commitment;
     nullifiers : Set Resource.Nullifier;
-    -- TODO: proofs is not compatible with RM instantiation.
-    -- https://github.com/anoma/anoma/blob/2bd7784de9543d9cfc85ed49bd77cec549f8249c/hoon/resource-machine.hoon#L60
-    proofs : ProofRecordSet;
+    proofs : Set ProofRecord;
     appData : AppData
   };
 
---- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
+--- Verifies an ;Action; by verifying all proofs in the ;ProofRecord;.
 verifyAction (a : Action) : Bool := NOT_REQUIRED;
 
 module ActionInternal;
