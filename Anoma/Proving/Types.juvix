@@ -10,7 +10,8 @@ import Anoma.Utils open;
 
 --- A record describing a proof record, a map entry constituted by a VerifyingKey as the lookup-key
 --- and a Proof and associated Witness as the value.
-ProofRecord (Proof VerifyingKey Witness : Type) : Type := Pair VerifyingKey (Pair Proof Witness);
+GenericProofRecord (Proof VerifyingKey Witness : Type) : Type :=
+  Pair VerifyingKey (Pair Proof Witness);
 
 module Delta;
   type Proof := mkProof {unProof : MISSING_DEFINITION};
