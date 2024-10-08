@@ -4,10 +4,10 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitment};
 import Anoma.Resource.Object open using {Resource};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- Computes the ;Commitment; of a ;Resource;.
-commitment (resource : Resource) : Commitment := MISSING_ANOMA_BUILTIN;
+commitment (resource : Resource) : Commitment := STILL_MISSING_ANOMA_BUILTIN;
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.

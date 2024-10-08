@@ -7,7 +7,7 @@ import Anoma.State.CommitmentTree as CommitmentTree;
 import Anoma.Transaction.Action open using {Action};
 import Anoma.Delta as Delta open using {Delta};
 import Anoma.Proving.DeltaProof as DeltaProof;
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive
@@ -20,13 +20,13 @@ type Transaction :=
   };
 
 --- Composes two ;Transaction; objects.
-composeTransactions (tx1 tx2 : Transaction) : Transaction := MISSING_ANOMA_BUILTIN;
+composeTransactions (tx1 tx2 : Transaction) : Transaction := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Verifies a ;Transaction;.
-verifyTransaction (tx : Transaction) : Bool := MISSING_ANOMA_BUILTIN;
+verifyTransaction (tx : Transaction) : Bool := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.
-commitmentSet (transaction : Transaction) : Set Resource.Commitment := MISSING_ANOMA_BUILTIN;
+commitmentSet (transaction : Transaction) : Set Resource.Commitment := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Returns the ;Resource.Nullifier; ;Set; of a ;Transaction;.
-nullifierSet (transaction : Transaction) : Set Resource.Nullifier := MISSING_ANOMA_BUILTIN;
+nullifierSet (transaction : Transaction) : Set Resource.Nullifier := STILL_MISSING_ANOMA_BUILTIN;

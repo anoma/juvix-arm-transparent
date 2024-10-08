@@ -7,7 +7,7 @@ import Anoma.Resource as Resource open;
 import Anoma.Proving.Types open using {ProofRecord};
 import Anoma.Proving.ProofRecordSet as ProofRecordSet open using {ProofRecordSet};
 import Anoma.Transaction.AppData open using {AppData};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- The record describing an action and defining the proof context.
 --- Proofs includes resource logic and compliance proofs of created and consumed resources.
@@ -26,10 +26,10 @@ type Action :=
   };
 
 --- Composes two ;Action; objects.
-composeActions (a1 a2 : Action) : Action := MISSING_ANOMA_BUILTIN;
+composeActions (a1 a2 : Action) : Action := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecordSet;.
-verifyAction (a : Action) : Bool := MISSING_ANOMA_BUILTIN;
+verifyAction (a : Action) : Bool := STILL_MISSING_ANOMA_BUILTIN;
 
 module ActionInternal;
   --- Compares two ;Action; objects.

@@ -1,8 +1,8 @@
 module Anoma.Transaction.Delta;
 
 import Anoma.Delta open using {Delta};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
 import Anoma.Transaction.Object open using {Transaction};
+import Anoma.Utils open;
 
 --- Computes the ;Transaction; ;Delta;.
-delta (transaction : Transaction) : Delta := MISSING_ANOMA_BUILTIN;
+delta (transaction : Transaction) : Delta := STILL_MISSING_ANOMA_BUILTIN;

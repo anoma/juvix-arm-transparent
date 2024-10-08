@@ -4,7 +4,7 @@ module Anoma.Proving.ComplianceProof;
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Compliance};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 ProofRecord : Type :=
   Parametrized.ProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;
@@ -13,10 +13,10 @@ prove
   (provingKey : Compliance.ProvingKey)
   (publicInputs : Compliance.Instance)
   (privateInputs : Compliance.Witness)
-  : Compliance.Proof := MISSING_ANOMA_BUILTIN;
+  : Compliance.Proof := STILL_MISSING_ANOMA_BUILTIN;
 
 -- TODO: Builtin not required for testnet
-verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;
+verify (proofRecord : ProofRecord) : Bool := STILL_MISSING_ANOMA_BUILTIN;
 
 instance
 Compliance-ProvingSystem

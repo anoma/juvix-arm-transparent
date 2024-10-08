@@ -1,15 +1,15 @@
 module Anoma.Delta;
 
 import Anoma.Math as Math open;
-import Anoma.Utils open using {MISSING_JUVIX_BUILTIN; MISSING_DEFINITION; MISSING_ANOMA_BUILTIN; ANOMA_BACKEND_IMPLEMENTATION};
 import Anoma.Builtin.System open;
+import Anoma.Utils open;
 
 --- A fixed-size data type encoding the additively homomorphic and kind distinct ;Delta;.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;Delta; to be dynamically-sized.
 type Delta := mkDelta {unDelta : AnomaOpaque};
 
 --- The ;Delta; value zero.
-zero : Delta := MISSING_JUVIX_BUILTIN;
+zero : Delta := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Adds two ;Delta; values.
 addDelta (d1 d2 : Delta) : Delta := ANOMA_BACKEND_IMPLEMENTATION;

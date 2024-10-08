@@ -1,20 +1,19 @@
 module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
-import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {LogicRef};
 import Anoma.Proving.Types open using {module ResourceLogic};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- The resource logic function signature.
 Logic : Type :=
   (publicInputs : ResourceLogic.Instance) -> (privateInputs : ResourceLogic.Witness) -> Bool;
 
 --- Computes the ;LogicRef; from the ;Logic; function.
-logicToRef (logic : Logic) : LogicRef := MISSING_ANOMA_BUILTIN;
+logicToRef (logic : Logic) : LogicRef := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Fetches the ;Logic; from the ;LogicRef; function.
-logicFromRef (logicRef : LogicRef) : Logic := MISSING_ANOMA_BUILTIN;
+logicFromRef (logicRef : LogicRef) : Logic := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Implements the ;Ref; trait for ;Logic;.
 instance

@@ -1,14 +1,13 @@
 module Anoma.Resource.Value;
 
-import Anoma.Utils open using {Ref; mkRef};
 import Anoma.Resource.Types open using {Value; ValueRef};
-import Anoma.Utils open using {MISSING_JUVIX_IMPLEMENTATION};
+import Anoma.Utils open;
 
 --- Computes the ;ValueRef; from the ;Value;.
-valueToRef (value : Value) : ValueRef := MISSING_JUVIX_IMPLEMENTATION;
+valueToRef (value : Value) : ValueRef := STILL_MISSING_JUVIX_IMPLEMENTATION;
 
 --- Fetches the ;Value; from the ;ValueRef; function.
-valueFromRef (valueRef : ValueRef) : Value := MISSING_JUVIX_IMPLEMENTATION;
+valueFromRef (valueRef : ValueRef) : Value := STILL_MISSING_JUVIX_IMPLEMENTATION;
 
 --- Implements the ;Ref; trait for ;Value;.
 instance

@@ -7,7 +7,7 @@ import Anoma.Proving.ComplianceProof as ComplianceProof open;
 import Anoma.Proving.ResourceLogicProof as ResourceLogicProof open;
 import Anoma.Proving.DeltaProof as DeltaProof open;
 import Anoma.Proving.Types open;
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- A proof record set.
 type ProofRecordSet :=
@@ -28,7 +28,7 @@ empty : ProofRecordSet :=
 --- Verifies a ;ProofRecordSet;.
 --- NOTE: At verification time, a proof record set must contain exactly one ;DeltaProof.ProofRecord;.
 -- TODO: Verify is not required for testnet
-verifyProofRecords (proofRecords : ProofRecordSet) : Bool := MISSING_ANOMA_BUILTIN;
+verifyProofRecords (proofRecords : ProofRecordSet) : Bool := STILL_MISSING_ANOMA_BUILTIN;
 
 module ProofRecordSetInternal;
   --- Compares two ;ProofRecordSet; objects.

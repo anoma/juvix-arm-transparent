@@ -3,7 +3,7 @@ module Anoma.Transaction.AppData;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.Utils open using {MISSING_DEFINITION};
+import Anoma.Utils open;
 
 --- A fixed-size data type encoding the lookup key of application.
 type AppDataKey := mkAppDataKey {unAppDataKey : Nat};

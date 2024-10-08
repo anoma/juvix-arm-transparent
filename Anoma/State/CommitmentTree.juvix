@@ -6,14 +6,14 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
 import Anoma.Resource.Types as Resource open using {Commitment};
-import Anoma.Utils open using {MISSING_DEFINITION};
+import Anoma.Utils open;
 
 --- A state root of the commitment tree.
 type Root := mkRoot {unRoot : Nat};
 
 --- A path in the commitment tree.
 --- TODO: Ask Ray - what is this type in transparent RM?
-type Path := mkPath {unPath : MISSING_DEFINITION};
+type Path := mkPath {unPath : STILL_MISSING_DEFINITION};
 
 --- The interface of the commitment tree.
 positive
