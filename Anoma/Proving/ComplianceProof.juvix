@@ -4,7 +4,7 @@ module Anoma.Proving.ComplianceProof;
 import Stdlib.Prelude open;
 import Anoma.Proving.Types as Parametrized open using {module Compliance};
 import Anoma.Proving.System as Parametrized open using {ProvingSystem};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 ProofRecord : Type :=
   Parametrized.ProofRecord Compliance.Proof Compliance.VerifyingKey Compliance.Witness;

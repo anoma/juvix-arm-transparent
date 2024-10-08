@@ -1,7 +1,7 @@
 module Anoma.Transaction.Preference;
 
 import Anoma.Transaction.Object open using {Transaction};
-import Anoma.Utils open using {MISSING_DEFINITION; NOT_REQUIRED};
+import Anoma.Utils open;
 
 --- A fixed-size type describing the unit interval `[0,1]`.
 type UnitInterval := mkUnitInterval {unUnitInterval : MISSING_DEFINITION};

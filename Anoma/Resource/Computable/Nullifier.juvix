@@ -4,7 +4,7 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Resource.Types open using {Nullifier; NullifierKey};
 import Anoma.Resource.Object open using {Resource};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
 nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier := MISSING_ANOMA_BUILTIN;

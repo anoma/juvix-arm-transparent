@@ -3,7 +3,7 @@ module Anoma.Identity.Signing.Types;
 import Stdlib.Prelude open;
 import Anoma.Identity.Internal open;
 import Anoma.Identity.External open;
-import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 type Signature := mkSignature {unSignature : MISSING_DEFINITION};
 
