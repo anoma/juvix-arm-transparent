@@ -9,7 +9,7 @@ import Anoma.Utils open;
 type Delta := mkDelta {unDelta : AnomaOpaque};
 
 --- The ;Delta; value zero.
-zero : Delta := STILL_MISSING_ANOMA_BUILTIN;
+zero : Delta := STILL_MISSING_JUVIX_BUILTIN;
 
 --- Adds two ;Delta; values.
 addDelta (d1 d2 : Delta) : Delta := ANOMA_BACKEND_IMPLEMENTATION;
