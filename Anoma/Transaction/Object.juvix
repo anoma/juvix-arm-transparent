@@ -7,7 +7,7 @@ import Anoma.State.CommitmentTree as CommitmentTree;
 import Anoma.Transaction.Action open using {Action};
 import Anoma.Delta as Delta open using {Delta};
 import Anoma.Proving.DeltaProof as DeltaProof;
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive

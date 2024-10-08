@@ -7,7 +7,7 @@ import Anoma.Resource as Resource open;
 import Anoma.Proving.Types open using {ProofRecord};
 import Anoma.Proving.ProofRecordSet as ProofRecordSet open using {ProofRecordSet};
 import Anoma.Transaction.AppData open using {AppData};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- The record describing an action and defining the proof context.
 --- Proofs includes resource logic and compliance proofs of created and consumed resources.

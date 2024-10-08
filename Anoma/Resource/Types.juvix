@@ -2,7 +2,7 @@ module Anoma.Resource.Types;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Utils open using {MISSING_DEFINITION; MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.

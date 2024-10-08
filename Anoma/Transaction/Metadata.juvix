@@ -4,7 +4,7 @@ import Stdlib.Prelude open;
 import Anoma.Transaction.Object as Transaction open using {Transaction};
 import Anoma.Transaction.Preference as Preference open using {Preference; composePreferences};
 import Anoma.Transaction.InformationFlow open using {InformationFlowControlPredicate};
-import Anoma.Utils open using {NOT_REQUIRED};
+import Anoma.Utils open;
 
 --- The metadata that can be associated with a ;Transaction;.
 --- The metadata that can used by actors to identify preferrable ;Transaction;s and specify information flow control properties.

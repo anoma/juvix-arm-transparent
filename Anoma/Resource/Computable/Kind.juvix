@@ -2,7 +2,7 @@ module Anoma.Resource.Computable.Kind;
 
 import Anoma.Resource.Object open using {Resource; module Resource};
 import Anoma.Resource.Types open using {LogicRef; LabelRef; Kind};
-import Anoma.Utils open using {MISSING_ANOMA_BUILTIN};
+import Anoma.Utils open;
 
 module KindInternal;
   --- The kind function as defined in the RM specs.
