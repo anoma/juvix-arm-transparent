@@ -14,7 +14,7 @@ prove
   (privateInputs : Delta.Witness)
   : Delta.Proof := STILL_MISSING_ANOMA_BUILTIN;
 
-verify (proofRecord : ProofRecord) : Bool := STILL_MISSING_ANOMA_BUILTIN;
+verify (proofRecord : ProofRecord) : Bool := NOT_REQUIRED;
 
 instance
 Delta-ProvingSystem

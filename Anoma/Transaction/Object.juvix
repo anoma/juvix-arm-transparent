@@ -23,7 +23,7 @@ type Transaction :=
 composeTransactions (tx1 tx2 : Transaction) : Transaction := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Verifies a ;Transaction;.
-verifyTransaction (tx : Transaction) : Bool := STILL_MISSING_ANOMA_BUILTIN;
+verifyTransaction (tx : Transaction) : Bool := NOT_REQUIRED;
 
 --- Returns the ;Resource.Commitment; ;Set; of all ;Action;s in a ;Transaction; or the intersection ;Set;.
 commitmentSet (transaction : Transaction) : Set Resource.Commitment := STILL_MISSING_ANOMA_BUILTIN;

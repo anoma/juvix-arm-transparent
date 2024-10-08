@@ -153,9 +153,9 @@ module Compliance;
 
   type ProvingKey := mkProvingKey {unProvingKey : UNUSED};
 
-  type Instance := mkInstance {unInstance : STILL_MISSING_DEFINITION};
+  type Instance := mkInstance {unInstance : UNUSED};
 
-  type Witness := mkWitness {unWitness : STILL_MISSING_DEFINITION};
+  type Witness := mkWitness {unWitness : UNUSED};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
