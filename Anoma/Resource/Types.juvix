@@ -129,6 +129,21 @@ module QuantityInternal;
   --- Implements the ;Eq; trait for ;Quantity;.
   instance
   Quantity-Eq : Eq Quantity := fromOrdToEq;
+
+  instance
+  Quantity-Natural : Natural Quantity :=
+    mkNatural@{
+      + (b1 b2 : Quantity) : Quantity :=
+        mkQuantity ((Natural.+) (Quantity.unQuantity b1) (Quantity.unQuantity b2));
+      * (b1 b2 : Quantity) : Quantity :=
+        mkQuantity ((Natural.*) (Quantity.unQuantity b1) (Quantity.unQuantity b2))
+    };
+
+  instance
+  Quantity-FromNatural : FromNatural Quantity :=
+    mkFromNatural@{
+      fromNat (n : Nat) : Quantity := mkQuantity n
+    };
 end;
 
 module NullifierKeyCommitmentInternal;
