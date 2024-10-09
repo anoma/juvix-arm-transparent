@@ -2,16 +2,18 @@ module Anoma.Resource.Computable.Nullifier;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Resource.Types open using {Nullifier; NullifierKey};
+import Anoma.Resource.Types open using {Nullifier; module Nullifier; mkNullifier; NullifierKey; module NullifierKey};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Utils open;
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
-nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier := MISSING_ANOMA_BUILTIN;
+nullifier (resource : Resource) (nullifierKey : NullifierKey) : Nullifier :=
+  STILL_MISSING_ANOMA_BUILTIN;
 
 module NullfierInternal;
   --- Compares two ;Nullifier; and returns their ;Ordering;.
-  compare (lhs rhs : Nullifier) : Ordering := MISSING_ANOMA_BUILTIN;
+  compare (lhs rhs : Nullifier) : Ordering :=
+    Ord.cmp (Nullifier.unNullifier lhs) (Nullifier.unNullifier rhs);
 
   --- Implements the ;Ord; trait for ;Nullifier;.
   instance

@@ -10,10 +10,10 @@ Logic : Type :=
   (publicInputs : ResourceLogic.Instance) -> (privateInputs : ResourceLogic.Witness) -> Bool;
 
 --- Computes the ;LogicRef; from the ;Logic; function.
-logicToRef (logic : Logic) : LogicRef := MISSING_ANOMA_BUILTIN;
+logicToRef (logic : Logic) : LogicRef := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Fetches the ;Logic; from the ;LogicRef; function.
-logicFromRef (logicRef : LogicRef) : Logic := MISSING_ANOMA_BUILTIN;
+logicFromRef (logicRef : LogicRef) : Logic := STILL_MISSING_ANOMA_BUILTIN;
 
 --- Implements the ;Ref; trait for ;Logic;.
 instance

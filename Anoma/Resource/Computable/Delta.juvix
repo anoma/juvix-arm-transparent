@@ -1,5 +1,6 @@
 module Anoma.Resource.Computable.Delta;
 
+import Stdlib.Prelude open;
 import Anoma.Delta open using {Delta};
 import Anoma.Resource.Object open using {Resource; module Resource};
 import Anoma.Resource.Types open using {Kind; Quantity};
@@ -10,7 +11,7 @@ module ResourceDeltaInternal;
   --- The delta function as defined in the RM specs.
   --- NOTE: This definition does not specify that the ;Kind; and ;Quantity; arguments
   --- must come from the same ;Resource; although this must be the case.
-  delta (kind : Kind) (quantity : Quantity) : Delta := MISSING_ANOMA_BUILTIN;
+  delta (kind : Kind) (quantity : Quantity) : Delta := STILL_MISSING_ANOMA_BUILTIN;
 end;
 
 --- Computes the ;Delta; value of a given ;Resource;.

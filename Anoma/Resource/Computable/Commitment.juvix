@@ -2,16 +2,17 @@ module Anoma.Resource.Computable.Commitment;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Anoma.Resource.Types open using {Commitment};
+import Anoma.Resource.Types open using {Commitment; module Commitment; mkCommitment};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Utils open;
 
 --- Computes the ;Commitment; of a ;Resource;.
-commitment (resource : Resource) : Commitment := MISSING_ANOMA_BUILTIN;
+commitment (resource : Resource) : Commitment := STILL_MISSING_ANOMA_BUILTIN;
 
 module CommitmentInternal;
   --- Compares two ;Commitment; and returns their ;Ordering;.
-  compare (lhs rhs : Commitment) : Ordering := MISSING_ANOMA_BUILTIN;
+  compare (lhs rhs : Commitment) : Ordering :=
+    Ord.cmp (Commitment.unCommitment lhs) (Commitment.unCommitment rhs);
 
   --- Implements the ;Ord; trait for ;Commitment;.
   instance

@@ -23,7 +23,7 @@ type Action :=
   };
 
 --- Verifies an ;Action; by verifying all proofs in the ;ProofRecord; ;Set;.
-verifyAction (a : Action) : Bool := MISSING_ANOMA_BUILTIN;
+verifyAction (a : Action) : Bool := NOT_REQUIRED;
 
 module ActionInternal;
   --- Compares two ;Action; objects.

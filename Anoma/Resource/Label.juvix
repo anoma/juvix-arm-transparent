@@ -4,10 +4,10 @@ import Anoma.Resource.Types open using {Label; LabelRef};
 import Anoma.Utils open;
 
 --- Computes the ;LabelRef; from the ;Label;.
-labelToRef (label : Label) : LabelRef := MISSING_JUVIX_IMPLEMENTATION;
+labelToRef (label : Label) : LabelRef := STILL_MISSING_JUVIX_IMPLEMENTATION;
 
 --- Fetches the ;Label; from the ;LabelRef; function.
-labelFromRef (labelRef : LabelRef) : Label := MISSING_JUVIX_IMPLEMENTATION;
+labelFromRef (labelRef : LabelRef) : Label := STILL_MISSING_JUVIX_IMPLEMENTATION;
 
 --- Implements the ;Ref; trait for ;Label;.
 instance
