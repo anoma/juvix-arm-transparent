@@ -117,7 +117,7 @@ module ResourceLogic;
     };
 
   module TagInternal;
-    --- Compares two ;CustomInputs; objects.
+    --- Compares two ;Tag; objects.
     --- Lexicographical ordering with `Created _ < Consumed _`.
     compare (lhs rhs : Tag) : Ordering :=
       case lhs, rhs of
