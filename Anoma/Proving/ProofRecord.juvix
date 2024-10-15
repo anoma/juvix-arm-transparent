@@ -9,24 +9,24 @@ import Anoma.Utils open;
 
 --- A wrapper type for all of the supported proof record types.
 type ProofRecord :=
-  | proofRecordCompliance ComplianceProof.ProofRecord
-  | proofRecordLogic LogicProof.ProofRecord
-  | proofRecordDelta DeltaProof.ProofRecord;
+  | Compliance ComplianceProof.ProofRecord
+  | Logic LogicProof.ProofRecord
+  | Delta DeltaProof.ProofRecord;
 
 module ProofRecordInternal;
   instance
   ProofRecord-Ord : Ord ProofRecord :=
-    -- lexicographical ordering with `proofRecordCompliance _ < proofRecordLogic _ < proofRecordDelta _`.
+    -- lexicographical ordering with `ComplianceProofRecord _ < LogicProofRecord _ < DeltaProofRecord _`.
     mkOrd@{
       cmp (p1 p2 : ProofRecord) : Ordering :=
         case p1, p2 of
-          | proofRecordCompliance c1, proofRecordCompliance c2 := Ord.cmp c1 c2
-          | proofRecordLogic r1, proofRecordLogic r2 := Ord.cmp r1 r2
-          | proofRecordDelta d1, proofRecordDelta d2 := Ord.cmp d1 d2
-          | proofRecordCompliance _, _ := LT
-          | proofRecordLogic _, proofRecordCompliance _ := GT
-          | proofRecordLogic _, proofRecordDelta _ := LT
-          | proofRecordDelta _, _ := GT
+          | Compliance c1, Compliance c2 := Ord.cmp c1 c2
+          | Logic r1, Logic r2 := Ord.cmp r1 r2
+          | Delta d1, Delta d2 := Ord.cmp d1 d2
+          | Compliance _, _ := LT
+          | Logic _, Compliance _ := GT
+          | Logic _, Delta _ := LT
+          | Delta _, _ := GT
     };
 
 end;
