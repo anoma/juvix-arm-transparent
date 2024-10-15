@@ -2,7 +2,7 @@ module Anoma.Proving.ProofRecord;
 
 import Stdlib.Prelude open;
 import Anoma.Proving.ComplianceProof as ComplianceProof;
-import Anoma.Proving.ResourceLogicProof as ResourceLogicProof;
+import Anoma.Proving.LogicProof as LogicProof;
 import Anoma.Proving.DeltaProof as DeltaProof;
 import Data.Set as Set open using {Set};
 import Anoma.Utils open;
@@ -10,22 +10,22 @@ import Anoma.Utils open;
 --- A wrapper type for all of the supported proof record types.
 type ProofRecord :=
   | proofRecordCompliance ComplianceProof.ProofRecord
-  | proofRecordResourceLogic ResourceLogicProof.ProofRecord
+  | proofRecordLogic LogicProof.ProofRecord
   | proofRecordDelta DeltaProof.ProofRecord;
 
 module ProofRecordInternal;
   instance
   ProofRecord-Ord : Ord ProofRecord :=
-    -- lexicographical ordering with `proofRecordCompliance _ < proofRecordResourceLogic _ < proofRecordDelta _`.
+    -- lexicographical ordering with `proofRecordCompliance _ < proofRecordLogic _ < proofRecordDelta _`.
     mkOrd@{
       cmp (p1 p2 : ProofRecord) : Ordering :=
         case p1, p2 of
           | proofRecordCompliance c1, proofRecordCompliance c2 := Ord.cmp c1 c2
-          | proofRecordResourceLogic r1, proofRecordResourceLogic r2 := Ord.cmp r1 r2
+          | proofRecordLogic r1, proofRecordLogic r2 := Ord.cmp r1 r2
           | proofRecordDelta d1, proofRecordDelta d2 := Ord.cmp d1 d2
           | proofRecordCompliance _, _ := LT
-          | proofRecordResourceLogic _, proofRecordCompliance _ := GT
-          | proofRecordResourceLogic _, proofRecordDelta _ := LT
+          | proofRecordLogic _, proofRecordCompliance _ := GT
+          | proofRecordLogic _, proofRecordDelta _ := LT
           | proofRecordDelta _, _ := GT
     };
 
