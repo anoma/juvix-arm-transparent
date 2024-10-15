@@ -82,7 +82,7 @@ module Delta;
   end;
 end;
 
-module ResourceLogic;
+module Logic;
   type Proof := mkProof {unProof : MISSING_DEFINITION};
 
   type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
