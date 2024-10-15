@@ -1,0 +1,20 @@
+--- An instantiation of a proving System for resource logic proofs.
+module Anoma.Proving.LogicProof;
+
+import Stdlib.Prelude open;
+import Anoma.Proving.Types as Parametrized open using {module Logic};
+import Anoma.Utils open;
+
+ProofRecord : Type :=
+  Parametrized.GenericProofRecord
+    Logic.Proof
+    Logic.VerifyingKey
+    Logic.Instance;
+
+prove
+  (provingKey : Logic.ProvingKey)
+  (publicInputs : Logic.Instance)
+  (privateInputs : Logic.Witness)
+  : Logic.Proof := MISSING_ANOMA_BUILTIN;
+
+verify (proofRecord : ProofRecord) : Bool := MISSING_ANOMA_BUILTIN;

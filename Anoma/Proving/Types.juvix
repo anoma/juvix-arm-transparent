@@ -83,7 +83,7 @@ module Delta;
   end;
 end;
 
-module ResourceLogic;
+module Logic;
   type Proof := mkProof {unProof : AnomaOpaque};
 
   type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
