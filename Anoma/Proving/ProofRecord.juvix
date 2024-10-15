@@ -9,9 +9,9 @@ import Anoma.Utils open;
 
 --- A wrapper type for all of the supported proof record types.
 type ProofRecord :=
-  | ComplianceProofRecord ComplianceProof.ProofRecord
-  | LogicProofRecord LogicProof.ProofRecord
-  | DeltaProofRecord DeltaProof.ProofRecord;
+  | Compliance ComplianceProof.ProofRecord
+  | Logic LogicProof.ProofRecord
+  | Delta DeltaProof.ProofRecord;
 
 module ProofRecordInternal;
   instance
@@ -20,13 +20,13 @@ module ProofRecordInternal;
     mkOrd@{
       cmp (p1 p2 : ProofRecord) : Ordering :=
         case p1, p2 of
-          | ComplianceProofRecord c1, ComplianceProofRecord c2 := Ord.cmp c1 c2
-          | LogicProofRecord r1, LogicProofRecord r2 := Ord.cmp r1 r2
-          | DeltaProofRecord d1, DeltaProofRecord d2 := Ord.cmp d1 d2
-          | ComplianceProofRecord _, _ := LT
-          | LogicProofRecord _, ComplianceProofRecord _ := GT
-          | LogicProofRecord _, DeltaProofRecord _ := LT
-          | DeltaProofRecord _, _ := GT
+          | Compliance c1, Compliance c2 := Ord.cmp c1 c2
+          | Logic r1, Logic r2 := Ord.cmp r1 r2
+          | Delta d1, Delta d2 := Ord.cmp d1 d2
+          | Compliance _, _ := LT
+          | Logic _, Compliance _ := GT
+          | Logic _, Delta _ := LT
+          | Delta _, _ := GT
     };
 
 end;
