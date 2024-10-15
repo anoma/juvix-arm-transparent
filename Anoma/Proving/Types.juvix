@@ -113,7 +113,7 @@ module Logic;
     mkWitness {
       created : Set Resource;
       consumed : Set Resource;
-      custom : CustomInputs
+      customInputs : CustomInputs
     };
 
   module TagInternal;
@@ -197,7 +197,7 @@ module Logic;
     --- Compares two ;Witness; objects.
     compare (lhs rhs : Witness) : Ordering :=
       let
-        prod (w : Witness) : _ := Witness.created w, Witness.consumed w, Witness.custom w;
+        prod (w : Witness) : _ := Witness.created w, Witness.consumed w, Witness.customInputs w;
       in Ord.cmp (prod lhs) (prod rhs);
 
     --- Implements the ;Ord; trait for ;Witness;.
