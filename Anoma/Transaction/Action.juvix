@@ -3,7 +3,7 @@ module Anoma.Transaction.Action;
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Data.Set as Set open using {Set};
-import Anoma.Resource as Resource open;
+import Anoma.Resource as Resource open using {Resource};
 import Anoma.Proving.ProofRecord open using {ProofRecord};
 import Anoma.Transaction.AppData open using {AppData};
 import Anoma.Utils open;
@@ -18,7 +18,7 @@ type Action :=
   mkAction {
     commitments : Set Resource.Commitment;
     nullifiers : Set Resource.Nullifier;
-    proofs : Set ProofRecord;
+    proofRecords : Set ProofRecord;
     appData : AppData
   };
 
@@ -30,7 +30,7 @@ module ActionInternal;
   compare (lhs rhs : Action) : Ordering :=
     let
       prod (a : Action) : _ :=
-        Action.commitments a, Action.nullifiers a, Action.proofs a, Action.appData a;
+        Action.commitments a, Action.nullifiers a, Action.proofRecords a, Action.appData a;
     in Ord.cmp (prod lhs) (prod rhs);
 
   --- Implements the ;Ord; trait for ;Action;.
