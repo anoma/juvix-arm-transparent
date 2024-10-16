@@ -16,7 +16,7 @@ type Transaction :=
     roots : Set CommitmentTree.Root;
     actions : Set Action;
     delta : Delta;
-    deltaProof : DeltaProof.ProofRecord
+    deltaProofRecord : DeltaProof.ProofRecord
   };
 
 --- Composes two ;Transaction; objects.
