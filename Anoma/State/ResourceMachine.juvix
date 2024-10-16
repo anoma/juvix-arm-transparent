@@ -4,7 +4,7 @@ import Stdlib.Prelude open;
 import Data.Set as Set open using {Set};
 import Anoma.Transaction.Object as Transaction open using {Transaction; mkTransaction; composeTransactions; verifyTransaction};
 import Anoma.State.CommitmentTree as CommitmentTree open using {Root};
-import Anoma.Transaction.Action as Action open;
+import Anoma.Transaction.Action as Action open using {Action};
 import Anoma.Delta as Delta open using {Delta};
 import Anoma.Proving.DeltaProof as DeltaProof;
 
