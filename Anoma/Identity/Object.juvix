@@ -8,7 +8,7 @@ import Anoma.Identity.Internal open;
 --- A record describing an identity.
 --- NOTE: For the private testnet, this deviates from the specs https://specs.anoma.net/v2/system_architecture/identity/identity.html.
 type Identity :=
-  mkIdentity {
+  mkIdentity@{
     external : ExternalIdentity;
     internal : InternalIdentity
   };

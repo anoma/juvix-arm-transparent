@@ -7,7 +7,7 @@ import Anoma.Proving.Types open using {module Delta};
 import Anoma.Utils open;
 
 type ProofRecord :=
-  mkProofRecord {
+  mkProofRecord@{
     proof : Delta.Proof;
     verifyingKey : Delta.VerifyingKey;
     instance : Delta.Instance

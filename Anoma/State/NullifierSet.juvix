@@ -8,7 +8,7 @@ import Anoma.Resource.Types as Resource open using {Nullifier};
 --- The interface of the nullifier set.
 trait
 type NullifierSet :=
-  mkNullifierSet {
+  mkNullifierSet@{
     --- Adds a ;Resource.Nullifier; to the ;NullifierSet;.
     --- TODO Wait for the specs to rename this from `write` to `add`.
     add : (nullifier : Resource.Nullifier) -> NullifierSet;

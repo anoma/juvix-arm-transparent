@@ -15,7 +15,7 @@ import Anoma.Utils open;
 --- - existence of consumed ;Resource;s in the commitment tree
 --- - non-existence of consumed ;Resource;s in the nullifier set.
 type Action :=
-  mkAction {
+  mkAction@{
     commitments : Set Resource.Commitment;
     nullifiers : Set Resource.Nullifier;
     proofRecords : Set ProofRecord;

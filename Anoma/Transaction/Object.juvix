@@ -12,7 +12,7 @@ import Anoma.Utils open;
 --- A record describing a transaction object, the entity constituting a state transition in Anoma.
 positive
 type Transaction :=
-  mkTransaction {
+  mkTransaction@{
     roots : Set CommitmentTree.Root;
     actions : Set Action;
     delta : Delta;

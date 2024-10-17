@@ -6,7 +6,7 @@ import Anoma.Resource.Types open;
 
 --- A record describing a resource, the atomic unit of state in the Anoma state model.
 type Resource :=
-  mkResource {
+  mkResource@{
     logicRef : LogicRef;
     labelRef : LabelRef;
     valueRef : ValueRef;

@@ -13,7 +13,7 @@ type AppDataValue := mkAppDataValue {unAppDataValue : Nat};
 
 --- A type describing an app data map entry.
 type AppDataEntry :=
-  mkAppDataEntry {
+  mkAppDataEntry@{
     key : AppDataKey;
     value : AppDataValue
   };
