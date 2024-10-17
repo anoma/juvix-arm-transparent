@@ -1,7 +1,7 @@
 module Anoma.Transaction.InformationFlow;
 
 import Stdlib.Prelude open;
-import Data.Set as Set open using {Set; toList; member?};
+import Stdlib.Data.Set as Set open using {Set; toList; isMember};
 import Anoma.Identity open using {ExternalIdentity};
 import Anoma.Transaction.Object open using {Transaction};
 import Anoma.Utils open;
@@ -33,7 +33,7 @@ basePredicate (baseData : BaseData) : InformationFlowControlPredicate := NOT_REQ
 {-
   case baseData of
     | AllowAny := \ {_ _ := true}
-    | AllowOnly identites := \ {_ self := member? self identites}
+    | AllowOnly identites := \ {_ self := isMember self identites}
     | RequireShielded hashes := \ {tx _ := requireShieldedCheckPlaceholder tx hashes}
     | And predicates := \ {tx id := all (p in predicates) basePredicate p tx id}
     | Or predicates := \ {tx id := any (p in predicates) basePredicate p tx id};

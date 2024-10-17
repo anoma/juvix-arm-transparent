@@ -2,7 +2,7 @@ module Anoma.Proving.Types;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
+import Stdlib.Data.Set as Set open using {Set};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.Resource.Computable.Commitment open using {module CommitmentInternal};
@@ -97,7 +97,7 @@ module Logic;
 
   --- The public inputs (Instance) of the resource logic function proof.
   type Instance :=
-    mkInstance {
+    mkInstance@{
       tag : Tag;
       commitments : Set Commitment;
       nullifiers : Set Nullifier;
@@ -111,7 +111,7 @@ module Logic;
 
   --- The private inputs (Witness) of the resource logic function proof.
   type Witness :=
-    mkWitness {
+    mkWitness@{
       created : Set Resource;
       consumed : Set Resource;
       customInputs : CustomInputs
@@ -124,8 +124,8 @@ module Logic;
       case lhs, rhs of
         | Created cmLhs, Created cmRhs := Ord.cmp cmLhs cmRhs
         | Consumed nfLhs, Consumed nfRhs := Ord.cmp nfLhs nfRhs
-        | Created _, Consumed _ := LT
-        | Consumed _, Created _ := GT;
+        | Created _, Consumed _ := LessThan
+        | Consumed _, Created _ := GreaterThan;
 
     --- Implements the ;Ord; trait for ;Tag;.
     instance
