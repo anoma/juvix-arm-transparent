@@ -2,7 +2,7 @@ module Anoma.Proving.Types;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
+import Stdlib.Data.Set as Set open using {Set};
 import Anoma.Resource.Object open using {Resource};
 import Anoma.Resource.Types open using {Commitment; Nullifier};
 import Anoma.Resource.Computable.Commitment open using {module CommitmentInternal};
@@ -16,15 +16,15 @@ GenericProofRecord (Proof VerifyingKey Instance : Type) : Type :=
   Pair VerifyingKey (Pair Proof Instance);
 
 module Delta;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof@{unProof : MISSING_DEFINITION};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey@{unVerifyingKey : MISSING_DEFINITION};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey@{unProvingKey : MISSING_DEFINITION};
 
-  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
+  type Instance := mkInstance@{unInstance : MISSING_DEFINITION};
 
-  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
+  type Witness := mkWitness@{unWitness : MISSING_DEFINITION};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
@@ -83,11 +83,11 @@ module Delta;
 end;
 
 module Logic;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof@{unProof : MISSING_DEFINITION};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey@{unVerifyingKey : MISSING_DEFINITION};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey@{unProvingKey : MISSING_DEFINITION};
 
   --- The reference to the ;Resource; carrying the logic function.
   type Tag :=
@@ -96,7 +96,7 @@ module Logic;
 
   --- The public inputs (Instance) of the resource logic function proof.
   type Instance :=
-    mkInstance {
+    mkInstance@{
       tag : Tag;
       commitments : Set Commitment;
       nullifiers : Set Nullifier;
@@ -106,11 +106,11 @@ module Logic;
   --- Custom inputs of the resource logic function proof being defined on the application level.
   --- TODO To support the definition of ;CustomInputs; on the application level, Juvix must support existential types.
   --- NOTE: For the private testnet, this can be of type ;AppData;.
-  type CustomInputs := mkCustomInputs {unCustomInputs : MISSING_DEFINITION};
+  type CustomInputs := mkCustomInputs@{unCustomInputs : MISSING_DEFINITION};
 
   --- The private inputs (Witness) of the resource logic function proof.
   type Witness :=
-    mkWitness {
+    mkWitness@{
       created : Set Resource;
       consumed : Set Resource;
       customInputs : CustomInputs
@@ -123,8 +123,8 @@ module Logic;
       case lhs, rhs of
         | Created cmLhs, Created cmRhs := Ord.cmp cmLhs cmRhs
         | Consumed nfLhs, Consumed nfRhs := Ord.cmp nfLhs nfRhs
-        | Created _, Consumed _ := LT
-        | Consumed _, Created _ := GT;
+        | Created _, Consumed _ := LessThan
+        | Consumed _, Created _ := GreaterThan;
 
     --- Implements the ;Ord; trait for ;Tag;.
     instance
@@ -211,15 +211,15 @@ module Logic;
 end;
 
 module Compliance;
-  type Proof := mkProof {unProof : MISSING_DEFINITION};
+  type Proof := mkProof@{unProof : MISSING_DEFINITION};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : MISSING_DEFINITION};
+  type VerifyingKey := mkVerifyingKey@{unVerifyingKey : MISSING_DEFINITION};
 
-  type ProvingKey := mkProvingKey {unProvingKey : MISSING_DEFINITION};
+  type ProvingKey := mkProvingKey@{unProvingKey : MISSING_DEFINITION};
 
-  type Instance := mkInstance {unInstance : MISSING_DEFINITION};
+  type Instance := mkInstance@{unInstance : MISSING_DEFINITION};
 
-  type Witness := mkWitness {unWitness : MISSING_DEFINITION};
+  type Witness := mkWitness@{unWitness : MISSING_DEFINITION};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.

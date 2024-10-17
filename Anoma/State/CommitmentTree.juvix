@@ -4,7 +4,7 @@ module Anoma.State.CommitmentTree;
 
 import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
-import Data.Set as Set open using {Set};
+import Stdlib.Data.Set as Set open using {Set};
 import Anoma.Resource.Types as Resource open using {Commitment};
 import Anoma.Utils open;
 

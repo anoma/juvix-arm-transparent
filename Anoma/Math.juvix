@@ -1,7 +1,7 @@
 module Anoma.Math;
 
 import Stdlib.Prelude open;
-import Data.Set as Set open using {Set; union; intersection};
+import Stdlib.Data.Set as Set open using {Set; union; intersection};
 
 --- A trait describing additive homomorphicity.
 trait
