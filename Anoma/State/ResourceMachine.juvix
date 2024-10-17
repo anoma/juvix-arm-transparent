@@ -11,7 +11,7 @@ import Anoma.Proving.ProofRecord open using {ProofRecord};
 --- The resource machine interface.
 trait
 type ResourceMachine :=
-  mkResourceMachine {
+  mkResourceMachine@{
     --- Creates a ;Transaction;.
     create : (roots : Set CommitmentTree.Root)
       -> (actions : Set Action)

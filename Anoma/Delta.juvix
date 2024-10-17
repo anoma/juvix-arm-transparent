@@ -5,7 +5,7 @@ import Anoma.Utils open;
 
 --- A fixed-size data type encoding the additively homomorphic and kind distinct ;Delta;.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;Delta; to be dynamically-sized.
-type Delta := mkDelta {unDelta : MISSING_DEFINITION};
+type Delta := mkDelta@{unDelta : MISSING_DEFINITION};
 
 --- The ;Delta; value zero.
 zero : Delta := MISSING_ANOMA_BUILTIN;

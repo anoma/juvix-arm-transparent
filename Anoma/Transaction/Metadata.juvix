@@ -9,14 +9,14 @@ import Anoma.Utils open;
 --- The metadata that can be associated with a ;Transaction;.
 --- The metadata that can used by actors to identify preferrable ;Transaction;s and specify information flow control properties.
 type Metadata :=
-  mkMetadata {
+  mkMetadata@{
     preference : Preference;
     informationFlowControlPredicate : InformationFlowControlPredicate
   };
 
 --- A composite structure containing a ;Transaction; with ;Metadata;
 type TransactionWithMetadata :=
-  createWithMetadata {
+  createWithMetadata@{
     transaction : Transaction;
     metadata : Metadata
   };
