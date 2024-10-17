@@ -31,7 +31,7 @@ ANOMA_BACKEND_IMPLEMENTATION : {A : Type} → A :=
 --- dynamically-sized.
 trait
 type Ref DataType RefType :=
-  mkRef {
+  mkRef@{
     toRef : DataType -> RefType;
     fromRef : RefType -> DataType
   };

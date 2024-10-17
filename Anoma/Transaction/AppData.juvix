@@ -6,14 +6,14 @@ import Stdlib.Data.Set as Set open using {Set};
 import Anoma.Utils open;
 
 --- A fixed-size data type encoding the lookup key of application.
-type AppDataKey := mkAppDataKey {unAppDataKey : MISSING_DEFINITION};
+type AppDataKey := mkAppDataKey@{unAppDataKey : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the lookup value of application data.
-type AppDataValue := mkAppDataValue {unAppDataValue : MISSING_DEFINITION};
+type AppDataValue := mkAppDataValue@{unAppDataValue : MISSING_DEFINITION};
 
 --- A type describing an app data map entry.
 type AppDataEntry :=
-  mkAppDataEntry {
+  mkAppDataEntry@{
     key : AppDataKey;
     value : AppDataValue
   };

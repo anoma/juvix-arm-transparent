@@ -20,5 +20,7 @@ jobs:
           cache: enable
       - name: Clean & Update Dependencies
         run: juvix clean --global && juvix clean && juvix dependencies update
-      - name: Typecheck
+      - name: Type Check
         run: juvix typecheck
+      - name: Format Check
+        run: juvix format

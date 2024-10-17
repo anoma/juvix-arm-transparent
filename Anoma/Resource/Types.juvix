@@ -6,48 +6,48 @@ import Anoma.Utils open;
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
-type LogicRef := mkLogicRef {unLogicRef : MISSING_DEFINITION};
+type LogicRef := mkLogicRef@{unLogicRef : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the reference to the resource label field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LabelRef; to be dynamically-sized.
-type LabelRef := mkLabelRef {unLabelRef : MISSING_DEFINITION};
+type LabelRef := mkLabelRef@{unLabelRef : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the reference to the resource value field.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;ValueRef; to be dynamically-sized.
-type ValueRef := mkValueRef {unValueRef : MISSING_DEFINITION};
+type ValueRef := mkValueRef@{unValueRef : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the quantity of a resource.
-type Quantity := mkQuantity {unQuantity : MISSING_DEFINITION};
+type Quantity := mkQuantity@{unQuantity : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding the public commitment to the private nullifier key.
 type NullifierKeyCommitment :=
-  mkNullifierKeyCommitment {unNullifierKeyCommitment : MISSING_DEFINITION};
+  mkNullifierKeyCommitment@{unNullifierKeyCommitment : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding a number to be used once ensuring that the resource commitment is unique.
 --- NOTE: This should be a number having an at most negligible chance of repeating is sufficient, e.g., a pseudo-random number.
-type Nonce := mkNonce {unNonce : MISSING_DEFINITION};
+type Nonce := mkNonce@{unNonce : MISSING_DEFINITION};
 
 --- A fixed-size data type encoding a randomness seed.
 --- NOTE: This seed provides pseudo randomness and cannot be expected to provide true randomness.
-type RandSeed := mkRandSeed {unRandSeed : MISSING_DEFINITION};
+type RandSeed := mkRandSeed@{unRandSeed : MISSING_DEFINITION};
 
 --- The resource label type.
-type Label := mkLabel {unLabel : MISSING_DEFINITION};
+type Label := mkLabel@{unLabel : MISSING_DEFINITION};
 
 --- The resource value type.
-type Value := mkValue {unValue : MISSING_DEFINITION};
+type Value := mkValue@{unValue : MISSING_DEFINITION};
 
 --- The resource kind type.
-type Kind := mkKind {unKind : MISSING_DEFINITION};
+type Kind := mkKind@{unKind : MISSING_DEFINITION};
 
 --- The resource commitment type.
-type Commitment := mkCommitment {unCommitment : MISSING_DEFINITION};
+type Commitment := mkCommitment@{unCommitment : MISSING_DEFINITION};
 
 --- The resource nullifier type.
-type Nullifier := mkNullifier {unNullifier : MISSING_DEFINITION};
+type Nullifier := mkNullifier@{unNullifier : MISSING_DEFINITION};
 
 --- The nullifier key type describing a secret required to compute the ;Nullifier; of a resource
-type NullifierKey := mkNullifierKey {unNullifierKey : MISSING_DEFINITION};
+type NullifierKey := mkNullifierKey@{unNullifierKey : MISSING_DEFINITION};
 
 module LogicRefInternal;
   --- Compares two ;LogicRef; objects.
