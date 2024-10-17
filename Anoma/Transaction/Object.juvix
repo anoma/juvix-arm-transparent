@@ -1,7 +1,7 @@
 module Anoma.Transaction.Object;
 
 import Stdlib.Prelude open;
-import Data.Set as Set open using {Set};
+import Stdlib.Data.Set as Set open using {Set};
 import Anoma.Resource.Types as Resource;
 import Anoma.State.CommitmentTree as CommitmentTree;
 import Anoma.Transaction.Action open using {Action};

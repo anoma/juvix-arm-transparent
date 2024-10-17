@@ -4,7 +4,7 @@ import Stdlib.Prelude open;
 import Anoma.Proving.ComplianceProof as ComplianceProof;
 import Anoma.Proving.LogicProof as LogicProof;
 import Anoma.Proving.DeltaProof as DeltaProof;
-import Data.Set as Set open using {Set};
+import Stdlib.Data.Set as Set open using {Set};
 import Anoma.Utils open;
 
 --- A wrapper type for all of the supported proof record types.
@@ -23,10 +23,10 @@ module ProofRecordInternal;
           | Compliance c1, Compliance c2 := Ord.cmp c1 c2
           | Logic r1, Logic r2 := Ord.cmp r1 r2
           | Delta d1, Delta d2 := Ord.cmp d1 d2
-          | Compliance _, _ := LT
-          | Logic _, Compliance _ := GT
-          | Logic _, Delta _ := LT
-          | Delta _, _ := GT
+          | Compliance _, _ := LessThan
+          | Logic _, Compliance _ := GreaterThan
+          | Logic _, Delta _ := LessThan
+          | Delta _, _ := GreaterThan
     };
 
 end;
