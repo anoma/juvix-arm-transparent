@@ -1,18 +1,13 @@
 module Anoma.Resource.Label;
 
 import Anoma.Resource.Types open using {Label; LabelRef};
+import Anoma.Resource.Reference open using {Reference; mkReference};
 import Anoma.Utils open;
 
---- Computes the ;LabelRef; from the ;Label;.
-labelToRef (label : Label) : LabelRef := MISSING_JUVIX_IMPLEMENTATION;
-
---- Fetches the ;Label; from the ;LabelRef; function.
-labelFromRef (labelRef : LabelRef) : Label := MISSING_JUVIX_IMPLEMENTATION;
-
---- Implements the ;Ref; trait for ;Label;.
+--- Implements the ;Reference; trait for ;Label;.
 instance
-Label-Ref : Ref Label LabelRef :=
-  mkRef@{
-    toRef := labelToRef;
-    fromRef := labelFromRef
+Label-Reference : Reference Label LabelRef :=
+  mkReference@{
+    to := MISSING_JUVIX_IMPLEMENTATION;
+    from := MISSING_JUVIX_IMPLEMENTATION
   };

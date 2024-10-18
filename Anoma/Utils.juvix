@@ -24,14 +24,3 @@ MISSING_ANOMA_BUILTIN : {A : Type} → A :=
 --- A placeholder for an implementation that must be implemented on by the Anoma instantiator in the backend, but is not supposed to be called from Juvix.
 ANOMA_BACKEND_IMPLEMENTATION : {A : Type} → A :=
   failwith "THIS BACKEND IMPLEMENTATION IS NOT SUPPOSED TO BE CALLED FROM JUVIX";
-
---- A trait for transforming values of a `DataType` into values of its
---- corresponding `RefType`. Values of `RefType` must have fixed size. For the
---- private testnet, the requirement can be relaxed by allowing ;RefType; to be
---- dynamically-sized.
-trait
-type Ref DataType RefType :=
-  mkRef@{
-    toRef : DataType -> RefType;
-    fromRef : RefType -> DataType
-  };
