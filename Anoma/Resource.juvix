@@ -5,6 +5,7 @@ import Anoma.Resource.Object open public;
 import Anoma.Resource.Logic open public;
 import Anoma.Resource.Label open public;
 import Anoma.Resource.Value open public;
+import Anoma.Resource.Reference open public;
 import Anoma.Resource.Computable.Commitment open public;
 import Anoma.Resource.Computable.Delta open public;
 import Anoma.Resource.Computable.Kind open public;
