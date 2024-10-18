@@ -13,6 +13,6 @@ Logic : Type := (publicInputs : Logic.Instance) -> (privateInputs : Logic.Witnes
 instance
 Logic-Reference : Reference Logic LogicRef :=
   mkReference@{
-    to := MISSING_JUVIX_IMPLEMENTATION;
-    from := MISSING_JUVIX_IMPLEMENTATION
+    to := STILL_MISSING_JUVIX_IMPLEMENTATION;
+    from := STILL_MISSING_JUVIX_IMPLEMENTATION
   };

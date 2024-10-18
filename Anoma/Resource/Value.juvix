@@ -8,6 +8,6 @@ import Anoma.Utils open;
 instance
 Value-Reference : Reference Value ValueRef :=
   mkReference@{
-    to := MISSING_JUVIX_IMPLEMENTATION;
-    from := MISSING_JUVIX_IMPLEMENTATION
+    to := STILL_MISSING_JUVIX_IMPLEMENTATION;
+    from := STILL_MISSING_JUVIX_IMPLEMENTATION
   };
