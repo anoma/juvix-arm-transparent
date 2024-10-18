@@ -2,22 +2,17 @@ module Anoma.Resource.Logic;
 
 import Stdlib.Prelude open;
 import Anoma.Resource.Types open using {LogicRef};
+import Anoma.Resource.Reference open using {Reference; mkReference};
 import Anoma.Proving.Types open using {module Logic};
 import Anoma.Utils open;
 
 --- The resource logic function signature.
 Logic : Type := (publicInputs : Logic.Instance) -> (privateInputs : Logic.Witness) -> Bool;
 
---- Computes the ;LogicRef; from the ;Logic; function.
-logicToRef (logic : Logic) : LogicRef := STILL_MISSING_ANOMA_BUILTIN;
-
---- Fetches the ;Logic; from the ;LogicRef; function.
-logicFromRef (logicRef : LogicRef) : Logic := STILL_MISSING_ANOMA_BUILTIN;
-
---- Implements the ;Ref; trait for ;Logic;.
+--- Implements the ;Reference; trait for ;Logic;.
 instance
-Logic-Ref : Ref Logic LogicRef :=
-  mkRef@{
-    toRef := logicToRef;
-    fromRef := logicFromRef
+Logic-Reference : Reference Logic LogicRef :=
+  mkReference@{
+    to := MISSING_JUVIX_IMPLEMENTATION;
+    from := MISSING_JUVIX_IMPLEMENTATION
   };
