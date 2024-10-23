@@ -12,15 +12,15 @@ import Anoma.Builtin.System open using {AnomaOpaque};
 import Anoma.Utils open;
 
 module Delta;
-  type Proof := mkProof {unProof : AnomaOpaque};
+  type Proof := mkProof@{unProof : AnomaOpaque};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
+  type VerifyingKey := mkVerifyingKey@{unVerifyingKey : UNUSED};
 
-  type ProvingKey := mkProvingKey {unProvingKey : UNUSED};
+  type ProvingKey := mkProvingKey@{unProvingKey : UNUSED};
 
-  type Instance := mkInstance {unInstance : UNUSED};
+  type Instance := mkInstance@{unInstance : UNUSED};
 
-  type Witness := mkWitness {unWitness : UNUSED};
+  type Witness := mkWitness@{unWitness : UNUSED};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
@@ -79,11 +79,11 @@ module Delta;
 end;
 
 module Logic;
-  type Proof := mkProof {unProof : AnomaOpaque};
+  type Proof := mkProof@{unProof : AnomaOpaque};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
+  type VerifyingKey := mkVerifyingKey@{unVerifyingKey : UNUSED};
 
-  type ProvingKey := mkProvingKey {unProvingKey : Resource};
+  type ProvingKey := mkProvingKey@{unProvingKey : Resource};
 
   --- The reference to the ;Resource; carrying the logic function.
   type Tag :=
@@ -195,15 +195,15 @@ end;
 -- Is this what is meant by action compliance in the RM interface?
 -- https://github.com/anoma/anoma/blob/2bd7784de9543d9cfc85ed49bd77cec549f8249c/hoon/resource-machine.hoon#L90
 module Compliance;
-  type Proof := mkProof {unProof : AnomaOpaque};
+  type Proof := mkProof@{unProof : AnomaOpaque};
 
-  type VerifyingKey := mkVerifyingKey {unVerifyingKey : UNUSED};
+  type VerifyingKey := mkVerifyingKey@{unVerifyingKey : UNUSED};
 
-  type ProvingKey := mkProvingKey {unProvingKey : UNUSED};
+  type ProvingKey := mkProvingKey@{unProvingKey : UNUSED};
 
-  type Instance := mkInstance {unInstance : UNUSED};
+  type Instance := mkInstance@{unInstance : UNUSED};
 
-  type Witness := mkWitness {unWitness : UNUSED};
+  type Witness := mkWitness@{unWitness : UNUSED};
 
   module ProofInternal;
     --- Compares two ;Proof; objects.
