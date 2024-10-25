@@ -8,16 +8,3 @@ import Anoma.Utils open;
 
 --- Computes the ;Commitment; of a ;Resource;.
 commitment (resource : Resource) : Commitment := MISSING_ANOMA_BUILTIN;
-
-module CommitmentInternal;
-  --- Compares two ;Commitment; and returns their ;Ordering;.
-  compare (lhs rhs : Commitment) : Ordering := MISSING_ANOMA_BUILTIN;
-
-  --- Implements the ;Ord; trait for ;Commitment;.
-  instance
-  Commitment-Ord : Ord Commitment := mkOrd compare;
-
-  --- Implements the ;Eq; trait for ;Commitment;.
-  instance
-  Commitment-Eq : Eq Commitment := fromOrdToEq;
-end;
