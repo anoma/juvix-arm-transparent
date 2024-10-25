@@ -27,7 +27,6 @@ Label-Reference : Reference Label LabelRef :=
     from := MISSING_JUVIX_IMPLEMENTATION
   };
 
-
 --- Implements the ;Reference; trait for ;Logic;.
 instance
 Logic-Reference : Reference Logic LogicRef :=
@@ -35,7 +34,6 @@ Logic-Reference : Reference Logic LogicRef :=
     to := MISSING_JUVIX_IMPLEMENTATION;
     from := MISSING_JUVIX_IMPLEMENTATION
   };
-
 
 --- Implements the ;Reference; trait for ;Value;.
 instance
