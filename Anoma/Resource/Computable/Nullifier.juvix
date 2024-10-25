@@ -8,16 +8,3 @@ import Anoma.Utils open;
 
 --- Computes the ;Nullifier; of a ;Resource; given a ;NullifierKey;.
 nullifier (nullifierKey : NullifierKey) (resource : Resource) : Nullifier := MISSING_ANOMA_BUILTIN;
-
-module NullfierInternal;
-  --- Compares two ;Nullifier; and returns their ;Ordering;.
-  compare (lhs rhs : Nullifier) : Ordering := MISSING_ANOMA_BUILTIN;
-
-  --- Implements the ;Ord; trait for ;Nullifier;.
-  instance
-  Nullifier-Ord : Ord Nullifier := mkOrd compare;
-
-  --- Implements the ;Eq; trait for ;Nullifier;.
-  instance
-  Nullifier-Eq : Eq Nullifier := fromOrdToEq;
-end;
