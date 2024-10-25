@@ -4,6 +4,7 @@ import Stdlib.Prelude open;
 import Stdlib.Trait.Ord.Eq open using {fromOrdToEq};
 import Anoma.Builtin.ByteArray open using {ByteArray};
 import Anoma.Builtin.System open using {anomaEncode; AnomaOpaque};
+import Anoma.Utils open;
 
 --- A fixed-size data type encoding the reference to the resource logic function.
 --- NOTE: For the private testnet, the requirement can be relaxed by allowing ;LogicRef; to be dynamically-sized.
@@ -191,4 +192,30 @@ module RandSeedInternal;
   --- Implements the ;Eq; trait for ;RandSeed;.
   instance
   RandSeed-Eq : Eq RandSeed := fromOrdToEq;
+end;
+
+module CommitmentInternal;
+  --- Compares two ;Commitment; and returns their ;Ordering;.
+  compare (lhs rhs : Commitment) : Ordering := STILL_MISSING_ANOMA_BUILTIN;
+
+  --- Implements the ;Ord; trait for ;Commitment;.
+  instance
+  Commitment-Ord : Ord Commitment := mkOrd compare;
+
+  --- Implements the ;Eq; trait for ;Commitment;.
+  instance
+  Commitment-Eq : Eq Commitment := fromOrdToEq;
+end;
+
+module NullfierInternal;
+  --- Compares two ;Nullifier; and returns their ;Ordering;.
+  compare (lhs rhs : Nullifier) : Ordering := STILL_MISSING_ANOMA_BUILTIN;
+
+  --- Implements the ;Ord; trait for ;Nullifier;.
+  instance
+  Nullifier-Ord : Ord Nullifier := mkOrd compare;
+
+  --- Implements the ;Eq; trait for ;Nullifier;.
+  instance
+  Nullifier-Eq : Eq Nullifier := fromOrdToEq;
 end;
