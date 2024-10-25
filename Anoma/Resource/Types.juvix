@@ -187,7 +187,7 @@ module CommitmentInternal;
   Commitment-Eq : Eq Commitment := fromOrdToEq;
 end;
 
-module NullfierInternal;
+module NullifierInternal;
   --- Compares two ;Nullifier; and returns their ;Ordering;.
   compare (lhs rhs : Nullifier) : Ordering := MISSING_ANOMA_BUILTIN;
 
